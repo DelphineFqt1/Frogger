@@ -1,6 +1,5 @@
 package GraphicalElements;
 
-import GameCommons.Main;
 import MovingElements.Frog;
 import MovingElements.Obstacle;
 import processing.core.PApplet;
