@@ -25,7 +25,6 @@ public class Frog extends PApplet implements Action {
         Frogger_1.processing.rectMode(CORNERS);
         Frogger_1.processing.rect(this.left, this.top, this.right, this.bottom);
 
-
     }
 
 

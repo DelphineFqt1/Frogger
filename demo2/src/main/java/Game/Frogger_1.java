@@ -1,3 +1,5 @@
+// Fortement inspiré des vidéos youtube de The Coding Train
+
 package Game;
 
 import processing.core.PApplet;
@@ -9,7 +11,10 @@ import java.nio.file.Paths;
 
 
 
+
+
 public class Frogger_1 extends PApplet {
+
     public static PApplet processing;
 
     Frog frog;
@@ -137,7 +142,6 @@ public class Frogger_1 extends PApplet {
             trunks[i_trunk]= new Tronc(largeur_fenetre-x, y_debut-14*grid, grid*5, grid, 14, -2);
             i_trunk++;
         }
-
     }
 
     @Override
@@ -145,11 +149,12 @@ public class Frogger_1 extends PApplet {
         background(bg);
         //tint(255, 100);
 
-        frog.show();
+
 
         for (Car car : cars){
-            car.show();
+
             car.move(car.speed, 0);
+            car.show();
             if (frog.intersection(car)){
 
                 resetGame();
@@ -158,8 +163,9 @@ public class Frogger_1 extends PApplet {
             }
         int count = 0;
         for (Tronc tronc : trunks){
-            tronc.show();
             tronc.move(tronc.speed, 0);
+            tronc.show();
+
             if (tronc.intersection(frog)){
                 frog.left += tronc.speed;
                 frog.right+= tronc.speed;
@@ -167,11 +173,12 @@ public class Frogger_1 extends PApplet {
             }
 
         }
+        frog.show();
         if (frog.range>=9 &&frog.range<15 && count==0){
             resetGame();
             System.out.println("GAME OVER ");
         }
-        if (frog.range == 15){
+        if (frog.range >= 15){
             System.out.println("GAME CLEARED");
         }
         }

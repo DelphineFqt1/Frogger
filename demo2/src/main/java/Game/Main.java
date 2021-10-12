@@ -75,12 +75,8 @@ public class Main extends Application {
                         ft.setToValue(0);
                         ft.setOnFinished(evt -> gamemenu.setVisible(false));
                         ft.play();
-
-
                     }
             );
-
-
             menu.getChildren().addAll(START);
             root.getChildren().addAll(menu);
             getChildren().addAll(root);
