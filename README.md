@@ -1,7 +1,15 @@
 # Frogger
 Frogger est un jeu vidéo d'arcade développé par Konami et sorti en 1981. 
 
-Il s'agit ici d'une version du jeu développée en Java par Alexandre Kha, Delphine Fouquet et Sam Nzongani dans le cadre du cours "Java object-oriented programming" délivré à l'ENSTA Bretagne par Raúl Mazo Peña.
+Il s'agit ici d'une version du jeu développée en Java par Alexandre Kha, Delphine Fouquet et Sam Nzongani dans le cadre du cours "Java object-oriented programming" délivré à l'ENSTA Bretagne par Raúl Mazo Peña. 
+
+Deux modes de jeu sont disponibles:
+
+• Route
+
+• Route + Rivière
+
+Il est possible de jouer seul ou à 2.
 
 ## Installation
 Voici les étapes à suivre pour jouer à Frogger avec [IntelliJ IDEA](https://www.jetbrains.com/fr-fr/idea/):
