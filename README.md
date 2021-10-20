@@ -10,6 +10,9 @@ Deux modes de jeu sont disponibles:
 • Route + Rivière
 
 Il est possible de jouer seul ou à 2.
+```diff
+- drraaaaaaaa cortex 91 les pyramides
+```
 
 ## Installation
 Voici les étapes à suivre pour jouer à Frogger avec [IntelliJ IDEA](https://www.jetbrains.com/fr-fr/idea/):
