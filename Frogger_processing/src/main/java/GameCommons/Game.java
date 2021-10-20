@@ -25,7 +25,8 @@ public class Game implements IFrog, IEnvironment {
     private int game_width;
     private int game_height;
     private int PlayerMode;
-
+    private String Mode1;
+    private String Mode2;
 
     public Game(int grid, int ranges, int columns, int PlayerMode) {
         this.grid = grid;
@@ -35,6 +36,8 @@ public class Game implements IFrog, IEnvironment {
         this.game_height = ranges * grid;
         this.gameState = false;
         this.PlayerMode = PlayerMode;
+        setMode1(null);
+        setMode2(null);
     }
 
     public boolean isGameState() {
@@ -96,6 +99,14 @@ public class Game implements IFrog, IEnvironment {
     public void setGame_height(int game_height) {
         this.game_height = game_height;
     }
+
+    public String getMode1() {return Mode1; }
+
+    public void setMode1(String mode1) {Mode1 = mode1; }
+
+    public String getMode2() {return Mode2; }
+
+    public void setMode2(String mode2) {Mode2 = mode2; }
 
     @Override
     public ArrayList<Car> car_range(int range) {

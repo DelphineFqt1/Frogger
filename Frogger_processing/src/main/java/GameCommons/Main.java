@@ -103,7 +103,7 @@ public class Main extends PApplet {
 
             board.create_case(0, (separate - 1) * grid, game.getGame_width(), game.getGame_height() - grid, 20, 20, 30);
             board.create_case(0, (separate - 2) * grid, game.getGame_width(), grid, 0, 50, 100);
-            board.create_case(0, grid, game.getGame_width(), 0, 295, 192, 203);
+            board.create_case(0, grid, game.getGame_width(), 0, 0, 200, 0);
 
             if (game.getPlayerMode() == 2) {
 
