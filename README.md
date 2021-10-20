@@ -20,11 +20,12 @@ Voici les étapes à suivre pour jouer à Frogger avec [IntelliJ IDEA](https://w
 
 • Aller dans File/Project Structure (Ctrl+Alt+Maj+S) et ajouter la librairie du répertoire core de Processing
 
-• Toujours dans File/Project Structure sélectionner le module core et apply
+• Toujours dans File/Project Structure sélectionner le module core et cliquer sur Apply
 
-• Exécutez le fichier Main.java
+• Exécuter le fichier Main.java
 
 ## Visuel du jeu
+aaaaaaaaaaaaaaaaa faut metre des images
 
 ## Remerciements
 Nous tenons à remercier Raúl Mazo Peña et Hiba Hnaini pour leur précieux accompagnement au cours de ce projet.
