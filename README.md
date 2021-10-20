@@ -25,7 +25,7 @@ Voici les étapes à suivre pour jouer à Frogger avec [IntelliJ IDEA](https://w
 • Exécuter le fichier Main.java
 
 ## Visuel du jeu
-aaaaaaaaaaaaaaaaa faut metre des images
+![alt text](https://github.com/DelphineFqt1/Frogger/Frogger_processing/blob/main/visu_frogger1.png?raw=true)
 
 ## Remerciements
 Nous tenons à remercier Raúl Mazo Peña et Hiba Hnaini pour leur précieux accompagnement au cours de ce projet.
