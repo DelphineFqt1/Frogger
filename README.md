@@ -11,7 +11,7 @@ Trois modes de jeu sont disponibles:
 
 • Route infinie
 
-Il est possible de jouer seul ou à 2.
+Il est possible de jouer seul(e) ou à 2.
 
 ## Installation
 Voici les étapes à suivre pour jouer à Frogger avec [IntelliJ IDEA](https://www.jetbrains.com/fr-fr/idea/):
