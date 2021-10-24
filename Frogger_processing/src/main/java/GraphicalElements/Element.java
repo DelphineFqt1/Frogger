@@ -4,7 +4,9 @@ import GameCommons.Main;
 import MovingElements.Frog;
 import MovingElements.Obstacle;
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
+
 
 import java.util.ArrayList;
 
@@ -12,6 +14,8 @@ public class Element extends PApplet implements IFroggerGraphics {
 
     PApplet P;
     PImage im_frog;
+
+
 
     public Element(PApplet P){
         this.P = P;
@@ -51,9 +55,15 @@ public class Element extends PApplet implements IFroggerGraphics {
 
     @Override
     public void create_text(String text, int size, int x, int y, int r, int g, int b) {
-        P.fill(r, g, b);
         P.textSize(size);
+        P.fill(r, g, b);
         P.text(text, x, y);
     }
+
+    @Override
+    public void image(PImage img, float a, float b, float c, float d) {
+        P.image(img, a, b, c, d);
     }
+
+}
 

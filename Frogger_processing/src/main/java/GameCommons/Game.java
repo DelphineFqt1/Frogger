@@ -272,11 +272,11 @@ public class Game implements IFrog, IEnvironment {
         ArrayList<String> NSnumbers = new ArrayList<String>();
         try{
 
-        float[] numbers = new float[10];
+            float[] numbers = new float[10];
             for (String ligne : Files.readAllLines(path)) {
                 Snumbers.add(ligne.substring(3, ligne.length()-1));
                 //System.out.println(ligne.substring(3, ligne.length()-1));
-                }
+            }
             for (int i =0; i<Snumbers.size(); i++){
                 numbers[i]= Float.parseFloat(Snumbers.get(i));
                 //System.out.println(numbers[i]);
@@ -306,5 +306,35 @@ public class Game implements IFrog, IEnvironment {
             e.printStackTrace();
         }
         return remark;
+    }
+
+    // FONCTION POUR RECUPERER LES DONNEES DU LEADERBOARD (POUR LE BOUTON LEADERBOARD)
+    public ArrayList<String> show_leaderboard(Path path) {
+        File file = new File(path.toString());
+        ArrayList<String> Snumbers = new ArrayList<String>();
+        ArrayList<String> NSnumbers = new ArrayList<String>();
+        try{
+            float[] numbers = new float[10];
+            for (String ligne : Files.readAllLines(path)) {
+                Snumbers.add(ligne.substring(3, ligne.length()-1));
+                //System.out.println(ligne.substring(3, ligne.length()-1));
+            }
+            for (int i =0; i<Snumbers.size(); i++){
+                numbers[i]= Float.parseFloat(Snumbers.get(i));
+                //System.out.println(numbers[i]);
+            }
+            java.util.Arrays.sort(numbers);
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            for (int i=0; i<9; i++){
+                int k = i+1;
+                NSnumbers.add(k +". " + numbers[i] + "s\n" );
+                fw.write(NSnumbers.get(i));
+            }
+            fw.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    return NSnumbers;
     }
 }
