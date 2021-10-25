@@ -105,7 +105,7 @@ public class Infinite extends PApplet {
             frog2.setRange(frog2.getRange() + 1);
         }
         else if (keyCode == RIGHT) {
-            frog2.move(grid, 0);;
+            frog2.move(grid, 0);
 
         } else if (keyCode == LEFT) {
             frog2.move(-grid, 0);
