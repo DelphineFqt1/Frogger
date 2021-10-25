@@ -53,7 +53,7 @@ public class Main extends PApplet {
         processing = this;
         PlayerMode =1;
         ranges = 16; // de préférence pair
-        columns = 17;
+        columns = 19;
         grid = 45;
         separate = ranges/2 ;
         board = new Element(processing);

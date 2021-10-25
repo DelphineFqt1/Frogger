@@ -173,17 +173,17 @@ public class Test extends PApplet {
             }
         // LE BOUTON RETOUR
         if ((mouseX < 800) && (mouseX > 670) && (mouseY < 700) && (mouseY > 660) && (mousePressed) && game.getMode1() != null) {
-            background(im_menu);
-            board.create_case(77, 600, 277, 550, 255, 255, 255);
-            board.image(im_frog,82,558, 40, 40);
-            board.create_text("1 PLAYER", 25, 130 , 585, 0, 0, 0);
-            board.create_case(327, 600, 527, 550, 255, 255, 255);
-            board.image(im_frog,332,558, 38, 38);
-            board.image(im_frog2,485,558, 38, 38);
-            board.create_text("2 PLAYERS", 25, 370, 585, 0, 0, 0);
-            board.create_case(577,600 , 777, 550, 255, 255, 255);
-            board.create_text("LEADERBOARD", 25, 615, 585, 0, 0, 0);
-            board.image(im_cup,580,558, 38, 38);
+//            background(im_menu);
+//            board.create_case(77, 600, 277, 550, 255, 255, 255);
+//            board.image(im_frog,82,558, 40, 40);
+//            board.create_text("1 PLAYER", 25, 130 , 585, 0, 0, 0);
+//            board.create_case(327, 600, 527, 550, 255, 255, 255);
+//            board.image(im_frog,332,558, 38, 38);
+//            board.image(im_frog2,485,558, 38, 38);
+//            board.create_text("2 PLAYERS", 25, 370, 585, 0, 0, 0);
+//            board.create_case(577,600 , 777, 550, 255, 255, 255);
+//            board.create_text("LEADERBOARD", 25, 615, 585, 0, 0, 0);
+//            board.image(im_cup,580,558, 38, 38);
             game.setMode1(null);
 
         }
@@ -270,22 +270,22 @@ public class Test extends PApplet {
         }
         // LE RETOUR DU BOUTON RETOUR
         if ((mouseX < 800) && (mouseX > 670) && (mouseY < 700) && (mouseY > 660) && (mousePressed) && game.getMode3() == "diff") {
-            background(im_menu);
-            board.create_case(77, 300, 277, 250, 255, 255, 255);
-            board.create_text("EASY", 25, 150 , 285, 0, 0, 0);
-            board.image(im_car_right,95,258, 38, 38);
-            board.image(im_car_left,220,258, 38, 38);
-            board.create_case(77, 400, 277, 350, 255, 255, 255);
-            board.create_text("HARD", 25, 150, 385, 0, 0, 0);
-            board.image(im_car_right,95,358, 38, 38);
-            board.image(im_trunk,220,365, 38, 20);
-            board.create_case(77,500 , 277, 450, 255, 255, 255);
-            board.create_text("INFINITY", 25, 130, 485, 0, 0, 0);
-            board.image(im_rb_pepe_right,90,458, 38, 38);
-            board.image(im_rb_pepe_left,225,458, 38, 38);
-            board.create_case(670, 700, 800, 660, 255, 255, 255);
-            board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
-            board.image(im_back_arrow,680,662, 38, 38);
+//            background(im_menu);
+//            board.create_case(77, 300, 277, 250, 255, 255, 255);
+//            board.create_text("EASY", 25, 150 , 285, 0, 0, 0);
+//            board.image(im_car_right,95,258, 38, 38);
+//            board.image(im_car_left,220,258, 38, 38);
+//            board.create_case(77, 400, 277, 350, 255, 255, 255);
+//            board.create_text("HARD", 25, 150, 385, 0, 0, 0);
+//            board.image(im_car_right,95,358, 38, 38);
+//            board.image(im_trunk,220,365, 38, 20);
+//            board.create_case(77,500 , 277, 450, 255, 255, 255);
+//            board.create_text("INFINITY", 25, 130, 485, 0, 0, 0);
+//            board.image(im_rb_pepe_right,90,458, 38, 38);
+//            board.image(im_rb_pepe_left,225,458, 38, 38);
+//            board.create_case(670, 700, 800, 660, 255, 255, 255);
+//            board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
+//            board.image(im_back_arrow,680,662, 38, 38);
             game.setMode3(null);
             game.setDiff(null);
         }
