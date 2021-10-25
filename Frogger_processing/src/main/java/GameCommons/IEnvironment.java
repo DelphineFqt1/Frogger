@@ -9,8 +9,10 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 public interface IEnvironment {
-    abstract ArrayList<Car> car_range(int range);
-    abstract ArrayList<Trunk> trunk_range(int range);
-    abstract String record_treatment(Path f, float t);
-    abstract int random_btw(int begin, int end);
+    abstract ArrayList<Car> car_range(int range); //créé la liste des voitures en rangée i
+    abstract ArrayList<Trunk> trunk_range(int range); // créé la liste des troncs en rangée i
+    abstract ArrayList<ArrayList<Car>> allCars(int range_end); // créé une liste de liste de voitures [[rangée 1], [rangée 2], ..., [range_end]]
+    abstract ArrayList<ArrayList<Trunk>> allTrunks(int range_begin, int range_end); // créé une liste de liste de troncs [[rangée begin], [rangée 2], ..., [range_end]
+    abstract void move_allCars(ArrayList<ArrayList<Car>> allCars, float ydir); // déplace chaque voiture d'une liste de liste de voitures selon les ordonnées
+
 }

@@ -1,15 +1,10 @@
 package MovingElements;
 
 public class Frog extends Moving{
-    private float left;
-    private float right;
-    private float bottom;
-    private float top;
     private float range;
+    private boolean GAMEOVER;
 
 
-
-    private float width;
     private boolean car_intersection;
     private boolean trunk_intersection;
 
@@ -17,8 +12,17 @@ public class Frog extends Moving{
     // La grenouille est un carré
     public Frog(float x, float y, float width) {
         super(x, y, width, width, 0, 0);
-        this.car_intersection = false;
-        this.trunk_intersection = true;
+        this.car_intersection = false; // signale si frog intersecte un car
+        this.trunk_intersection = true; // signale si frog est sur un tronc ou pas
+        this.GAMEOVER = false; // utile en mode infini où me GAMEOVER signifie la fin de la partie de jeu
+    }
+
+    public boolean isGAMEOVER() {
+        return GAMEOVER;
+    }
+
+    public void setGAMEOVER(boolean GAMEOVER) {
+        this.GAMEOVER = GAMEOVER;
     }
 
     public boolean isCar_intersection() {
@@ -67,11 +71,4 @@ public class Frog extends Moving{
         }
     }
 
-//    public void car_intersection_modifier(Obstacle.Car car){
-//        this.setCar_intersection(this.intersect(car));
-//    }
-//    public void trunk_intersection_modifier(Obstacle.Trunk trunk){
-//        this.setTrunk_intersection(this.intersect(trunk));
-//
-//    }
 }

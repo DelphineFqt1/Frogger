@@ -3,6 +3,7 @@ package MovingElements;
 public class Obstacle extends Moving{
 
     private final float abs_limit;
+    private final float ord_lim;
     private float left;
     private float right;
     private float bottom;
@@ -12,20 +13,26 @@ public class Obstacle extends Moving{
     private float width;
 
 
-    public Obstacle(float x, float y, float width, float height, float range, float speed, float abs_limit) {
+    public Obstacle(float x, float y, float width, float height, float range, float speed, float abs_limit, float ord_lim) {
         super(x, y, width, height, range, speed);
         this.abs_limit = abs_limit;
+        this.ord_lim = ord_lim;
     }
 
     public float getAbs_limit() {
         return abs_limit;
     }
 
+    public float getOrd_lim() {
+        return ord_lim;
+    }
 
     @Override
     public void move(float xdir, float ydir) {
         setLeft(getLeft()+ xdir);
         setRight(getRight()+ xdir);
+        setTop(getTop() + ydir);
+        setBottom(getBottom()+ydir);
         if (getSpeed() >0 && getLeft()>= getAbs_limit()){
             setLeft(-getWidth());
             setRight(0);
@@ -34,15 +41,10 @@ public class Obstacle extends Moving{
             setLeft(getAbs_limit());
             setRight(getAbs_limit() + getWidth());
         }
-//        left += xdir;
-//        right += xdir;
-//        if (speed>0 && left >= abs_limit){
-//            left = -width;
-//            right = 0;}
-//        else if(speed<0 && right <=0){
-//            left = abs_limit;
-//            right = abs_limit - width;
-//        }
+        if (getBottom() >= getOrd_lim() ){
+            setBottom(0);
+            setTop(getHeight());
+        }
         }
 
 
@@ -50,8 +52,8 @@ public class Obstacle extends Moving{
 
     public static class Car extends Obstacle{
 
-        public Car(float x, float y, float width, float height, float range, float speed, float abs_limit) {
-            super(x, y, width, height, range, speed, abs_limit);
+        public Car(float x, float y, float width, float height, float range, float speed, float abs_limit, float ord_lim) {
+            super(x, y, width, height, range, speed, abs_limit, ord_lim);
         }
 
         @Override
@@ -61,8 +63,8 @@ public class Obstacle extends Moving{
     }
 
     public static class Trunk extends Obstacle{
-        public Trunk(float x, float y, float width, float height, float range, float speed, float abs_limit) {
-            super(x, y, width, height, range, speed, abs_limit);
+        public Trunk(float x, float y, float width, float height, float range, float speed, float abs_limit, float ord_lim) {
+            super(x, y, width, height, range, speed, abs_limit, ord_lim);
         }
 
         @Override

@@ -14,6 +14,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static Util.UtilClass.record_treatment;
+
 public class Main extends PApplet {
 
     public PApplet processing;
@@ -41,7 +43,6 @@ public class Main extends PApplet {
     int PlayerMode;
     Path record;
     String remark = null;
-    Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
         PApplet.main(new String[]{Main.class.getName()});
@@ -74,21 +75,12 @@ public class Main extends PApplet {
         im_frog = loadImage("src\\main\\java\\Images\\frog.png");
         im_menu = loadImage("src\\main\\java\\Images\\Menu.png");
         im_menu.resize(game.getGame_width(), game.getGame_height());
-        record = Paths.get("src\\main\\java\\GameCommons\\Records");
+        record = Paths.get("src\\main\\java\\GameCommons\\Record_hard");
         im_car_right = loadImage("src\\main\\java\\Images\\car_right.png");
         im_car_left = loadImage("src\\main\\java\\Images\\car_left.png");
         im_trunk = loadImage("src\\main\\java\\Images\\trunk.png");
-        cars = new ArrayList<ArrayList<Car>>();
-        trunks = new ArrayList<ArrayList<Trunk>>();
-
-        for (int i=0; i<separate; i++){
-            ArrayList<Car> range_ip1 = game.car_range(i+1);
-            cars.add(range_ip1);
-        }
-        for (int i=0; i<ranges-3-separate; i++){
-            ArrayList<Trunk> rangee = game.trunk_range(i+separate+2);
-            trunks.add(rangee);
-        }
+        cars = game.allCars(separate);
+        trunks = game.allTrunks(separate+2, ranges-2);
     }
 
     @Override
@@ -107,9 +99,8 @@ public class Main extends PApplet {
 
             if (game.getPlayerMode() == 2) {
 
-                for (int i = 0; i < cars.size(); i++) {
-                    for (int j = 0; j < cars.get(i).size(); j++) {
-                        Car car = cars.get(i).get(j);
+                for (ArrayList<Car> range_i : cars) {
+                    for (Car car : range_i) {
                         car.move(car.getSpeed(), 0);
                         if (car.getSpeed() > 0) {
                             board.show_car(car, im_car_right);
@@ -127,9 +118,8 @@ public class Main extends PApplet {
                 }
                 int count_inter = 0;
                 int count2 = 0;
-                for (int i = 0; i < trunks.size(); i++) {
-                    for (int j = 0; j < trunks.get(i).size(); j++) {
-                        Trunk trunk = trunks.get(i).get(j);
+                for (ArrayList<Trunk> range_i : trunks) {
+                    for (Trunk trunk : range_i) {
                         trunk.move(trunk.getSpeed(), 0);
                         board.show_trunk(trunk, im_trunk);
                         if (frog1.intersect(trunk)) {
@@ -162,9 +152,8 @@ public class Main extends PApplet {
                 game.deal_state_frog2P2(frog2);
 
             } else {
-                for (int i = 0; i < cars.size(); i++) {
-                    for (int j = 0; j < cars.get(i).size(); j++) {
-                        Car car = cars.get(i).get(j);
+                for (ArrayList<Car> range_i : cars) {
+                    for (Car car : range_i) {
                         car.move(car.getSpeed(), 0);
                         if (car.getSpeed() > 0) {
                             board.show_car(car, im_car_right);
@@ -178,9 +167,8 @@ public class Main extends PApplet {
                     }
                 }
                 int count2 = 0;
-                for (int i = 0; i < trunks.size(); i++) {
-                    for (int j = 0; j < trunks.get(i).size(); j++) {
-                        Trunk trunk = trunks.get(i).get(j);
+                for (ArrayList<Trunk> range_i : trunks) {
+                    for (Trunk trunk : range_i) {
                         trunk.move(trunk.getSpeed(), 0);
                         board.show_trunk(trunk, im_trunk);
                         if (frog2.intersect(trunk)) {
@@ -209,18 +197,9 @@ public class Main extends PApplet {
                 t_fin = (t2 - t1) / 1000;
 
                 board.create_text("Congratulations ! You beat Frogger in " + t_fin + "s.", 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2, 255, 255, 255);
-                remark = game.record_treatment(record, t_fin);
+                remark = record_treatment(record, t_fin);
                 board.create_text(remark, 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2 + grid, 255, 255, 0);
                 processing.stop();
-
-//            synchronized (processing) {
-//                try {
-//                    wait(10000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//            background(0);
 
             }
         }
