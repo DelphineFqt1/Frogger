@@ -50,9 +50,13 @@ public class Test extends PApplet {
     PImage im_rb_pepe_left;
     PImage im_cup;
     PImage im_back_arrow;
-    PImage im_leaderboard;
+    PImage im_leaderboard_easy;
+    PImage im_leaderboard_hard;
+    PImage im_leaderboard_infinity;
     int PlayerMode;
     Path record;
+    Path record_hard;
+    Path record_infinity;
     String remark = null;
     Scanner sc = new Scanner(System.in);
 
@@ -87,8 +91,9 @@ public class Test extends PApplet {
         im_rb_pepe_left = loadImage("src\\main\\java\\Images\\rb_pepe_left.png");
         im_cup = loadImage("src\\main\\java\\Images\\cup.png");
         im_back_arrow = loadImage("src\\main\\java\\Images\\back_arrow.png");
-        im_leaderboard = loadImage("src\\main\\java\\Images\\leaderboard.png");
-
+        im_leaderboard_easy = loadImage("src\\main\\java\\Images\\leaderboard_easy.png");
+        im_leaderboard_hard = loadImage("src\\main\\java\\Images\\leaderboard_hard.png");
+        im_leaderboard_infinity = loadImage("src\\main\\java\\Images\\leaderboard_infinity.png");
     }
 
     @Override
@@ -182,10 +187,46 @@ public class Test extends PApplet {
             game.setMode1(null);
 
         }
-        // ON AFFICHE LE LEADERBOARD
+        // ON AFFICHE LES DIFFICULTE POUR LES LEADERBOARD
         if (game.getMode1() == "LEADERBOARD") {
             background(im_menu);
-            board.image(im_leaderboard, 180, 70, 500, 600);
+            board.create_case(77, 300, 277, 250, 255, 255, 255);
+            board.create_text("EASY", 25, 150 , 285, 0, 0, 0);
+            board.image(im_car_right,95,258, 38, 38);
+            board.image(im_car_left,220,258, 38, 38);
+            board.create_case(77, 400, 277, 350, 255, 255, 255);
+            board.create_text("HARD", 25, 150, 385, 0, 0, 0);
+            board.image(im_car_right,95,358, 38, 38);
+            board.image(im_trunk,220,365, 38, 20);
+            board.create_case(77,500 , 277, 450, 255, 255, 255);
+            board.create_text("INFINITY", 25, 130, 485, 0, 0, 0);
+            board.image(im_rb_pepe_right,90,458, 38, 38);
+            board.image(im_rb_pepe_left,225,458, 38, 38);
+            board.create_case(670, 700, 800, 660, 255, 255, 255);
+            board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
+            board.image(im_back_arrow,680,662, 38, 38);
+
+
+        }
+        if ((mouseX < 277) && (mouseX > 77) && (mouseY < 300) && (mouseY > 250) && (mousePressed) && game.getMode1() == "LEADERBOARD") {
+            game.setDiff("EASY");
+            game.setMode3("diff");
+
+        }
+        if ((mouseX < 277) && (mouseX > 77) && (mouseY < 400) && (mouseY > 350) && (mousePressed) && game.getMode1() == "LEADERBOARD" ) {
+            game.setDiff("HARD");
+            game.setMode3("diff");
+        }
+        if ((mouseX < 277) && (mouseX > 77) && (mouseY < 500) && (mouseY > 450) && (mousePressed) && game.getMode1() == "LEADERBOARD") {
+            game.setDiff("INFINITY");
+            game.setMode3("diff");
+
+        }
+        // ON AFFICHE LE LEADERBOARD CORRESPONDANT A LA DIFFICULTE SELECTIONNE
+        // LEADERBOARD EASY
+        if (game.getDiff() == "EASY") {
+            background(im_menu);
+            board.image(im_leaderboard_easy, 180, 70, 500, 600);
             board.create_case(670, 700, 800, 660, 255, 255, 255);
             board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
             board.image(im_back_arrow,680,662, 38, 38);
@@ -196,10 +237,59 @@ public class Test extends PApplet {
                 board.create_text(score.split(" ")[1], 25,x, y,0,0,0);
                 y += 35;
             }
-
         }
+        // LEADERBOARD HARD
+        if (game.getDiff() == "HARD") {
+            background(im_menu);
+            board.image(im_leaderboard_hard, 180, 70, 500, 600);
+            board.create_case(670, 700, 800, 660, 255, 255, 255);
+            board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
+            board.image(im_back_arrow,680,662, 38, 38);
+            scores = game.show_leaderboard(record);
+            int x = 415;
+            int y = 265;
+            for (String score: scores) {
+                board.create_text(score.split(" ")[1], 25,x, y,0,0,0);
+                y += 35;
+            }
         }
-    }
+        // LEADERBOARD INFINITY
+        if (game.getDiff() == "INFINITY") {
+            background(im_menu);
+            board.image(im_leaderboard_infinity, 180, 70, 500, 600);
+            board.create_case(670, 700, 800, 660, 255, 255, 255);
+            board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
+            board.image(im_back_arrow,680,662, 38, 38);
+            scores = game.show_leaderboard(record);
+            int x = 415;
+            int y = 265;
+            for (String score: scores) {
+                board.create_text(score.split(" ")[1], 25,x, y,0,0,0);
+                y += 35;
+            }
+        }
+        // LE RETOUR DU BOUTON RETOUR
+        if ((mouseX < 800) && (mouseX > 670) && (mouseY < 700) && (mouseY > 660) && (mousePressed) && game.getMode3() == "diff") {
+            background(im_menu);
+            board.create_case(77, 300, 277, 250, 255, 255, 255);
+            board.create_text("EASY", 25, 150 , 285, 0, 0, 0);
+            board.image(im_car_right,95,258, 38, 38);
+            board.image(im_car_left,220,258, 38, 38);
+            board.create_case(77, 400, 277, 350, 255, 255, 255);
+            board.create_text("HARD", 25, 150, 385, 0, 0, 0);
+            board.image(im_car_right,95,358, 38, 38);
+            board.image(im_trunk,220,365, 38, 20);
+            board.create_case(77,500 , 277, 450, 255, 255, 255);
+            board.create_text("INFINITY", 25, 130, 485, 0, 0, 0);
+            board.image(im_rb_pepe_right,90,458, 38, 38);
+            board.image(im_rb_pepe_left,225,458, 38, 38);
+            board.create_case(670, 700, 800, 660, 255, 255, 255);
+            board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
+            board.image(im_back_arrow,680,662, 38, 38);
+            game.setMode3(null);
+            game.setDiff(null);
+        }
+    }}
 
 
 
