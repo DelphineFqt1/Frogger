@@ -78,7 +78,7 @@ public class Test extends PApplet {
 
     @Override
     public void setup() {
-        record = Paths.get("src\\main\\java\\GameCommons\\Records");
+        record = Paths.get("src\\main\\java\\GameCommons\\Record_easy");
         im_menu = loadImage("src\\main\\java\\Images\\Menu.png");
         im_menu.resize(game.getGame_width(), game.getGame_height());
         im_cursor = loadImage("src\\main\\java\\Images\\cursor.png");

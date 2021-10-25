@@ -68,7 +68,7 @@ public class Infinite extends PApplet {
 
     @Override
     public void draw() {
-        background(20,20,30);
+        background(50);
         board.show_frog(frog2, im_frog2);
         for (ArrayList<Car> range_i : cars) {
             for (Car car : range_i) {
