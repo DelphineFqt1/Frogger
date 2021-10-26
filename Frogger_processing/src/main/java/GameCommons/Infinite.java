@@ -14,11 +14,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Scanner;
-import Util.UtilClass;
+
 
 import static Util.UtilClass.endless_treatment;
-import static Util.UtilClass.record_treatment;
+
 
 public class Infinite extends PApplet {
     public PApplet inf_processing;
@@ -36,6 +35,8 @@ public class Infinite extends PApplet {
     int PlayerMode;
     Path record_endless;
     String remark = null;
+    int count50 = 50;
+
 
 
     public static void main(String[] args) {
@@ -85,6 +86,21 @@ public class Infinite extends PApplet {
         }
 
         float k = frog2.getRange();
+
+        if (k==count50){
+            for (ArrayList<Car> range_i : cars) {
+                for (Car car : range_i) {
+                    if (car.getSpeed() > 0) {
+                        car.setSpeed(car.getSpeed() + 1);
+                    } else {
+                        car.setSpeed(car.getSpeed() - 1);
+                    }
+                }
+            }
+            count50 += 50;
+        }
+
+
 
         game.deal_state_frog(frog2);
 
