@@ -143,7 +143,7 @@ public class Game implements IFrog, IEnvironment {
         ArrayList<Car> cars = new ArrayList<Car>();
         for (int i = 0; i < number; i++) {
             int size = random_btw(2, 3) * grid;
-            if (speed>0) {
+            if (speed<0) {
                 x = x - size - Math.abs(speed) * grid;
             }
             else {
