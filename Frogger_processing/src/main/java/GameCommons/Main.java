@@ -41,6 +41,7 @@ public class Main extends PApplet {
     PImage im_car_left;
     PImage im_trunk;
     int PlayerMode;
+    String Diff;
     Path record;
     String remark = null;
 
@@ -52,12 +53,13 @@ public class Main extends PApplet {
     public void settings() {
         processing = this;
         PlayerMode =1;
+        Diff = "HARD";
         ranges = 16; // de préférence pair
         columns = 19;
         grid = 45;
         separate = ranges/2 ;
         board = new Element(processing);
-        game = new Game(grid, ranges, columns, PlayerMode);
+        game = new Game(grid, ranges, columns, PlayerMode, Diff);
         size(game.getGame_width(), game.getGame_height());
     }
 
@@ -71,14 +73,14 @@ public class Main extends PApplet {
         else {
             frog2 = game.set_Frog();
         }
-        im_frog2 = loadImage("src\\main\\java\\Images\\frog2.png");
-        im_frog = loadImage("src\\main\\java\\Images\\frog.png");
-        im_menu = loadImage("src\\main\\java\\Images\\Menu.png");
+        im_frog2 = loadImage("src/main/java/Images/frog2.png");
+        im_frog = loadImage("src/main/java/Images/frog.png");
+        im_menu = loadImage("src/main/java/Images/Menu.png");
         im_menu.resize(game.getGame_width(), game.getGame_height());
-        record = Paths.get("src\\main\\java\\GameCommons\\Record_hard");
-        im_car_right = loadImage("src\\main\\java\\Images\\car_right.png");
-        im_car_left = loadImage("src\\main\\java\\Images\\car_left.png");
-        im_trunk = loadImage("src\\main\\java\\Images\\trunk.png");
+        record = Paths.get("src/main/java/GameCommons/Record_hard");
+        im_car_right = loadImage("src/main/java/Images/car_right.png");
+        im_car_left = loadImage("src/main/java/Images/car_left.png");
+        im_trunk = loadImage("src/main/java/Images/trunk.png");
         cars = game.allCars(separate);
         trunks = game.allTrunks(separate+2, ranges-2);
     }

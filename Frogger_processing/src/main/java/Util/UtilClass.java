@@ -43,7 +43,8 @@ public class UtilClass {
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             for (int i=0; i<9; i++){
                 int k = i+1;
-                NSnumbers.add(k +". " + numbers[i] + "s\n" );
+ //               NSnumbers.add(k +". " + numbers[i] + "s\n" );
+                NSnumbers.add(k +". " + numbers[i] + "\n" );
                 System.out.print(NSnumbers.get(i));
                 fw.write(NSnumbers.get(i));
             }

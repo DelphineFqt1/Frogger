@@ -33,6 +33,7 @@ public class Infinite extends PApplet {
     PImage im_car;
     PImage im_rev;
     int PlayerMode;
+    String Diff;
     Path record_endless;
     String remark = null;
     int count50 = 50;
@@ -47,12 +48,13 @@ public class Infinite extends PApplet {
     public void settings() {
         inf_processing = this;
         PlayerMode = 2;
+        Diff = "HARD";
         ranges = 16; // de préférance pair
         columns = 19;
         grid = 45;
         separate = ranges / 2;
         board = new Element(inf_processing);
-        game = new Game(grid, ranges, columns, PlayerMode);
+        game = new Game(grid, ranges, columns, PlayerMode, Diff);
         size(game.getGame_width(), game.getGame_height());
     }
 
@@ -60,11 +62,15 @@ public class Infinite extends PApplet {
     public void setup() {
 
         frog2 = game.set_Frog();
-        im_frog2 = loadImage("src\\main\\java\\Images\\frog2.png");
-        im_car = loadImage("src\\main\\java\\Images\\car_left.png");
-        im_rev = loadImage("src\\main\\java\\Images\\car_right.png");
+        im_frog2 = loadImage("" +
+                "src/main/java/Images/frog2.png");
+        im_car = loadImage("" +
+                "src/main/java/Images/car_left.png");
+        im_rev = loadImage("" +
+                "src/main/java/Images/car_right.png");
         cars = game.allCars(ranges);
-        record_endless = Paths.get("src\\main\\java\\GameCommons\\Record_endless");
+        record_endless = Paths.get("" +
+                "src/main/java/GameCommons/Record_endless");
     }
 
     @Override

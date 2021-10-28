@@ -29,7 +29,7 @@ public class Game implements IFrog, IEnvironment {
     private String Diff;
 
 
-    public Game(int grid, int ranges, int columns, int PlayerMode) {
+    public Game(int grid, int ranges, int columns, int PlayerMode, String Diff) {
         this.grid = grid;
         this.ranges = ranges;
         this.columns = columns;
@@ -37,10 +37,10 @@ public class Game implements IFrog, IEnvironment {
         this.game_height = ranges * grid;
         this.gameState = false;
         this.PlayerMode = PlayerMode;
+        this.Diff = Diff;
         setMode1(null);
         setMode2(null);
         setMode3(null);
-        setDiff(null);
     }
 
     public boolean isGameState() {

@@ -54,6 +54,7 @@ public class Test extends PApplet {
     PImage im_leaderboard_hard;
     PImage im_leaderboard_infinity;
     int PlayerMode;
+    String Diff;
     Path record;
     Path record_hard;
     Path record_infinity;
@@ -72,28 +73,28 @@ public class Test extends PApplet {
         grid = 45;
         separate = ranges / 2;
         board = new Element(processing);
-        game = new Game(grid, ranges, columns, PlayerMode);
+        game = new Game(grid, ranges, columns, PlayerMode, Diff);
         size(game.getGame_width(), game.getGame_height());
     }
 
     @Override
     public void setup() {
-        record = Paths.get("src\\main\\java\\GameCommons\\Record_easy");
-        im_menu = loadImage("src\\main\\java\\Images\\Menu.png");
+        record = Paths.get("src/main/java/GameCommons/Record_easy");
+        im_menu = loadImage("src/main/java/Images/Menu.png");
         im_menu.resize(game.getGame_width(), game.getGame_height());
-        im_cursor = loadImage("src\\main\\java\\Images\\cursor.png");
-        im_frog2 = loadImage("src\\main\\java\\Images\\frog2.png");
-        im_frog = loadImage("src\\main\\java\\Images\\frog.png");
-        im_car_right = loadImage("src\\main\\java\\Images\\car_right.png");
-        im_car_left = loadImage("src\\main\\java\\Images\\car_left.png");
-        im_trunk = loadImage("src\\main\\java\\Images\\trunk.png");
-        im_rb_pepe_right = loadImage("src\\main\\java\\Images\\rb_pepe_right.png");
-        im_rb_pepe_left = loadImage("src\\main\\java\\Images\\rb_pepe_left.png");
-        im_cup = loadImage("src\\main\\java\\Images\\cup.png");
-        im_back_arrow = loadImage("src\\main\\java\\Images\\back_arrow.png");
-        im_leaderboard_easy = loadImage("src\\main\\java\\Images\\leaderboard_easy.png");
-        im_leaderboard_hard = loadImage("src\\main\\java\\Images\\leaderboard_hard.png");
-        im_leaderboard_infinity = loadImage("src\\main\\java\\Images\\leaderboard_infinity.png");
+        im_cursor = loadImage("src/main/java/Images/cursor.png");
+        im_frog2 = loadImage("src/main/java/Images/frog2.png");
+        im_frog = loadImage("src/main/java/Images/frog.png");
+        im_car_right = loadImage("src/main/java/Images/car_right.png");
+        im_car_left = loadImage("src/main/java/Images/car_left.png");
+        im_trunk = loadImage("src/main/java/Images/trunk.png");
+        im_rb_pepe_right = loadImage("src/main/java/Images/rb_pepe_right.jpg");
+        im_rb_pepe_left = loadImage("src/main/java/Images/rb_pepe_left.png");
+        im_cup = loadImage("src/main/java/Images/cup.png");
+        im_back_arrow = loadImage("src/main/java/Images/back_arrow.png");
+        im_leaderboard_easy = loadImage("src/main/java/Images/leaderboard_easy.png");
+        im_leaderboard_hard = loadImage("src/main/java/Images/leaderboard_hard.png");
+        im_leaderboard_infinity = loadImage("src/main/java/Images/leaderboard_infinity.png");
     }
 
     @Override
