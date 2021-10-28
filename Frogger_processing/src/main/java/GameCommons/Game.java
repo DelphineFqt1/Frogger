@@ -166,16 +166,16 @@ public class Game implements IFrog, IEnvironment {
         int k = random_btw(0, 1);
         if(range%2==0) {
             if (k == 0) {
-                speed = 2;
-            } else {
                 speed = 3;
+            } else {
+                speed = 4;
             }
         }
         else {
             if (k == 0) {
-                speed = -2;
-            } else {
                 speed = -3;
+            } else {
+                speed = -4;
             }
         }
 

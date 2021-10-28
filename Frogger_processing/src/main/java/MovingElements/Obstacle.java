@@ -48,8 +48,6 @@ public class Obstacle extends Moving{
         }
 
 
-
-
     public static class Car extends Obstacle{
 
         public Car(float x, float y, float width, float height, float range, float speed, float abs_limit, float ord_lim) {
