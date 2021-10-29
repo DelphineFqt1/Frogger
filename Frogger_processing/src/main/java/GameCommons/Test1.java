@@ -92,9 +92,7 @@ public class Test1 extends PApplet {
 
     @Override
     public void settings() {
-        processing = this;
-//        PlayerMode = 1;
-//        Diff = "EASY";
+
         ranges = 16; // de préférence pair
         columns = 19;
         grid = 45;
@@ -106,16 +104,7 @@ public class Test1 extends PApplet {
 
     @Override
     public void setup() {
-/*
-        if (game.getPlayerMode()==2){
-            frog1 = game.set_Frog2P1();
-            frog2 = game.set_Frog2P2();
-        }
-        else {
-            frog2 = game.set_Frog();
-        }
- */
-        timer = true;
+
         im_frog2 = loadImage("src/main/java/Images/frog2.png");
         im_frog = loadImage("src/main/java/Images/frog.png");
         im_menu = loadImage("src/main/java/Images/Menu.png");
@@ -134,13 +123,6 @@ public class Test1 extends PApplet {
         im_leaderboard_easy = loadImage("src/main/java/Images/leaderboard_easy.png");
         im_leaderboard_hard = loadImage("src/main/java/Images/leaderboard_hard.png");
         im_leaderboard_infinity = loadImage("src/main/java/Images/leaderboard_infinity.png");
-/*        if (game.getDiff() == "HARD") {
-            cars = game.allCars(separate);
-            trunks = game.allTrunks(separate + 2, ranges - 2);
-        } else if (game.getDiff() == "EASY"){
-            cars = game.allCars(ranges - 2);
-        }
-*/
         minim = new Minim(this);
         music_menu = "src/main/java/Audios/Death by glamour.wav";
         music_bouton = "src/main/java/Audios/Button.wav";
@@ -159,25 +141,22 @@ public class Test1 extends PApplet {
 
     @Override
     public void draw() {
-        t1 = millis();
+
         if (game.getDiff() == null) {   // ECRAN D'ACCUEIL + CHOIX DU PLAYERMODE ET DU NIVEAU DE DIFFICULTE
-            //if (millis()<7000){
-
-            // ON AFFICHE LES PREMIERS BOUTONS
-
+            t1 = millis();
             if (game.getMode1() == null) {
 
                 background(im_menu);
                 board.create_case(77, 600, 277, 550, 255, 255, 255);
-                board.image(im_frog,82,558, 40, 40);
+                board.show_image(im_frog,82,558, 40, 40);
                 board.create_text("1 PLAYER", 25, 130 , 585, 0, 0, 0);
                 board.create_case(327, 600, 527, 550, 255, 255, 255);
-                board.image(im_frog,332,558, 38, 38);
-                board.image(im_frog2,485,558, 38, 38);
+                board.show_image(im_frog,332,558, 38, 38);
+                board.show_image(im_frog2,485,558, 38, 38);
                 board.create_text("2 PLAYERS", 25, 370, 585, 0, 0, 0);
                 board.create_case(577,600 , 777, 550, 255, 255, 255);
                 board.create_text("LEADERBOARD", 25, 615, 585, 0, 0, 0);
-                board.image(im_cup,580,558, 38, 38);
+                board.show_image(im_cup,580,558, 38, 38);
             }
 
 // ACTION LORSQUE L'ON CLIQUE SUR "1 PLAYER" : ON AFFICHE LE MEME MENU MAIS AVEC LES BOUTONS "EASY" et "HARD"
@@ -203,19 +182,19 @@ public class Test1 extends PApplet {
                 background(im_menu);
                 board.create_case(77, 550, 277, 500, 255, 255, 255);
                 board.create_text("EASY", 25, 150, 535, 0, 0, 0);
-                board.image(im_car_right, 95, 508, 38, 38);
-                board.image(im_car_left, 220, 508, 38, 38);
+                board.show_image(im_car_right, 95, 508, 38, 38);
+                board.show_image(im_car_left, 220, 508, 38, 38);
                 board.create_case(327, 550, 527, 500, 255, 255, 255);
                 board.create_text("HARD", 25, 395, 535, 0, 0, 0);
-                board.image(im_car_right, 350, 508, 38, 38);
-                board.image(im_trunk, 465, 517, 38, 20);
+                board.show_image(im_car_right, 350, 508, 38, 38);
+                board.show_image(im_trunk, 465, 517, 38, 20);
                 board.create_case(577, 550, 777, 500, 255, 255, 255);
                 board.create_text("INFINITY", 25, 630, 535, 0, 0, 0);
-                board.image(im_rb_pepe_right, 585, 508, 38, 38);
-                board.image(im_rb_pepe_left, 730, 508, 38, 38);
+                board.show_image(im_rb_pepe_right, 585, 508, 38, 38);
+                board.show_image(im_rb_pepe_left, 730, 508, 38, 38);
                 board.create_case(670, 700, 800, 660, 255, 255, 255);
                 board.create_text("BACK", 25, 720, 690, 0, 0, 0);
-                board.image(im_back_arrow, 680, 662, 38, 38);
+                board.show_image(im_back_arrow, 680, 662, 38, 38);
             }
 
 // Après avoir choisi le mode 1 joueur, on choisit le niveau de difficulté
@@ -256,15 +235,15 @@ public class Test1 extends PApplet {
                 background(im_menu);
                 board.create_case(77, 550, 277, 500, 255, 255, 255);
                 board.create_text("EASY", 25, 150, 535, 0, 0, 0);
-                board.image(im_car_right, 95, 508, 38, 38);
-                board.image(im_car_left, 220, 508, 38, 38);
+                board.show_image(im_car_right, 95, 508, 38, 38);
+                board.show_image(im_car_left, 220, 508, 38, 38);
                 board.create_case(327, 550, 527, 500, 255, 255, 255);
                 board.create_text("HARD", 25, 395, 535, 0, 0, 0);
-                board.image(im_car_right, 350, 508, 38, 38);
-                board.image(im_trunk, 465, 517, 38, 20);
+                board.show_image(im_car_right, 350, 508, 38, 38);
+                board.show_image(im_trunk, 465, 517, 38, 20);
                 board.create_case(670, 700, 800, 660, 255, 255, 255);
                 board.create_text("BACK", 25, 720, 690, 0, 0, 0);
-                board.image(im_back_arrow, 680, 662, 38, 38);
+                board.show_image(im_back_arrow, 680, 662, 38, 38);
             }
 
 // Après avoir choisi le mode 2 joueurs, on choisit le niveau de difficulté
@@ -301,19 +280,19 @@ public class Test1 extends PApplet {
                 background(im_menu);
                 board.create_case(77, 300, 277, 250, 255, 255, 255);
                 board.create_text("EASY", 25, 150 , 285, 0, 0, 0);
-                board.image(im_car_right,95,258, 38, 38);
-                board.image(im_car_left,220,258, 38, 38);
+                board.show_image(im_car_right,95,258, 38, 38);
+                board.show_image(im_car_left,220,258, 38, 38);
                 board.create_case(77, 400, 277, 350, 255, 255, 255);
                 board.create_text("HARD", 25, 150, 385, 0, 0, 0);
-                board.image(im_car_right,95,358, 38, 38);
-                board.image(im_trunk,220,365, 38, 20);
+                board.show_image(im_car_right,95,358, 38, 38);
+                board.show_image(im_trunk,220,365, 38, 20);
                 board.create_case(77,500 , 277, 450, 255, 255, 255);
                 board.create_text("INFINITY", 25, 130, 485, 0, 0, 0);
-                board.image(im_rb_pepe_right,90,458, 38, 38);
-                board.image(im_rb_pepe_left,225,458, 38, 38);
+                board.show_image(im_rb_pepe_right,90,458, 38, 38);
+                board.show_image(im_rb_pepe_left,225,458, 38, 38);
                 board.create_case(670, 700, 800, 660, 255, 255, 255);
                 board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
-                board.image(im_back_arrow,680,662, 38, 38);
+                board.show_image(im_back_arrow,680,662, 38, 38);
             }
 
             if ((mouseX < 277) && (mouseX > 77) && (mouseY < 300) && (mouseY > 250) && (mousePressed) && game.getMode1() == "LEADERBOARD") {
@@ -340,10 +319,10 @@ public class Test1 extends PApplet {
             // LEADERBOARD EASY
             if (game.getMode2() == "EASY") {
                 background(im_menu);
-                board.image(im_leaderboard_easy, 180, 70, 500, 600);
+                board.show_image(im_leaderboard_easy, 180, 70, 500, 600);
                 board.create_case(670, 700, 800, 660, 255, 255, 255);
                 board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
-                board.image(im_back_arrow,680,662, 38, 38);
+                board.show_image(im_back_arrow,680,662, 38, 38);
                 scores = get_leaderboard_data(record);
                 int x = 415;
                 int y = 265;
@@ -355,10 +334,10 @@ public class Test1 extends PApplet {
             // LEADERBOARD HARD
             if (game.getMode2() == "HARD") {
                 background(im_menu);
-                board.image(im_leaderboard_hard, 180, 70, 500, 600);
+                board.show_image(im_leaderboard_hard, 180, 70, 500, 600);
                 board.create_case(670, 700, 800, 660, 255, 255, 255);
                 board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
-                board.image(im_back_arrow,680,662, 38, 38);
+                board.show_image(im_back_arrow,680,662, 38, 38);
                 scores = get_leaderboard_data(record_hard);
                 int x = 415;
                 int y = 265;
@@ -370,10 +349,10 @@ public class Test1 extends PApplet {
             // LEADERBOARD INFINITY
             if (game.getMode2() == "INFINITY") {
                 background(im_menu);
-                board.image(im_leaderboard_infinity, 180, 70, 500, 600);
+                board.show_image(im_leaderboard_infinity, 180, 70, 500, 600);
                 board.create_case(670, 700, 800, 660, 255, 255, 255);
                 board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
-                board.image(im_back_arrow,680,662, 38, 38);
+                board.show_image(im_back_arrow,680,662, 38, 38);
                 scores = get_leaderboard_data(record_infinity);
                 int x = 415;
                 int y = 265;
@@ -410,10 +389,7 @@ public class Test1 extends PApplet {
 
         } else {   // LE JEU EN LUI-MEME
             // On récupère le temps où le joueur lance une partie (une seule fois)
-            if (timer) {
-                t_i = millis();
-            }
-            timer = false;
+            t_i = (millis()-t1)/1000;
             background(0);
             if (game.getDiff() == "HARD") {  // AFFICHE LA DEMARCATION ENTRE VOITURES ET TRONCS EN MODE HARD
                 board.create_case(0, (separate - 1) * grid, game.getGame_width(), game.getGame_height() - grid, 20, 20, 30);
@@ -574,25 +550,25 @@ public class Test1 extends PApplet {
                     processing.stop();
                 }
             } else {
-                board.create_text((t1 -t_i)/1000+ "s", 20, grid / 2, grid / 2, 0, 0, 0);
+                board.create_text(t_i + "s", 20, grid / 2, grid / 2, 0, 0, 0);
 
                 if (game.getGameState()) {
-                    t2 = millis();
-                    t_fin = (t2 - t_i) / 1000;
-                    board.create_text("Congratulations ! You beat Frogger in " + t_fin + "s.", 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2, 255, 255, 255);
+
+
+                    board.create_text("Congratulations ! You beat Frogger in " + t_i + "s.", 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2, 255, 255, 255);
                     if (game.getDiff() == "EASY"){
                         player_easy.close();
                         player_victory_easy = minim.loadFile(music_victory_easy);
                         player_victory_easy.setGain(-2);
                         player_victory_easy.play();
-                        remark = record_treatment(record, t_fin);
+                        remark = record_treatment(record, t_i);
 
                     } else if (game.getDiff() == "HARD"){
                         player_hard.close();
                         player_victory_hard = minim.loadFile(music_victory_hard);
                         player_victory_hard.setGain(-2);
                         player_victory_hard.play();
-                        remark = record_treatment(record_hard, t_fin);
+                        remark = record_treatment(record_hard, t_i);
                     }
                     board.create_text(remark, 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2 + grid, 255, 255, 0);
                     processing.stop();

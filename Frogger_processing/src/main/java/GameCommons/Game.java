@@ -1,6 +1,7 @@
 package GameCommons;
 
 import MovingElements.Frog;
+import MovingElements.Obstacle;
 import MovingElements.Obstacle.Car;
 import MovingElements.Obstacle.Trunk;
 
@@ -119,6 +120,7 @@ public class Game implements IFrog, IEnvironment {
     public String getMode3() {return Mode3;}
 
     public void setMode3(String mode3) {Mode3 = mode3;}
+
 
     @Override
     public ArrayList<Car> car_range(int range) {
@@ -305,8 +307,55 @@ public class Game implements IFrog, IEnvironment {
         }
     }
 
+    @Override
+    public Frog setFrog(int n) {
+        if (PlayerMode==1){
+            return new Frog(this.game_width / 2 - grid / 2, this.game_height - grid, grid);
+        }
+        else{
+            if (n==1){
+                return new Frog(this.game_width / 4, this.game_height - grid, grid);
+            }
+            else {
+                return new Frog(3*this.game_width / 4, this.game_height - grid, grid);
+            }
+        }
+    }
 
+    @Override
+    public void reset_Frog(Frog frog, int n) {
+        if (PlayerMode==1){
+            frog.setLeft(columns * grid / 2 - grid / 2);
+            frog.setRight(columns * grid / 2 - grid / 2 + grid);
+        }
+        else{
+            if (n==1){
+                frog.setLeft(columns * grid / 4);
+                frog.setRight(columns * grid / 4 + grid);
+            }
+            else {
+                frog.setLeft(3*columns * grid / 4);
+                frog.setRight(3*columns * grid / 4+ grid);
+            }
+        }
+        frog.setBottom(ranges * grid - grid);
+        frog.setTop(ranges * grid);
+        frog.setCar_intersection(false);
+        frog.setTrunk_intersection(true);
+        frog.setRange(0);
+    }
 
+    @Override
+    public void stateFrog(Frog frog, int n) {
+        if ((frog.isCar_intersection() == frog.isTrunk_intersection()) || (frog.getLeft() < 0 || frog.getRight() > this.game_width || frog.getBottom() < 0 || frog.getTop() > this.game_height)) {
+            reset_Frog(frog, n);
+            frog.setGAMEOVER(true);
+        }
+        if (frog.getRange() >= this.getRanges() - 1) {
+            setGameState(true);
+        }
+
+    }
 
 
 }

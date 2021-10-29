@@ -51,16 +51,15 @@ public class Main extends PApplet {
 
     @Override
     public void settings() {
-        processing = this;
         PlayerMode =1;
         Diff = "HARD";
         ranges = 16; // de préférence pair
         columns = 19;
         grid = 45;
         separate = ranges/2 ;
-        board = new Element(processing);
+        board = new Element(this);
         game = new Game(grid, ranges, columns, PlayerMode, Diff);
-        size(game.getGame_width(), game.getGame_height());
+        board.size(game.getGame_width(), game.getGame_height());
     }
 
     @Override
@@ -76,7 +75,6 @@ public class Main extends PApplet {
         im_frog2 = loadImage("src/main/java/Images/frog2.png");
         im_frog = loadImage("src/main/java/Images/frog.png");
         im_menu = loadImage("src/main/java/Images/Menu.png");
-        im_menu.resize(game.getGame_width(), game.getGame_height());
         record = Paths.get("src/main/java/GameCommons/Record_hard");
         im_car_right = loadImage("src/main/java/Images/car_right.png");
         im_car_left = loadImage("src/main/java/Images/car_left.png");
@@ -88,7 +86,7 @@ public class Main extends PApplet {
     @Override
     public void draw() {
         if (millis() < 3000) {
-            background(im_menu);
+            board.background_im(im_menu, game.getGame_width(), game.getGame_height());
             t1 = millis();
         } else {
             background(0);
@@ -201,7 +199,7 @@ public class Main extends PApplet {
                 board.create_text("Congratulations ! You beat Frogger in " + t_fin + "s.", 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2, 255, 255, 255);
                 remark = record_treatment(record, t_fin);
                 board.create_text(remark, 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2 + grid, 255, 255, 0);
-                processing.stop();
+                this.stop();
 
             }
         }

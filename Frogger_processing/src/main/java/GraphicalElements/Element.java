@@ -10,12 +10,10 @@ import processing.core.PImage;
 
 import java.util.ArrayList;
 
-public class Element extends PApplet implements IFroggerGraphics {
+public class Element implements IFroggerGraphics {
 
     PApplet P;
     PImage im_frog;
-
-
 
     public Element(PApplet P){
         this.P = P;
@@ -24,7 +22,6 @@ public class Element extends PApplet implements IFroggerGraphics {
     @Override
     public void create_case(float x, float y, float w, float h, float r, float g, float b) {
         P.fill(r,g,b);
-        //P.noStroke();
         P.rectMode(P.CORNERS);
         P.rect(x, y, w, h);
     }
@@ -61,9 +58,25 @@ public class Element extends PApplet implements IFroggerGraphics {
     }
 
     @Override
-    public void image(PImage img, float a, float b, float c, float d) {
+    public void show_image(PImage img, float a, float b, float c, float d) {
+
         P.image(img, a, b, c, d);
     }
 
+    @Override
+    public void background(int rgb) {
+        P.background(rgb);
+    }
+
+    @Override
+    public void background_im(PImage image, int width, int height) {
+        image.resize(width, height);
+        P.background(image);
+    }
+
+    @Override
+    public void size(int width, int height) {
+        P.size(width, height);
+    }
 }
 

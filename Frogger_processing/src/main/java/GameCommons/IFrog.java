@@ -17,4 +17,11 @@ public interface IFrog {
     // tout en agissant sur elle
 
 
+    // REFACTORISATION
+    abstract Frog setFrog(int n);
+    abstract void reset_Frog(Frog frog, int n);
+    abstract void stateFrog(Frog frog, int n);
+
+
+
 }

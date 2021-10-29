@@ -22,10 +22,11 @@ public class UtilClass {
         try{
             float[] numbers = new float[10];
             for (String ligne : Files.readAllLines(path)) {
-                System.out.println(ligne);
-                Snumbers.add(ligne.split(" ")[1]);
-                System.out.println(Snumbers);
+                //System.out.println(ligne);
+                //Snumbers.add(ligne.split(" ")[1]);
+                //System.out.println(Snumbers);
                 //System.out.println(ligne.substring(3, ligne.length()-1));
+                Snumbers.add(ligne.substring(3, ligne.length()-1));
             }
             for (int i =0; i<Snumbers.size(); i++){
                 numbers[i]= Float.parseFloat(Snumbers.get(i));
@@ -47,7 +48,7 @@ public class UtilClass {
             for (int i=0; i<9; i++){
                 int k = i+1;
  //               NSnumbers.add(k +". " + numbers[i] + "s\n" );
-                NSnumbers.add(k +". " + numbers[i] + "\n" );
+                NSnumbers.add(k +". " + numbers[i] + "s" + "\n" );
                 System.out.print(NSnumbers.get(i));
                 fw.write(NSnumbers.get(i));
             }

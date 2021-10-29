@@ -1,6 +1,6 @@
 package MovingElements;
 
-public class Obstacle extends Moving{
+public abstract class Obstacle extends Moving{
 
     private final float abs_limit;
     private final float ord_lim;
