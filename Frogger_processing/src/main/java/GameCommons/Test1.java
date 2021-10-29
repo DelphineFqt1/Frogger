@@ -17,6 +17,7 @@ import java.util.Scanner;
 
 import static Util.UtilClass.endless_treatment;
 import static Util.UtilClass.record_treatment;
+import static Util.UtilClass.get_leaderboard_data;
 
 import ddf.minim.*;
 
@@ -35,6 +36,7 @@ public class Test1 extends PApplet {
     int columns;
     int grid;
     int separate;
+    float t;
     float t1;
     float t2;
     float t_i;
@@ -83,6 +85,7 @@ public class Test1 extends PApplet {
     AudioPlayer player_victory_hard;
     AudioPlayer player_collision;
     AudioPlayer player_defeat_infinity;
+    Boolean timer;
     public static void main(String[] args) {
         PApplet.main(new String[]{Test1.class.getName()});
     }
@@ -111,7 +114,9 @@ public class Test1 extends PApplet {
         else {
             frog2 = game.set_Frog();
         }
- */     im_frog2 = loadImage("src/main/java/Images/frog2.png");
+ */
+        timer = true;
+        im_frog2 = loadImage("src/main/java/Images/frog2.png");
         im_frog = loadImage("src/main/java/Images/frog.png");
         im_menu = loadImage("src/main/java/Images/Menu.png");
         im_menu.resize(game.getGame_width(), game.getGame_height());
@@ -154,6 +159,7 @@ public class Test1 extends PApplet {
 
     @Override
     public void draw() {
+        t1 = millis();
         if (game.getDiff() == null) {   // ECRAN D'ACCUEIL + CHOIX DU PLAYERMODE ET DU NIVEAU DE DIFFICULTE
             //if (millis()<7000){
 
@@ -338,7 +344,7 @@ public class Test1 extends PApplet {
                 board.create_case(670, 700, 800, 660, 255, 255, 255);
                 board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
                 board.image(im_back_arrow,680,662, 38, 38);
-                scores = game.show_leaderboard(record);
+                scores = get_leaderboard_data(record);
                 int x = 415;
                 int y = 265;
                 for (String score: scores) {
@@ -353,7 +359,7 @@ public class Test1 extends PApplet {
                 board.create_case(670, 700, 800, 660, 255, 255, 255);
                 board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
                 board.image(im_back_arrow,680,662, 38, 38);
-                scores = game.show_leaderboard(record_hard);
+                scores = get_leaderboard_data(record_hard);
                 int x = 415;
                 int y = 265;
                 for (String score: scores) {
@@ -368,7 +374,7 @@ public class Test1 extends PApplet {
                 board.create_case(670, 700, 800, 660, 255, 255, 255);
                 board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
                 board.image(im_back_arrow,680,662, 38, 38);
-                scores = game.show_leaderboard(record_infinity);
+                scores = get_leaderboard_data(record_infinity);
                 int x = 415;
                 int y = 265;
                 for (String score: scores) {
@@ -403,10 +409,12 @@ public class Test1 extends PApplet {
 
 
         } else {   // LE JEU EN LUI-MEME
-
+            // On récupère le temps où le joueur lance une partie (une seule fois)
+            if (timer) {
+                t_i = millis();
+            }
+            timer = false;
             background(0);
-            t_i = (millis() - t1) / 1000;
-
             if (game.getDiff() == "HARD") {  // AFFICHE LA DEMARCATION ENTRE VOITURES ET TRONCS EN MODE HARD
                 board.create_case(0, (separate - 1) * grid, game.getGame_width(), game.getGame_height() - grid, 20, 20, 30);
                 board.create_case(0, (separate - 2) * grid, game.getGame_width(), grid, 0, 50, 100);
@@ -566,11 +574,11 @@ public class Test1 extends PApplet {
                     processing.stop();
                 }
             } else {
-                board.create_text(t_i + "s", 20, grid / 2, grid / 2, 0, 0, 0);
+                board.create_text((t1 -t_i)/1000+ "s", 20, grid / 2, grid / 2, 0, 0, 0);
 
                 if (game.getGameState()) {
                     t2 = millis();
-                    t_fin = (t2 - t1) / 1000;
+                    t_fin = (t2 - t_i) / 1000;
                     board.create_text("Congratulations ! You beat Frogger in " + t_fin + "s.", 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2, 255, 255, 255);
                     if (game.getDiff() == "EASY"){
                         player_easy.close();
@@ -578,6 +586,7 @@ public class Test1 extends PApplet {
                         player_victory_easy.setGain(-2);
                         player_victory_easy.play();
                         remark = record_treatment(record, t_fin);
+
                     } else if (game.getDiff() == "HARD"){
                         player_hard.close();
                         player_victory_hard = minim.loadFile(music_victory_hard);

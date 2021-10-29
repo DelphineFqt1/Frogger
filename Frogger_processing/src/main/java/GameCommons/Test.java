@@ -15,6 +15,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static Util.UtilClass.get_leaderboard_data;
+
 //import processing.sound.*;
 
 public class Test extends PApplet {
@@ -231,7 +233,7 @@ public class Test extends PApplet {
             board.create_case(670, 700, 800, 660, 255, 255, 255);
             board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
             board.image(im_back_arrow,680,662, 38, 38);
-            scores = game.show_leaderboard(record);
+            scores = get_leaderboard_data(record);
             int x = 415;
             int y = 265;
             for (String score: scores) {
@@ -246,7 +248,7 @@ public class Test extends PApplet {
             board.create_case(670, 700, 800, 660, 255, 255, 255);
             board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
             board.image(im_back_arrow,680,662, 38, 38);
-            scores = game.show_leaderboard(record);
+            scores = get_leaderboard_data(record);
             int x = 415;
             int y = 265;
             for (String score: scores) {
@@ -261,7 +263,7 @@ public class Test extends PApplet {
             board.create_case(670, 700, 800, 660, 255, 255, 255);
             board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
             board.image(im_back_arrow,680,662, 38, 38);
-            scores = game.show_leaderboard(record);
+            scores = get_leaderboard_data(record);
             int x = 415;
             int y = 265;
             for (String score: scores) {

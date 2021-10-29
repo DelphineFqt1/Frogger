@@ -3,6 +3,7 @@ package Util;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -21,7 +22,9 @@ public class UtilClass {
         try{
             float[] numbers = new float[10];
             for (String ligne : Files.readAllLines(path)) {
-                Snumbers.add(ligne.substring(3, ligne.length()-1));
+                System.out.println(ligne);
+                Snumbers.add(ligne.split(" ")[1]);
+                System.out.println(Snumbers);
                 //System.out.println(ligne.substring(3, ligne.length()-1));
             }
             for (int i =0; i<Snumbers.size(); i++){
@@ -107,6 +110,24 @@ public class UtilClass {
     {
         Random rand = new Random();
         return rand.nextInt(end - begin + 1) + begin;
+    }
+
+    // FONCTION POUR RECUPERER LES DONNEES DU LEADERBOARD (POUR LE BOUTON LEADERBOARD)
+    public static ArrayList<String> get_leaderboard_data(Path path) {
+        ArrayList<String> scores = new ArrayList<String>();
+        String line;
+        try{
+            RandomAccessFile monFichier = new RandomAccessFile(String.valueOf(path), "r");
+            for (int i=0; i<9; i++) {
+                line = monFichier.readLine();
+                scores.add(line);
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return scores;
     }
 }
 
