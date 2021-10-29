@@ -32,7 +32,7 @@ public class Infinite extends PApplet {
     PImage im_frog2;
     PImage im_car;
     PImage im_rev;
-    int PlayerMode;
+    String PlayerMode;
     String Diff;
     Path record_endless;
     String remark = null;
@@ -47,21 +47,21 @@ public class Infinite extends PApplet {
     @Override
     public void settings() {
         inf_processing = this;
-        PlayerMode = 2;
-        Diff = "HARD";
+        PlayerMode = "1 PLAYER";
         ranges = 16; // de préférance pair
         columns = 19;
         grid = 45;
         separate = ranges / 2;
         board = new Element(inf_processing);
-        game = new Game(grid, ranges, columns, PlayerMode, Diff);
+        game = new Game(grid, ranges, columns);
+        game.setPlayerMode(PlayerMode);
         size(game.getGame_width(), game.getGame_height());
     }
 
     @Override
     public void setup() {
 
-        frog2 = game.set_Frog();
+        frog2 = game.setFrog(1);
         im_frog2 = loadImage("" +
                 "src/main/java/Images/frog2.png");
         im_car = loadImage("" +
@@ -75,15 +75,15 @@ public class Infinite extends PApplet {
 
     @Override
     public void draw() {
-        background(50);
-        board.show_frog(frog2, im_frog2);
+        board.background(50);
+        board.show_image(im_frog2, frog2.getLeft(), frog2.getBottom(), frog2.getWidth(), frog2.getHeight());
         for (ArrayList<Car> range_i : cars) {
             for (Car car : range_i) {
                 car.move(car.getSpeed(), 0);
                 if (car.getSpeed() > 0) {
-                    board.show_car(car, im_rev);
+                    board.show_image(im_rev, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
                 } else {
-                    board.show_car(car, im_car);
+                    board.show_image(im_car, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
                 }
                 if (frog2.intersect(car)) {
                     frog2.setCar_intersection(true);
@@ -108,7 +108,7 @@ public class Infinite extends PApplet {
 
 
 
-        game.deal_state_frog(frog2);
+        game.stateFrog(frog2,1);
 
         board.create_text("Score : "+k, 20, grid/2, grid/2, 255, 255, 255);
         if (frog2.isGAMEOVER()) {

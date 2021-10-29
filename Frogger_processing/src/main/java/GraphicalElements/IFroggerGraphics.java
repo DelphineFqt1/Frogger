@@ -13,22 +13,9 @@ public interface IFroggerGraphics {
      */
     abstract void create_case(float left, float top, float right, float bottom, float r, float g, float b);
     /**
-     * / Fait apparaitre la grenouille sous forme d'une PImage
-     */
-    abstract void show_frog(Frog frog, PImage icon);
-    /**
-     * / Fait apparaitre une voiture sous forme d'une PImage déclarée
-     */
-    abstract void show_car(Obstacle.Car car, PImage icon);
-    /**
-     * / Fait apparaitre unn tronc sous forme d'une PImage
-     */
-    abstract void show_trunk(Obstacle.Trunk trunk, PImage icon);
-    /**
      * / fait apparaitre un texte aux coordonnées et à la couleur rgb spécifiée
      */
     abstract void create_text(String text, int size, int x, int y, int r, int g, int b);
-
     /**
      * / affiche une arrière-plan en niveau de gris spécifié
      */

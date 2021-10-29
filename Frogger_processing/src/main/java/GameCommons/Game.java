@@ -24,36 +24,33 @@ public class Game implements IFrog, IEnvironment {
     private boolean gameState;
     private int game_width;
     private int game_height;
-    private int PlayerMode;
-    private String Mode1;
-    private String Mode2;
-    private String Mode3;
+    private String PlayerMode;
     private String Diff;
+    private String leaderboard;
 
 
-    public Game(int grid, int ranges, int columns, int PlayerMode, String Diff) {
+
+    public Game(int grid, int ranges, int columns) {
         this.grid = grid;
         this.ranges = ranges;
         this.columns = columns;
         this.game_width = columns * grid;
         this.game_height = ranges * grid;
         this.gameState = false;
-        this.PlayerMode = PlayerMode;
-        this.Diff = Diff;
-        setMode1(null);
-        setMode2(null);
-        setMode3(null);
+        this.PlayerMode = null;
+        this.Diff = null;
+        this.leaderboard=null;
     }
 
     public boolean isGameState() {
         return gameState;
     }
 
-    public int getPlayerMode() {
+    public String getPlayerMode() {
         return PlayerMode;
     }
 
-    public void setPlayerMode(int playerMode) {
+    public void setPlayerMode(String playerMode) {
         PlayerMode = playerMode;
     }
 
@@ -105,21 +102,18 @@ public class Game implements IFrog, IEnvironment {
         this.game_height = game_height;
     }
 
-    public String getMode1() {return Mode1; }
-
-    public void setMode1(String mode1) {Mode1 = mode1; }
-
-    public String getMode2() {return Mode2; }
-
-    public void setMode2(String mode2) {Mode2 = mode2; }
-
     public String getDiff() {return Diff;}
 
     public void setDiff(String diff) {Diff = diff;}
 
-    public String getMode3() {return Mode3;}
+    public String getLeaderboard() {
+        return leaderboard;
+    }
 
-    public void setMode3(String mode3) {Mode3 = mode3;}
+    public void setLeaderboard(String leaderboard) {
+        this.leaderboard = leaderboard;
+    }
+
 
 
     @Override
@@ -218,98 +212,9 @@ public class Game implements IFrog, IEnvironment {
         }
     }
 
-
-    @Override
-    public void deal_state_frog(Frog frog) {
-        if ((frog.isCar_intersection() == frog.isTrunk_intersection()) || (frog.getLeft() < 0 || frog.getRight() > this.game_width || frog.getBottom() < 0 || frog.getTop() > this.game_height)) {
-            resetFrog(frog);
-            frog.setGAMEOVER(true);
-        }
-
-        if (frog.getRange() >= this.getRanges() - 1) {
-            setGameState(true);
-        }
-    }
-
-
-    @Override
-    public void resetFrog(Frog frog) {
-        frog.setLeft(columns * grid / 2 - grid / 2);
-        frog.setRight(columns * grid / 2 - grid / 2 + grid);
-        frog.setBottom(ranges * grid - grid);
-        frog.setTop(ranges * grid);
-        frog.setCar_intersection(false);
-        frog.setTrunk_intersection(true);
-        frog.setRange(0);
-
-    }
-
-    @Override
-    public Frog set_Frog() {
-        Frog frog = new Frog(this.game_width / 2 - grid / 2, this.game_height - grid, grid);
-        return frog;
-    }
-
-    @Override
-    public Frog set_Frog2P1() {
-        Frog frog = new Frog(getGame_width() / 4, this.game_height - grid, grid);
-        return frog;
-    }
-
-    @Override
-    public Frog set_Frog2P2() {
-        Frog frog = new Frog(3 * getGame_width() / 4, this.game_height - grid, grid);
-        return frog;
-    }
-
-    @Override
-    public void resetFrog2P1(Frog frog) {
-        frog.setLeft(getGame_width() / 4);
-        frog.setRight(getGame_width() / 4 + grid);
-        frog.setBottom(ranges * grid - grid);
-        frog.setTop(ranges * grid);
-        frog.setCar_intersection(false);
-        frog.setTrunk_intersection(true);
-        frog.setRange(0);
-    }
-
-    @Override
-    public void resetFrog2P2(Frog frog) {
-        frog.setLeft(3 * getGame_width() / 4);
-        frog.setRight(3 * getGame_width() / 4 + grid);
-        frog.setBottom(ranges * grid - grid);
-        frog.setTop(ranges * grid);
-        frog.setCar_intersection(false);
-        frog.setTrunk_intersection(true);
-        frog.setRange(0);
-
-    }
-
-    @Override
-    public void deal_state_frog2P1(Frog frog) {
-        if ((frog.isCar_intersection() == frog.isTrunk_intersection()) || (frog.getLeft() < 0 || frog.getRight() > this.game_width || frog.getBottom() < 0 || frog.getTop() > this.game_height)) {
-            resetFrog2P1(frog);
-            frog.setGAMEOVER(true);
-        }
-        if (frog.getRange() >= this.getRanges() - 1) {
-            setGameState(true);
-        }
-    }
-
-    @Override
-    public void deal_state_frog2P2(Frog frog) {
-        if ((frog.isCar_intersection() == frog.isTrunk_intersection()) || (frog.getLeft() < 0 || frog.getRight() > this.game_width || frog.getBottom() < 0 || frog.getTop() > this.game_height)) {
-            resetFrog2P2(frog);
-            frog.setGAMEOVER(true);
-        }
-        if (frog.getRange() >= this.getRanges() - 1) {
-            setGameState(true);
-        }
-    }
-
     @Override
     public Frog setFrog(int num) {
-        if (Mode1 =="1 PLAYER"){
+        if (PlayerMode =="1 PLAYER"){
             return new Frog(this.game_width / 2 - grid / 2, this.game_height - grid, grid);
         }
         else{
@@ -324,7 +229,7 @@ public class Game implements IFrog, IEnvironment {
 
     @Override
     public void reset_Frog(Frog frog,  int num) {
-        if (Mode1 == "1 PLAYER"){
+        if (PlayerMode == "1 PLAYER"){
             frog.setLeft(columns * grid / 2 - grid / 2);
             frog.setRight(columns * grid / 2 - grid / 2 + grid);
         }

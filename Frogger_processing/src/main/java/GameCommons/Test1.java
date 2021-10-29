@@ -55,7 +55,7 @@ public class Test1 extends PApplet {
     PImage im_leaderboard_easy;
     PImage im_leaderboard_hard;
     PImage im_leaderboard_infinity;
-    int PlayerMode;
+    String PlayerMode;
     String Diff;
     Path record;
     Path record_hard;
@@ -92,13 +92,13 @@ public class Test1 extends PApplet {
 
     @Override
     public void settings() {
-
+        PlayerMode = null;
         ranges = 16; // de préférence pair
         columns = 19;
         grid = 45;
         separate = ranges/2 ;
         board = new Element(this);
-        game = new Game(grid, ranges, columns, PlayerMode, Diff);
+        game = new Game(grid, ranges, columns);
         size(game.getGame_width(), game.getGame_height());
     }
 
@@ -144,7 +144,7 @@ public class Test1 extends PApplet {
 
         if (game.getDiff() == null) {   // ECRAN D'ACCUEIL + CHOIX DU PLAYERMODE ET DU NIVEAU DE DIFFICULTE
             t1 = millis();
-            if (game.getMode1() == null) {
+            if (game.getPlayerMode() == null) {
 
                 background(im_menu);
                 board.create_case(77, 600, 277, 550, 255, 255, 255);
@@ -160,25 +160,25 @@ public class Test1 extends PApplet {
             }
 
 // ACTION LORSQUE L'ON CLIQUE SUR "1 PLAYER" : ON AFFICHE LE MEME MENU MAIS AVEC LES BOUTONS "EASY" et "HARD"
-            if ((mouseX < 277) && (mouseX > 77) && (mouseY < 600) && (mouseY > 550) && (mousePressed) && game.getMode1() == null) {
-                game.setMode1("1 PLAYER");
+            if ((mouseX < 277) && (mouseX > 77) && (mouseY < 600) && (mouseY > 550) && (mousePressed) && game.getPlayerMode() == null) {
+                game.setPlayerMode("1 PLAYER");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
             }
-            if ((mouseX < 527) && (mouseX > 327) && (mouseY < 600) && (mouseY > 550) && (mousePressed) && game.getMode1() == null) {
-                game.setMode1("2 PLAYERS");
+            if ((mouseX < 527) && (mouseX > 327) && (mouseY < 600) && (mouseY > 550) && (mousePressed) && game.getPlayerMode() == null) {
+                game.setPlayerMode("2 PLAYERS");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
             }
-            if ((mouseX < 777) && (mouseX > 577) && (mouseY < 600) && (mouseY > 550) && (mousePressed) && game.getMode1() == null) {
-                game.setMode1("LEADERBOARD");
+            if ((mouseX < 777) && (mouseX > 577) && (mouseY < 600) && (mouseY > 550) && (mousePressed) && game.getPlayerMode() == null) {
+                game.setPlayerMode("LEADERBOARD");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
             }
 
             // ON AFFICHE LES BOUTONS DU MODE DE JEU (ROUTE, ROUTE + RIVIERE, INFINI)
-            if (game.getMode1() == "1 PLAYER") {
-                game.setPlayerMode(1);
+            if (game.getPlayerMode() == "1 PLAYER") {
+                
                 background(im_menu);
                 board.create_case(77, 550, 277, 500, 255, 255, 255);
                 board.create_text("EASY", 25, 150, 535, 0, 0, 0);
@@ -198,7 +198,7 @@ public class Test1 extends PApplet {
             }
 
 // Après avoir choisi le mode 1 joueur, on choisit le niveau de difficulté
-            if ((mouseX < 277) && (mouseX > 77) && (mouseY < 550) && (mouseY > 500) && (mousePressed) && game.getMode1() == "1 PLAYER") {
+            if ((mouseX < 277) && (mouseX > 77) && (mouseY < 550) && (mouseY > 500) && (mousePressed) && game.getPlayerMode() == "1 PLAYER") {
                 game.setDiff("EASY");
                 // System.out.print(game.getDiff());
                 player_bouton = minim.loadFile(music_bouton);
@@ -209,7 +209,7 @@ public class Test1 extends PApplet {
                 player_easy.loop();
 
             }
-            if ((mouseX < 527) && (mouseX > 327) && (mouseY < 550) && (mouseY > 500) && (mousePressed) && game.getMode1() == "1 PLAYER") {
+            if ((mouseX < 527) && (mouseX > 327) && (mouseY < 550) && (mouseY > 500) && (mousePressed) && game.getPlayerMode() == "1 PLAYER") {
                 game.setDiff("HARD");
                 //  System.out.print(game.getDiff());
                 player_bouton = minim.loadFile(music_bouton);
@@ -219,7 +219,7 @@ public class Test1 extends PApplet {
                 player_hard.setGain(-10);
                 player_hard.loop();
             }
-            if ((mouseX < 777) && (mouseX > 577) && (mouseY < 550) && (mouseY > 500) && (mousePressed) && game.getMode1() == "1 PLAYER") {
+            if ((mouseX < 777) && (mouseX > 577) && (mouseY < 550) && (mouseY > 500) && (mousePressed) && game.getPlayerMode() == "1 PLAYER") {
                 game.setDiff("INFINITY");
                 //  System.out.print(game.getDiff());
                 player_bouton = minim.loadFile(music_bouton);
@@ -230,8 +230,8 @@ public class Test1 extends PApplet {
                 player_infinity.loop();
             }
 
-            if (game.getMode1() == "2 PLAYERS") {
-                game.setPlayerMode(2);
+            if (game.getPlayerMode() == "2 PLAYERS") {
+                
                 background(im_menu);
                 board.create_case(77, 550, 277, 500, 255, 255, 255);
                 board.create_text("EASY", 25, 150, 535, 0, 0, 0);
@@ -247,7 +247,7 @@ public class Test1 extends PApplet {
             }
 
 // Après avoir choisi le mode 2 joueurs, on choisit le niveau de difficulté
-            if ((mouseX < 277) && (mouseX > 77) && (mouseY < 550) && (mouseY > 500) && (mousePressed) && game.getMode1() == "2 PLAYERS") {
+            if ((mouseX < 277) && (mouseX > 77) && (mouseY < 550) && (mouseY > 500) && (mousePressed) && game.getPlayerMode() == "2 PLAYERS") {
                 game.setDiff("EASY");
                 //   System.out.print(game.getDiff());
                 player_bouton = minim.loadFile(music_bouton);
@@ -257,7 +257,7 @@ public class Test1 extends PApplet {
                 player_easy.setGain(-8);
                 player_easy.loop();
             }
-            if ((mouseX < 527) && (mouseX > 327) && (mouseY < 550) && (mouseY > 500) && (mousePressed) && game.getMode1() == "2 PLAYERS") {
+            if ((mouseX < 527) && (mouseX > 327) && (mouseY < 550) && (mouseY > 500) && (mousePressed) && game.getPlayerMode() == "2 PLAYERS") {
                 game.setDiff("HARD");
                 //   System.out.print(game.getDiff());
                 player_bouton = minim.loadFile(music_bouton);
@@ -269,14 +269,14 @@ public class Test1 extends PApplet {
             }
 
             // LE BOUTON RETOUR
-            if ((mouseX < 800) && (mouseX > 670) && (mouseY < 700) && (mouseY > 660) && (mousePressed) && game.getMode1() != null) {
-                game.setMode1(null);
+            if ((mouseX < 800) && (mouseX > 670) && (mouseY < 700) && (mouseY > 660) && (mousePressed) && game.getPlayerMode() != null) {
+                game.setPlayerMode(null);
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
 
             }
             // ON AFFICHE LES DIFFICULTES POUR LES LEADERBOARDS
-            if (game.getMode1() == "LEADERBOARD") {
+            if (game.getPlayerMode() == "LEADERBOARD") {
                 background(im_menu);
                 board.create_case(77, 300, 277, 250, 255, 255, 255);
                 board.create_text("EASY", 25, 150 , 285, 0, 0, 0);
@@ -295,29 +295,29 @@ public class Test1 extends PApplet {
                 board.show_image(im_back_arrow,680,662, 38, 38);
             }
 
-            if ((mouseX < 277) && (mouseX > 77) && (mouseY < 300) && (mouseY > 250) && (mousePressed) && game.getMode1() == "LEADERBOARD") {
-                game.setMode2("EASY");
-                game.setMode3("diff");
+            if ((mouseX < 277) && (mouseX > 77) && (mouseY < 300) && (mouseY > 250) && (mousePressed) && game.getPlayerMode() == "LEADERBOARD") {
+                game.setLeaderboard("EASY");
+                
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
 
             }
-            if ((mouseX < 277) && (mouseX > 77) && (mouseY < 400) && (mouseY > 350) && (mousePressed) && game.getMode1() == "LEADERBOARD" ) {
-                game.setMode2("HARD");
-                game.setMode3("diff");
+            if ((mouseX < 277) && (mouseX > 77) && (mouseY < 400) && (mouseY > 350) && (mousePressed) && game.getPlayerMode() == "LEADERBOARD" ) {
+                game.setLeaderboard("HARD");
+                
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
             }
-            if ((mouseX < 277) && (mouseX > 77) && (mouseY < 500) && (mouseY > 450) && (mousePressed) && game.getMode1() == "LEADERBOARD") {
-                game.setMode2("INFINITY");
-                game.setMode3("diff");
+            if ((mouseX < 277) && (mouseX > 77) && (mouseY < 500) && (mouseY > 450) && (mousePressed) && game.getPlayerMode() == "LEADERBOARD") {
+                game.setLeaderboard("INFINITY");
+                
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
 
             }
             // ON AFFICHE LE LEADERBOARD CORRESPONDANT A LA DIFFICULTE SELECTIONNE
             // LEADERBOARD EASY
-            if (game.getMode2() == "EASY") {
+            if (game.getLeaderboard() == "EASY") {
                 background(im_menu);
                 board.show_image(im_leaderboard_easy, 180, 70, 500, 600);
                 board.create_case(670, 700, 800, 660, 255, 255, 255);
@@ -332,7 +332,7 @@ public class Test1 extends PApplet {
                 }
             }
             // LEADERBOARD HARD
-            if (game.getMode2() == "HARD") {
+            if (game.getLeaderboard() == "HARD") {
                 background(im_menu);
                 board.show_image(im_leaderboard_hard, 180, 70, 500, 600);
                 board.create_case(670, 700, 800, 660, 255, 255, 255);
@@ -347,7 +347,7 @@ public class Test1 extends PApplet {
                 }
             }
             // LEADERBOARD INFINITY
-            if (game.getMode2() == "INFINITY") {
+            if (game.getLeaderboard() == "INFINITY") {
                 background(im_menu);
                 board.show_image(im_leaderboard_infinity, 180, 70, 500, 600);
                 board.create_case(670, 700, 800, 660, 255, 255, 255);
@@ -363,18 +363,18 @@ public class Test1 extends PApplet {
             }
 
             // LE RETOUR DU BOUTON RETOUR
-            if ((mouseX < 800) && (mouseX > 670) && (mouseY < 700) && (mouseY > 660) && (mousePressed) && game.getMode3() == "diff") {
-                game.setMode3(null);
-                game.setMode2(null);
+            if ((mouseX < 800) && (mouseX > 670) && (mouseY < 700) && (mouseY > 660) && (mousePressed) ) {
+                
+                game.setLeaderboard(null);
             }
 
             // INITIALISER LE JEU UNE FOIS QUE L'ON A LE PLAYERMODE ET LE NIVEAU DE DIFFICULTE
-            if (game.getPlayerMode()==2){
-                frog1 = game.set_Frog2P1();
-                frog2 = game.set_Frog2P2();
+            if (game.getPlayerMode()=="2 PLAYERS"){
+                frog1 = game.setFrog(1);
+                frog2 = game.setFrog(2);
             }
             else {
-                frog2 = game.set_Frog();
+                frog2 = game.setFrog(1);
             }
 
             if (game.getDiff() == "HARD") {
@@ -401,15 +401,15 @@ public class Test1 extends PApplet {
             }
 
 
-            if (game.getPlayerMode() == 2) {  // 2 JOUEURS
+            if (game.getPlayerMode() == "2 PLAYERS") {  // 2 JOUEURS
                 for (ArrayList<Car> range_i : cars) {
                     for (Car car : range_i) {
                         car.move(car.getSpeed(), 0);
                         if (car.getSpeed() > 0) {
-                            board.show_car(car, im_car_right);
+                            board.show_image(im_car_right, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
                         }
                         else {
-                            board.show_car(car, im_car_left);
+                            board.show_image(im_car_left, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
                         }
                         if (frog1.intersect(car)) {
                             frog1.setCar_intersection(true);
@@ -432,7 +432,7 @@ public class Test1 extends PApplet {
                     for (ArrayList<Trunk> range_i : trunks) {
                         for (Trunk trunk : range_i) {
                             trunk.move(trunk.getSpeed(), 0);
-                            board.show_trunk(trunk, im_trunk);
+                            board.show_image(im_trunk, trunk.getLeft(), trunk.getBottom(), trunk.getWidth(), trunk.getHeight());
                             if (frog1.intersect(trunk)) {
                                 count_inter++;
                                 if (count_inter <= 1) {
@@ -463,21 +463,20 @@ public class Test1 extends PApplet {
                         player_collision.play();
                     }
                 }
-                board.show_frog(frog1, im_frog);
-                board.show_frog(frog2, im_frog2);
-                game.deal_state_frog2P1(frog1);
-                game.deal_state_frog2P2(frog2);
-
+                board.show_image(im_frog, frog1.getLeft(), frog1.getBottom(), frog1.getWidth(), frog1.getHeight());
+                board.show_image(im_frog2, frog2.getLeft(), frog2.getBottom(), frog2.getWidth(), frog2.getHeight());
+                game.stateFrog(frog1,1);
+                game.stateFrog(frog2, 2);
 
             } else {  // 1 JOUEUR
                 for (ArrayList<Car> range_i : cars) {
                     for (Car car : range_i) {
                         car.move(car.getSpeed(), 0);
                         if (car.getSpeed() > 0) {
-                            board.show_car(car, im_car_right);
+                            board.show_image(im_car_right, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
                         }
                         else {
-                            board.show_car(car, im_car_left);
+                            board.show_image(im_car_left, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
                         }
                         if (frog2.intersect(car)) {
                             frog2.setCar_intersection(true);
@@ -492,7 +491,7 @@ public class Test1 extends PApplet {
                     for (ArrayList<Trunk> range_i : trunks) {
                         for (Trunk trunk : range_i) {
                             trunk.move(trunk.getSpeed(), 0);
-                            board.show_trunk(trunk, im_trunk);
+                            board.show_image(im_trunk, trunk.getLeft(), trunk.getBottom(), trunk.getWidth(), trunk.getHeight());
                             if (frog2.intersect(trunk)) {
                                 count2++;
                                 if (count2 <= 1) {
@@ -529,8 +528,8 @@ public class Test1 extends PApplet {
                     }
                 }
 
-                board.show_frog(frog2, im_frog2);
-                game.deal_state_frog(frog2);
+                board.show_image(im_frog2, frog2.getLeft(), frog2.getBottom(), frog2.getWidth(), frog2.getHeight());
+                game.stateFrog(frog2, 1);
 
 
             }

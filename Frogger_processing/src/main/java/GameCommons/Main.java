@@ -40,7 +40,7 @@ public class Main extends PApplet {
     PImage im_car_right;
     PImage im_car_left;
     PImage im_trunk;
-    int PlayerMode;
+    String PlayerMode;
     String Diff;
     Path record;
     String remark = null;
@@ -51,26 +51,25 @@ public class Main extends PApplet {
 
     @Override
     public void settings() {
-        PlayerMode =1;
-        Diff = "HARD";
+        PlayerMode = "2 PLAYERS";
         ranges = 16; // de préférence pair
         columns = 19;
         grid = 45;
         separate = ranges/2 ;
         board = new Element(this);
-        game = new Game(grid, ranges, columns, PlayerMode, Diff);
+        game = new Game(grid, ranges, columns);
         board.size(game.getGame_width(), game.getGame_height());
     }
 
     @Override
     public void setup() {
 
-        if (game.getPlayerMode()==2){
-        frog1 = game.set_Frog2P1();
-        frog2 = game.set_Frog2P2();
+        if (game.getPlayerMode()=="2 PLAYERS"){
+        frog1 = game.setFrog(1);
+        frog2 = game.setFrog(2);
         }
         else {
-            frog2 = game.set_Frog();
+            frog2 = game.setFrog(1);
         }
         im_frog2 = loadImage("src/main/java/Images/frog2.png");
         im_frog = loadImage("src/main/java/Images/frog.png");
@@ -97,16 +96,16 @@ public class Main extends PApplet {
             board.create_case(0, (separate - 2) * grid, game.getGame_width(), grid, 0, 50, 100);
             board.create_case(0, grid, game.getGame_width(), 0, 0, 200, 0);
 
-            if (game.getPlayerMode() == 2) {
+            if (game.getPlayerMode() == "2 PLAYERS") {
 
                 for (ArrayList<Car> range_i : cars) {
                     for (Car car : range_i) {
                         car.move(car.getSpeed(), 0);
                         if (car.getSpeed() > 0) {
-                            board.show_car(car, im_car_right);
+                            board.show_image(im_car_right, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
                         }
                         else {
-                            board.show_car(car, im_car_left);
+                            board.show_image(im_car_left, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
                         }
                         if (frog1.intersect(car)) {
                             frog1.setCar_intersection(true);
@@ -121,7 +120,7 @@ public class Main extends PApplet {
                 for (ArrayList<Trunk> range_i : trunks) {
                     for (Trunk trunk : range_i) {
                         trunk.move(trunk.getSpeed(), 0);
-                        board.show_trunk(trunk, im_trunk);
+                        board.show_image(im_trunk, trunk.getLeft(), trunk.getBottom(), trunk.getWidth(), trunk.getHeight());
                         if (frog1.intersect(trunk)) {
                             count_inter++;
                             if (count_inter <= 1) {
@@ -146,20 +145,20 @@ public class Main extends PApplet {
                 if (frog2.getRange() > (separate + 1) && frog2.getRange() < ranges - 1 && count2 == 0) {
                     frog2.setTrunk_intersection(false);
                 }
-                board.show_frog(frog1, im_frog);
-                board.show_frog(frog2, im_frog2);
-                game.deal_state_frog2P1(frog1);
-                game.deal_state_frog2P2(frog2);
+                board.show_image(im_frog, frog1.getLeft(), frog1.getBottom(), frog1.getWidth(), frog1.getHeight());
+                board.show_image(im_frog2, frog2.getLeft(), frog2.getBottom(), frog2.getWidth(), frog2.getHeight());
+                game.stateFrog(frog1,1);
+                game.stateFrog(frog2, 2);
 
             } else {
                 for (ArrayList<Car> range_i : cars) {
                     for (Car car : range_i) {
                         car.move(car.getSpeed(), 0);
                         if (car.getSpeed() > 0) {
-                            board.show_car(car, im_car_right);
+                            board.show_image(im_car_right, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
                         }
                         else {
-                            board.show_car(car, im_car_left);
+                            board.show_image(im_car_left,car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight() );
                         }
                         if (frog2.intersect(car)) {
                             frog2.setCar_intersection(true);
@@ -170,7 +169,7 @@ public class Main extends PApplet {
                 for (ArrayList<Trunk> range_i : trunks) {
                     for (Trunk trunk : range_i) {
                         trunk.move(trunk.getSpeed(), 0);
-                        board.show_trunk(trunk, im_trunk);
+                        board.show_image(im_trunk, trunk.getLeft(), trunk.getBottom(), trunk.getWidth(), trunk.getHeight());
                         if (frog2.intersect(trunk)) {
                             count2++;
                             if (count2 <= 1) {
@@ -184,8 +183,8 @@ public class Main extends PApplet {
                 if (frog2.getRange() > (separate + 1) && frog2.getRange() < ranges - 1 && count2 == 0) {
                     frog2.setTrunk_intersection(false);
                 }
-                board.show_frog(frog2, im_frog2);
-                game.deal_state_frog(frog2);
+                board.show_image(im_frog2, frog2.getLeft(), frog2.getBottom(), frog2.getWidth(), frog2.getHeight());
+                game.stateFrog(frog2, 1);
 
 
             }

@@ -8,13 +8,12 @@ import processing.core.PApplet;
 import GraphicalElements.Element;
 import processing.core.PImage;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
+import Util.Direction;
 import static Util.UtilClass.endless_treatment;
 import static Util.UtilClass.record_treatment;
 import static Util.UtilClass.get_leaderboard_data;
@@ -22,9 +21,7 @@ import static Util.UtilClass.get_leaderboard_data;
 import ddf.minim.*;
 
 public class TestA extends PApplet {
-
-    public PApplet processing;
-
+    
     Frog frog1;
     Frog frog2;
     Element.Button button1P;
@@ -70,7 +67,6 @@ public class TestA extends PApplet {
     String remark = null;
     int count50 = 50;
     float score_inf;
-    Scanner sc = new Scanner(System.in);
     Minim minim;
     String music_menu;
     String music_bouton;
@@ -105,9 +101,8 @@ public class TestA extends PApplet {
         separate = ranges/2 ;
         board = new Element(this);
         minim = new Minim(this);
-        PlayerMode = 0;
         Diff = null;
-        game = new Game(grid, ranges, columns, PlayerMode, Diff);
+        game = new Game(grid, ranges, columns);
         size(game.getGame_width(), game.getGame_height());
     }
 
@@ -147,6 +142,7 @@ public class TestA extends PApplet {
         player_menu.setGain(0);
         player_menu.loop();
 
+
         button1P = new Element.Button(this, 77, 600, 277, 550, "1 PLAYER" );
         button2P = new Element.Button(this, 315, 600, 547, 550, "2 PLAYERS" );
         buttonLead = new Element.Button(this, 577,600 , 810, 550, "LEADERBOARD" );
@@ -157,8 +153,7 @@ public class TestA extends PApplet {
         buttonLE = new Element.Button(this, 77, 300, 277, 250, "EASY");
         buttonLH = new Element.Button(this, 77, 400, 277, 350, "HARD");
         buttonLI = new Element.Button(this,77,500 , 277, 450,"INFINITE");
-
-
+        
     }
 
     @Override
@@ -166,7 +161,7 @@ public class TestA extends PApplet {
 
         if (game.getDiff() == null) {   // ECRAN D'ACCUEIL + CHOIX DU PLAYERMODE ET DU NIVEAU DE DIFFICULTE
             t1 = millis();
-            if (game.getMode1() == null) {
+            if (game.getPlayerMode() == null) {
                 board.background_im(im_menu, game.getGame_width(), game.getGame_height());
                 button1P.show_button();
                 board.show_image(im_frog,button1P.getLeft()+5,button1P.getTop()-42, 40, 40);
@@ -180,28 +175,26 @@ public class TestA extends PApplet {
             }
 
 // ACTION LORSQUE L'ON CLIQUE SUR "1 PLAYER" : ON AFFICHE LE MEME MENU MAIS AVEC LES BOUTONS "EASY" et "HARD"
-            if (button1P.click_event() && game.getMode1()==null) {
-                game.setMode1("1 PLAYER");
+            if (button1P.click_event() && game.getPlayerMode()==null) {
+                game.setPlayerMode("1 PLAYER");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
             }
-            if (button2P.click_event() && game.getMode1()==null) {
-                game.setMode1("2 PLAYERS");
+            if (button2P.click_event() && game.getPlayerMode()==null) {
+                game.setPlayerMode("2 PLAYERS");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
             }
-            if (buttonLead.click_event() && game.getMode1() == null) {
-                game.setMode1("LEADERBOARD");
+            if (buttonLead.click_event() && game.getPlayerMode() == null) {
+                game.setPlayerMode("LEADERBOARD");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
             }
 
             // ON AFFICHE LES BOUTONS DU MODE DE JEU (ROUTE, ROUTE + RIVIERE, INFINI)
-            if (game.getMode1()== "1 PLAYER") {
-
+            if (game.getPlayerMode()== "1 PLAYER") {
                 background(im_menu);
-
-
+                
                 buttonEasy.show_button();
                 board.show_image(im_car_right, buttonEasy.getLeft()+10, buttonEasy.getTop()-45, 38, 38);
                 board.show_image(im_car_left, buttonEasy.getLeft()+150, buttonEasy.getTop()-45, 38, 38);
@@ -219,7 +212,7 @@ public class TestA extends PApplet {
             }
 
 // Après avoir choisi le mode 1 joueur, on choisit le niveau de difficulté
-            if (buttonEasy.click_event() && game.getMode1() == "1 PLAYER") {
+            if (buttonEasy.click_event() && game.getPlayerMode() == "1 PLAYER") {
                 game.setDiff("EASY");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
@@ -229,7 +222,7 @@ public class TestA extends PApplet {
                 player_easy.loop();
 
             }
-            if (buttonHard.click_event() && game.getMode1() == "1 PLAYER") {
+            if (buttonHard.click_event() && game.getPlayerMode() == "1 PLAYER") {
                 game.setDiff("HARD");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
@@ -238,8 +231,8 @@ public class TestA extends PApplet {
                 player_hard.setGain(-10);
                 player_hard.loop();
             }
-            if (buttonInf.click_event() && game.getMode1() == "1 PLAYER") {
-                game.setDiff("INFINITY");
+            if (buttonInf.click_event() && game.getPlayerMode() == "1 PLAYER") {
+                game.setDiff("INFINITE");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
                 player_menu.close();
@@ -248,7 +241,7 @@ public class TestA extends PApplet {
                 player_infinity.loop();
             }
 
-            if (game.getMode1() == "2 PLAYERS") {
+            if (game.getPlayerMode() == "2 PLAYERS") {
                 background(im_menu);
 
                 buttonEasy.show_button();
@@ -265,7 +258,7 @@ public class TestA extends PApplet {
             }
 
 // Après avoir choisi le mode 2 joueurs, on choisit le niveau de difficulté
-            if (buttonEasy.click_event() && game.getMode1() == "2 PLAYERS") {
+            if (buttonEasy.click_event() && game.getPlayerMode() == "2 PLAYERS") {
                 game.setDiff("EASY");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
@@ -274,7 +267,7 @@ public class TestA extends PApplet {
                 player_easy.setGain(-8);
                 player_easy.loop();
             }
-            if (buttonHard.click_event() && game.getMode1() == "2 PLAYERS") {
+            if (buttonHard.click_event() && game.getPlayerMode() == "2 PLAYERS") {
                 game.setDiff("HARD");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
@@ -285,14 +278,14 @@ public class TestA extends PApplet {
             }
 
             // LE BOUTON RETOUR
-            if (buttonBack.click_event() && game.getMode1() != null) {
-                game.setMode1(null);
+            if (buttonBack.click_event() && game.getPlayerMode() != null) {
+                game.setPlayerMode(null);
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
 
             }
             // ON AFFICHE LES DIFFICULTES POUR LES LEADERBOARDS
-            if (game.getMode1() == "LEADERBOARD") {
+            if (game.getPlayerMode() == "LEADERBOARD") {
                 background(im_menu);
 
                 buttonLE.show_button();
@@ -311,26 +304,26 @@ public class TestA extends PApplet {
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
             }
 
-            if (buttonLI.click_event() && game.getMode1() == "LEADERBOARD") {
-                game.setMode2("EASY");
+            if (buttonLI.click_event() && game.getPlayerMode() == "LEADERBOARD") {
+                game.setLeaderboard("EASY");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
 
             }
-            if (buttonLH.click_event() && game.getMode1() == "LEADERBOARD" ) {
-                game.setMode2("HARD");
+            if (buttonLH.click_event() && game.getPlayerMode() == "LEADERBOARD" ) {
+                game.setLeaderboard("HARD");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
             }
-            if (buttonLI.click_event() && game.getMode1() == "LEADERBOARD") {
-                game.setMode2("INFINITE");
+            if (buttonLI.click_event() && game.getPlayerMode() == "LEADERBOARD") {
+                game.setLeaderboard("INFINITE");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
 
             }
             // ON AFFICHE LE LEADERBOARD CORRESPONDANT A LA DIFFICULTE SELECTIONNEE
             // LEADERBOARD EASY
-            if (game.getMode2() == "EASY") {
+            if (game.getLeaderboard() == "EASY") {
                 background(im_menu);
                 board.show_image(im_leaderboard_easy, 180, 70, 500, 600);
                 buttonBack.show_button();
@@ -344,7 +337,7 @@ public class TestA extends PApplet {
                 }
             }
             // LEADERBOARD HARD
-            if (game.getMode2() == "HARD") {
+            if (game.getLeaderboard() == "HARD") {
                 background(im_menu);
                 board.show_image(im_leaderboard_hard, 180, 70, 500, 600);
                 buttonBack.show_button();
@@ -358,7 +351,7 @@ public class TestA extends PApplet {
                 }
             }
             // LEADERBOARD INFINITY
-            if (game.getMode2() == "INFINITE") {
+            if (game.getLeaderboard() == "INFINITE") {
                 background(im_menu);
                 board.show_image(im_leaderboard_infinity, 180, 70, 500, 600);
                 buttonBack.show_button();
@@ -373,8 +366,8 @@ public class TestA extends PApplet {
             }
 
             // LE RETOUR DU BOUTON RETOUR
-            if (buttonBack.click_event() && game.getMode3() == "diff") {
-                game.setMode2(null);
+            if (buttonBack.click_event()) {
+                game.setLeaderboard(null);
             }
 
             // INITIALISER LE JEU UNE FOIS QUE L'ON A LE PLAYERMODE ET LE NIVEAU DE DIFFICULTE
@@ -405,15 +398,15 @@ public class TestA extends PApplet {
                 board.create_case(0, grid, game.getGame_width(), 0, 0, 200, 0);
             }
 
-            if (game.getMode1() == "2 PLAYERS") {  // 2 JOUEURS
+            if (game.getPlayerMode() == "2 PLAYERS") {  // 2 JOUEURS
                 for (ArrayList<Car> range_i : cars) {
                     for (Car car : range_i) {
                         car.move(car.getSpeed(), 0);
                         if (car.getSpeed() > 0) {
-                            board.show_image(im_car_right, car.getLeft(), car.getTop(), car.getWidth(), car.getHeight());
+                            board.show_image(im_car_right, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
                         }
                         else {
-                            board.show_image(im_car_left, car.getLeft(), car.getTop(), car.getWidth(), car.getHeight());
+                            board.show_image(im_car_left, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
                         }
                         if (frog1.intersect(car)) {
                             frog1.setCar_intersection(true);
@@ -436,7 +429,7 @@ public class TestA extends PApplet {
                     for (ArrayList<Trunk> range_i : trunks) {
                         for (Trunk trunk : range_i) {
                             trunk.move(trunk.getSpeed(), 0);
-                            board.show_trunk(trunk, im_trunk);
+                            board.show_image(im_trunk, trunk.getLeft(), trunk.getBottom(), trunk.getWidth(), trunk.getHeight());
                             if (frog1.intersect(trunk)) {
                                 count_inter++;
                                 if (count_inter == 1) {
@@ -467,21 +460,21 @@ public class TestA extends PApplet {
                         player_collision.play();
                     }
                 }
-                board.show_image(im_frog, frog1.getLeft(), frog1.getTop(), frog1.getWidth(), frog1.getHeight());
-                board.show_image(im_frog2, frog2.getLeft(), frog2.getTop(), frog2.getWidth(), frog2.getHeight());
+                board.show_image(im_frog, frog1.getLeft(), frog1.getBottom(), frog1.getWidth(), frog1.getHeight());
+                board.show_image(im_frog2, frog2.getLeft(), frog2.getBottom(), frog2.getWidth(), frog2.getHeight());
                 game.stateFrog(frog1, 1);
                 game.stateFrog(frog2, 2);
 
 
-            } else if (game.getMode1()=="1 PLAYER"){  // 1 JOUEUR
+            } else if (game.getPlayerMode()=="1 PLAYER"){  // 1 JOUEUR
                 for (ArrayList<Car> range_i : cars) {
                     for (Car car : range_i) {
                         car.move(car.getSpeed(), 0);
                         if (car.getSpeed() > 0) {
-                            board.show_image(im_car_right, car.getLeft(), car.getTop(), car.getWidth(), car.getHeight());
+                            board.show_image(im_car_right, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
                         }
                         else {
-                            board.show_image(im_car_left, car.getLeft(), car.getTop(), car.getWidth(), car.getHeight());
+                            board.show_image(im_car_left, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
                         }
                         if (frog1.intersect(car)) {
                             frog1.setCar_intersection(true);
@@ -496,7 +489,7 @@ public class TestA extends PApplet {
                     for (ArrayList<Trunk> range_i : trunks) {
                         for (Trunk trunk : range_i) {
                             trunk.move(trunk.getSpeed(), 0);
-                            board.show_trunk(trunk, im_trunk);
+                            board.show_image(im_trunk, trunk.getLeft(), trunk.getBottom(), trunk.getWidth(), trunk.getHeight());
                             if (frog1.intersect(trunk)) {
                                 count2++;
                                 if (count2 <= 1) {
@@ -533,7 +526,7 @@ public class TestA extends PApplet {
                     }
                 }
 
-                board.show_image(im_frog, frog1.getLeft(), frog1.getTop(), frog1.getWidth(), frog1.getHeight());
+                board.show_image(im_frog, frog1.getLeft(), frog1.getBottom(), frog1.getWidth(), frog1.getHeight());
                 game.stateFrog(frog1,1);
 
 
@@ -579,80 +572,116 @@ public class TestA extends PApplet {
 
                 }
             }
-
-
         }
     }
 
 
     @Override
     public void keyPressed() {
-        if (keyCode == UP){
-            player_jump = minim.loadFile(music_jump);
-            player_jump.setGain(-2);
-            player_jump.play();
-            if (game.getDiff() == "INFINITY"){
+        if (game.getDiff()=="INFINITE"){
+            if (keyCode == Direction.UP||keyCode == Direction.Z){
+                player_jump = minim.loadFile(music_jump);
+                player_jump.setGain(-2);
+                player_jump.play();
                 game.move_allCars(cars, grid);
-            } else {
-                frog2.move(0,-grid);
+                frog1.setRange(frog1.getRange()+1);
             }
-            frog2.setRange(frog2.getRange()+1);
-            //System.out.println("bottom :" + frog.getBottom());
-
-        }
-        else if ((keyCode == DOWN) && (game.getDiff() != "INFINITY")) {
-            player_jump = minim.loadFile(music_jump);
-            player_jump.setGain(-2);
-            player_jump.play();
-            frog2.move(0,grid);
-            frog2.setRange(frog2.getRange()-1);
-        }
-        else if (keyCode == RIGHT) {
-            player_jump = minim.loadFile(music_jump);
-            player_jump.setGain(-2);
-            player_jump.play();
-            frog2.move(grid, 0);
-        }
-        else if (keyCode == LEFT){
-            player_jump = minim.loadFile(music_jump);
-            player_jump.setGain(-2);
-            player_jump.play();
-            frog2.move(-grid,0);
-
-        }
-        try {
-            if (keyCode == 90) {
+            if (keyCode == Direction.RIGHT||keyCode == Direction.D){
                 player_jump = minim.loadFile(music_jump);
                 player_jump.setGain(-2);
                 player_jump.play();
-                frog1.move(0, -grid);
-                frog1.setRange(frog1.getRange() + 1);
-
-
-            } else if (keyCode == 83) {
+                frog2.move(grid, 0);
+            }
+            if (keyCode == Direction.LEFT||keyCode == Direction.Q){
                 player_jump = minim.loadFile(music_jump);
                 player_jump.setGain(-2);
                 player_jump.play();
-                frog1.move(0, grid);
-                frog1.setRange(frog1.getRange() - 1);
-
-
-            } else if (keyCode == 68) {
-                player_jump = minim.loadFile(music_jump);
-                player_jump.setGain(-2);
-                player_jump.play();
-                frog1.move(grid, 0);
-
-            } else if (keyCode == 81) {
-                player_jump = minim.loadFile(music_jump);
-                player_jump.setGain(-2);
-                player_jump.play();
-                frog1.move(-grid, 0);
-
+                frog2.move(-grid, 0);
             }
         }
-        catch (NullPointerException e){
-            System.out.println("Le joueur ne peut pas utiliser cette partie du clavier");
+        else {
+            if (game.getPlayerMode()=="1 PLAYER"){
+                if (keyCode == Direction.UP||keyCode == Direction.Z){
+                    player_jump = minim.loadFile(music_jump);
+                    player_jump.setGain(-2);
+                    player_jump.play();
+                    frog1.move(0,- grid);
+                    frog1.setRange(frog1.getRange()+1);
+                }
+                if (keyCode ==Direction.DOWN || keyCode == Direction.S){
+                    player_jump = minim.loadFile(music_jump);
+                    player_jump.setGain(-2);
+                    player_jump.play();
+                    frog1.move(0, grid);
+                    frog1.setRange(frog1.getRange()-1);
+                }
+                if (keyCode == Direction.RIGHT||keyCode == Direction.D){
+                    player_jump = minim.loadFile(music_jump);
+                    player_jump.setGain(-2);
+                    player_jump.play();
+                    frog1.move(grid, 0);
+                }
+                if (keyCode == Direction.LEFT||keyCode == Direction.Q){
+                    player_jump = minim.loadFile(music_jump);
+                    player_jump.setGain(-2);
+                    player_jump.play();
+                    frog1.move(-grid, 0);
+                }
+            }
+            if (game.getPlayerMode()=="2 PLAYERS"){
+                if (keyCode == Direction.UP){
+                    player_jump = minim.loadFile(music_jump);
+                    player_jump.setGain(-2);
+                    player_jump.play();
+                    frog2.move(0,- grid);
+                    frog2.setRange(frog2.getRange()+1);
+                }
+                if (keyCode ==Direction.DOWN){
+                    player_jump = minim.loadFile(music_jump);
+                    player_jump.setGain(-2);
+                    player_jump.play();
+                    frog2.move(0, grid);
+                    frog2.setRange(frog2.getRange()-1);
+                }
+                if (keyCode == Direction.RIGHT){
+                    player_jump = minim.loadFile(music_jump);
+                    player_jump.setGain(-2);
+                    player_jump.play();
+                    frog2.move(grid,0);
+                }
+                if (keyCode == Direction.LEFT){
+                    player_jump = minim.loadFile(music_jump);
+                    player_jump.setGain(-2);
+                    player_jump.play();
+                    frog2.move(-grid,0);
+                }
+                if (keyCode == Direction.Z){
+                    player_jump = minim.loadFile(music_jump);
+                    player_jump.setGain(-2);
+                    player_jump.play();
+                    frog1.move(0,- grid);
+                    frog1.setRange(frog1.getRange()+1);
+                }
+                if (keyCode ==Direction.Q){
+                    player_jump = minim.loadFile(music_jump);
+                    player_jump.setGain(-2);
+                    player_jump.play();
+                    frog1.move(-grid,0);
+                }
+                if (keyCode == Direction.D){
+                    player_jump = minim.loadFile(music_jump);
+                    player_jump.setGain(-2);
+                    player_jump.play();
+                    frog1.move(grid,0);
+                }
+                if (keyCode == Direction.S){
+                    player_jump = minim.loadFile(music_jump);
+                    player_jump.setGain(-2);
+                    player_jump.play();
+                    frog1.move(0,grid);
+                    frog1.setRange(frog1.getRange()-1);
+                }
+            }
         }
     }
 }
