@@ -97,7 +97,7 @@ public class Test1 extends PApplet {
         columns = 19;
         grid = 45;
         separate = ranges/2 ;
-        board = new Element(processing);
+        board = new Element(this);
         game = new Game(grid, ranges, columns, PlayerMode, Diff);
         size(game.getGame_width(), game.getGame_height());
     }

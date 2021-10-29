@@ -78,5 +78,38 @@ public class Element implements IFroggerGraphics {
     public void size(int width, int height) {
         P.size(width, height);
     }
+
+    public static class Button extends Element{
+        private int left;
+        private int top;
+        private int right;
+        private int bottom;
+
+        public Button(PApplet P, int left, int top, int right, int bottom) {
+            super(P);
+            this.left = left;
+            this.top = top;
+            this.right = right;
+            this.bottom = bottom;
+        }
+
+        @Override
+        public void create_case(float x, float y, float w, float h, float r, float g, float b) {
+            super.create_case(x, y, w, h, r, g, b);
+        }
+
+        public void show_button(){
+            this.create_case(left, top, right, bottom, 255,255,255);
+            if (P.mouseX>left && P.mouseX<right &&P.mouseY<top &&P.mouseY>bottom){
+                this.create_case(left, top, right, bottom, 200,0,0);
+            }
+        }
+
+        public boolean click_event(){
+            return (P.mouseX>left && P.mouseX<right &&P.mouseY<top &&P.mouseY>bottom&& P.mousePressed);
+
+        }
+
+    }
 }
 
