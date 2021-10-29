@@ -18,7 +18,7 @@ Voici les étapes à suivre pour jouer à Frogger avec [IntelliJ IDEA](https://w
 
 • Installer Processing: https://processing.org/download
 
-• Télécharger le répertoire Frogger et l'ouvrir dans [IntelliJ IDEA](https://www.jetbrains.com/fr-fr/idea/)
+• Télécharger le répertoire Frogger et ouvrir **Frogger_processing** (pas Frogger) dans [IntelliJ IDEA](https://www.jetbrains.com/fr-fr/idea/)
 
 • Aller dans File/Project Structure (Ctrl+Alt+Maj+S) et ajouter la librairie du répertoire core de Processing
 
