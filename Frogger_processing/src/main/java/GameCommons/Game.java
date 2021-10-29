@@ -308,12 +308,12 @@ public class Game implements IFrog, IEnvironment {
     }
 
     @Override
-    public Frog setFrog(int n) {
-        if (PlayerMode==1){
+    public Frog setFrog(int num) {
+        if (Mode1 =="1 PLAYER"){
             return new Frog(this.game_width / 2 - grid / 2, this.game_height - grid, grid);
         }
         else{
-            if (n==1){
+            if (num==1){
                 return new Frog(this.game_width / 4, this.game_height - grid, grid);
             }
             else {
@@ -323,13 +323,13 @@ public class Game implements IFrog, IEnvironment {
     }
 
     @Override
-    public void reset_Frog(Frog frog, int n) {
-        if (PlayerMode==1){
+    public void reset_Frog(Frog frog,  int num) {
+        if (Mode1 == "1 PLAYER"){
             frog.setLeft(columns * grid / 2 - grid / 2);
             frog.setRight(columns * grid / 2 - grid / 2 + grid);
         }
         else{
-            if (n==1){
+            if (num==1){
                 frog.setLeft(columns * grid / 4);
                 frog.setRight(columns * grid / 4 + grid);
             }
@@ -346,9 +346,9 @@ public class Game implements IFrog, IEnvironment {
     }
 
     @Override
-    public void stateFrog(Frog frog, int n) {
+    public void stateFrog(Frog frog, int num) {
         if ((frog.isCar_intersection() == frog.isTrunk_intersection()) || (frog.getLeft() < 0 || frog.getRight() > this.game_width || frog.getBottom() < 0 || frog.getTop() > this.game_height)) {
-            reset_Frog(frog, n);
+            reset_Frog(frog, num);
             frog.setGAMEOVER(true);
         }
         if (frog.getRange() >= this.getRanges() - 1) {

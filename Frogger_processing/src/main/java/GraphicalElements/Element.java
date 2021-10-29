@@ -79,18 +79,63 @@ public class Element implements IFroggerGraphics {
         P.size(width, height);
     }
 
+
+
+
     public static class Button extends Element{
         private int left;
         private int top;
         private int right;
         private int bottom;
+        private String text;
 
-        public Button(PApplet P, int left, int top, int right, int bottom) {
+        public Button(PApplet P, int left, int top, int right, int bottom, String text) {
             super(P);
             this.left = left;
             this.top = top;
             this.right = right;
             this.bottom = bottom;
+            this.text = text;
+        }
+
+        public int getLeft() {
+            return left;
+        }
+
+        public void setLeft(int left) {
+            this.left = left;
+        }
+
+        public int getTop() {
+            return top;
+        }
+
+        public void setTop(int top) {
+            this.top = top;
+        }
+
+        public int getRight() {
+            return right;
+        }
+
+        public void setRight(int right) {
+            this.right = right;
+        }
+
+        public int getBottom() {
+            return bottom;
+        }
+
+        public void setBottom(int bottom) {
+            this.bottom = bottom;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
         }
 
         @Override
@@ -98,10 +143,17 @@ public class Element implements IFroggerGraphics {
             super.create_case(x, y, w, h, r, g, b);
         }
 
+        @Override
+        public void create_text(String text, int size, int x, int y, int r, int g, int b) {
+            super.create_text(text, size, x, y, r, g, b);
+        }
+
         public void show_button(){
             this.create_case(left, top, right, bottom, 255,255,255);
+            this.create_text(text, 25, left+(right-left)/3-10, top-(top-bottom)/4-5, 0,0,0);
             if (P.mouseX>left && P.mouseX<right &&P.mouseY<top &&P.mouseY>bottom){
                 this.create_case(left, top, right, bottom, 200,0,0);
+                this.create_text(text, 25, left+(right-left)/3-10, top-(top-bottom)/4-5, 0,0,0);
             }
         }
 
