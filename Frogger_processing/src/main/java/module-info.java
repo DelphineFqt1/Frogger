@@ -10,6 +10,8 @@ module com.example.froggerv2 {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires core;
+    requires jsminim;
+    requires minim;
     //requires sound;
 
     opens com.example.froggerv2 to javafx.fxml;

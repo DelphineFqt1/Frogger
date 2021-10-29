@@ -18,6 +18,8 @@ import java.util.Scanner;
 import static Util.UtilClass.endless_treatment;
 import static Util.UtilClass.record_treatment;
 
+import ddf.minim.*;
+
 public class Test1 extends PApplet {
 
     public PApplet processing;
@@ -60,7 +62,27 @@ public class Test1 extends PApplet {
     int count50 = 50;
     float score_inf;
     Scanner sc = new Scanner(System.in);
-
+    Minim minim;
+    String music_menu;
+    String music_bouton;
+    String music_infinity;
+    String music_hard;
+    String music_easy;
+    String music_jump;
+    String music_victory_easy;
+    String music_victory_hard;
+    String music_collision;
+    String music_defeat_infinity;
+    AudioPlayer player_menu;
+    AudioPlayer player_bouton;
+    AudioPlayer player_infinity;
+    AudioPlayer player_hard;
+    AudioPlayer player_easy;
+    AudioPlayer player_jump;
+    AudioPlayer player_victory_easy;
+    AudioPlayer player_victory_hard;
+    AudioPlayer player_collision;
+    AudioPlayer player_defeat_infinity;
     public static void main(String[] args) {
         PApplet.main(new String[]{Test1.class.getName()});
     }
@@ -89,7 +111,7 @@ public class Test1 extends PApplet {
         else {
             frog2 = game.set_Frog();
         }
- */       im_frog2 = loadImage("src/main/java/Images/frog2.png");
+ */     im_frog2 = loadImage("src/main/java/Images/frog2.png");
         im_frog = loadImage("src/main/java/Images/frog.png");
         im_menu = loadImage("src/main/java/Images/Menu.png");
         im_menu.resize(game.getGame_width(), game.getGame_height());
@@ -114,6 +136,20 @@ public class Test1 extends PApplet {
             cars = game.allCars(ranges - 2);
         }
 */
+        minim = new Minim(this);
+        music_menu = "src/main/java/Audios/Death by glamour.wav";
+        music_bouton = "src/main/java/Audios/Button.wav";
+        music_infinity = "src/main/java/Audios/Beyond the heart.wav";
+        music_hard = "src/main/java/Audios/Reach for the summit.wav";
+        music_easy = "src/main/java/Audios/Area 1 Demo.wav";
+        music_jump = "src/main/java/Audios/Jump.wav";
+        music_victory_easy = "src/main/java/Audios/Victory_easy.wav";
+        music_victory_hard = "src/main/java/Audios/Victory_hard.wav";
+        music_collision = "src/main/java/Audios/Collision.wav";
+        music_defeat_infinity = "src/main/java/Audios/Defeat.wav";
+        player_menu = minim.loadFile(music_menu);
+        player_menu.setGain(0);
+        player_menu.loop();
     }
 
     @Override
@@ -141,15 +177,18 @@ public class Test1 extends PApplet {
 // ACTION LORSQUE L'ON CLIQUE SUR "1 PLAYER" : ON AFFICHE LE MEME MENU MAIS AVEC LES BOUTONS "EASY" et "HARD"
             if ((mouseX < 277) && (mouseX > 77) && (mouseY < 600) && (mouseY > 550) && (mousePressed) && game.getMode1() == null) {
                 game.setMode1("1 PLAYER");
-
+                player_bouton = minim.loadFile(music_bouton);
+                player_bouton.play();
             }
             if ((mouseX < 527) && (mouseX > 327) && (mouseY < 600) && (mouseY > 550) && (mousePressed) && game.getMode1() == null) {
                 game.setMode1("2 PLAYERS");
-
+                player_bouton = minim.loadFile(music_bouton);
+                player_bouton.play();
             }
             if ((mouseX < 777) && (mouseX > 577) && (mouseY < 600) && (mouseY > 550) && (mousePressed) && game.getMode1() == null) {
                 game.setMode1("LEADERBOARD");
-
+                player_bouton = minim.loadFile(music_bouton);
+                player_bouton.play();
             }
 
             // ON AFFICHE LES BOUTONS DU MODE DE JEU (ROUTE, ROUTE + RIVIERE, INFINI)
@@ -177,14 +216,33 @@ public class Test1 extends PApplet {
             if ((mouseX < 277) && (mouseX > 77) && (mouseY < 550) && (mouseY > 500) && (mousePressed) && game.getMode1() == "1 PLAYER") {
                 game.setDiff("EASY");
                 // System.out.print(game.getDiff());
+                player_bouton = minim.loadFile(music_bouton);
+                player_bouton.play();
+                player_menu.close();
+                player_easy = minim.loadFile(music_easy);
+                player_easy.setGain(-8);
+                player_easy.loop();
+
             }
             if ((mouseX < 527) && (mouseX > 327) && (mouseY < 550) && (mouseY > 500) && (mousePressed) && game.getMode1() == "1 PLAYER") {
                 game.setDiff("HARD");
                 //  System.out.print(game.getDiff());
+                player_bouton = minim.loadFile(music_bouton);
+                player_bouton.play();
+                player_menu.close();
+                player_hard = minim.loadFile(music_hard);
+                player_hard.setGain(-10);
+                player_hard.loop();
             }
             if ((mouseX < 777) && (mouseX > 577) && (mouseY < 550) && (mouseY > 500) && (mousePressed) && game.getMode1() == "1 PLAYER") {
                 game.setDiff("INFINITY");
                 //  System.out.print(game.getDiff());
+                player_bouton = minim.loadFile(music_bouton);
+                player_bouton.play();
+                player_menu.close();
+                player_infinity = minim.loadFile(music_infinity);
+                player_infinity.setGain(-5);
+                player_infinity.loop();
             }
 
             if (game.getMode1() == "2 PLAYERS") {
@@ -207,15 +265,29 @@ public class Test1 extends PApplet {
             if ((mouseX < 277) && (mouseX > 77) && (mouseY < 550) && (mouseY > 500) && (mousePressed) && game.getMode1() == "2 PLAYERS") {
                 game.setDiff("EASY");
                 //   System.out.print(game.getDiff());
+                player_bouton = minim.loadFile(music_bouton);
+                player_bouton.play();
+                player_menu.close();
+                player_easy = minim.loadFile(music_easy);
+                player_easy.setGain(-8);
+                player_easy.loop();
             }
             if ((mouseX < 527) && (mouseX > 327) && (mouseY < 550) && (mouseY > 500) && (mousePressed) && game.getMode1() == "2 PLAYERS") {
                 game.setDiff("HARD");
                 //   System.out.print(game.getDiff());
+                player_bouton = minim.loadFile(music_bouton);
+                player_bouton.play();
+                player_menu.close();
+                player_hard = minim.loadFile(music_hard);
+                player_hard.setGain(-10);
+                player_hard.loop();
             }
 
             // LE BOUTON RETOUR
             if ((mouseX < 800) && (mouseX > 670) && (mouseY < 700) && (mouseY > 660) && (mousePressed) && game.getMode1() != null) {
                 game.setMode1(null);
+                player_bouton = minim.loadFile(music_bouton);
+                player_bouton.play();
 
             }
             // ON AFFICHE LES DIFFICULTES POUR LES LEADERBOARDS
@@ -241,15 +313,21 @@ public class Test1 extends PApplet {
             if ((mouseX < 277) && (mouseX > 77) && (mouseY < 300) && (mouseY > 250) && (mousePressed) && game.getMode1() == "LEADERBOARD") {
                 game.setMode2("EASY");
                 game.setMode3("diff");
+                player_bouton = minim.loadFile(music_bouton);
+                player_bouton.play();
 
             }
             if ((mouseX < 277) && (mouseX > 77) && (mouseY < 400) && (mouseY > 350) && (mousePressed) && game.getMode1() == "LEADERBOARD" ) {
                 game.setMode2("HARD");
                 game.setMode3("diff");
+                player_bouton = minim.loadFile(music_bouton);
+                player_bouton.play();
             }
             if ((mouseX < 277) && (mouseX > 77) && (mouseY < 500) && (mouseY > 450) && (mousePressed) && game.getMode1() == "LEADERBOARD") {
                 game.setMode2("INFINITY");
                 game.setMode3("diff");
+                player_bouton = minim.loadFile(music_bouton);
+                player_bouton.play();
 
             }
             // ON AFFICHE LE LEADERBOARD CORRESPONDANT A LA DIFFICULTE SELECTIONNE
@@ -351,9 +429,15 @@ public class Test1 extends PApplet {
                         }
                         if (frog1.intersect(car)) {
                             frog1.setCar_intersection(true);
+                            player_collision = minim.loadFile(music_collision);
+                            player_collision.setGain(-5);
+                            player_collision.play();
                         }
                         if (frog2.intersect(car)) {
                             frog2.setCar_intersection(true);
+                            player_collision = minim.loadFile(music_collision);
+                            player_collision.setGain(-5);
+                            player_collision.play();
                         }
                     }
                 }
@@ -384,9 +468,15 @@ public class Test1 extends PApplet {
 
                     if (frog1.getRange() > (separate + 1) && frog1.getRange() < ranges - 1 && count_inter == 0) {
                         frog1.setTrunk_intersection(false);
+                        player_collision = minim.loadFile(music_collision);
+                        player_collision.setGain(-5);
+                        player_collision.play();
                     }
                     if (frog2.getRange() > (separate + 1) && frog2.getRange() < ranges - 1 && count2 == 0) {
                         frog2.setTrunk_intersection(false);
+                        player_collision = minim.loadFile(music_collision);
+                        player_collision.setGain(-5);
+                        player_collision.play();
                     }
                 }
                 board.show_frog(frog1, im_frog);
@@ -407,6 +497,9 @@ public class Test1 extends PApplet {
                         }
                         if (frog2.intersect(car)) {
                             frog2.setCar_intersection(true);
+                            player_collision = minim.loadFile(music_collision);
+                            player_collision.setGain(-5);
+                            player_collision.play();
                         }
                     }
                 }
@@ -428,6 +521,9 @@ public class Test1 extends PApplet {
 
                     if (frog2.getRange() > (separate + 1) && frog2.getRange() < ranges - 1 && count2 == 0) {
                         frog2.setTrunk_intersection(false);
+                        player_collision = minim.loadFile(music_collision);
+                        player_collision.setGain(-5);
+                        player_collision.play();
                     }
                 }
 
@@ -458,6 +554,12 @@ public class Test1 extends PApplet {
             if (game.getDiff() == "INFINITY"){
                 board.create_text("Score : "+ score_inf, 20, grid/2, grid/2, 255, 255, 255);
                 if (frog2.isGAMEOVER()) {
+                    player_collision = minim.loadFile(music_collision);
+                    player_collision.setGain(-5);
+                    player_collision.play();
+                    player_infinity.close();
+                    player_defeat_infinity = minim.loadFile(music_defeat_infinity);
+                    player_defeat_infinity.play();
                     remark = endless_treatment(record_infinity,score_inf);
                     board.create_text("Your score is " + score_inf, 32, game.getGame_width() / 2 - 6*grid, game.getGame_height() / 2, 0, 255, 0);
                     board.create_text(remark, 32, game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + grid, 0, 255, 0);
@@ -469,11 +571,18 @@ public class Test1 extends PApplet {
                 if (game.getGameState()) {
                     t2 = millis();
                     t_fin = (t2 - t1) / 1000;
-
                     board.create_text("Congratulations ! You beat Frogger in " + t_fin + "s.", 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2, 255, 255, 255);
                     if (game.getDiff() == "EASY"){
+                        player_easy.close();
+                        player_victory_easy = minim.loadFile(music_victory_easy);
+                        player_victory_easy.setGain(-2);
+                        player_victory_easy.play();
                         remark = record_treatment(record, t_fin);
                     } else if (game.getDiff() == "HARD"){
+                        player_hard.close();
+                        player_victory_hard = minim.loadFile(music_victory_hard);
+                        player_victory_hard.setGain(-2);
+                        player_victory_hard.play();
                         remark = record_treatment(record_hard, t_fin);
                     }
                     board.create_text(remark, 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2 + grid, 255, 255, 0);
@@ -490,6 +599,9 @@ public class Test1 extends PApplet {
     @Override
     public void keyPressed() {
         if (keyCode == UP){
+            player_jump = minim.loadFile(music_jump);
+            player_jump.setGain(-2);
+            player_jump.play();
             if (game.getDiff() == "INFINITY"){
                 game.move_allCars(cars, grid);
             } else {
@@ -500,31 +612,52 @@ public class Test1 extends PApplet {
 
         }
         else if ((keyCode == DOWN) && (game.getDiff() != "INFINITY")) {
+            player_jump = minim.loadFile(music_jump);
+            player_jump.setGain(-2);
+            player_jump.play();
             frog2.move(0,grid);
             frog2.setRange(frog2.getRange()-1);
         }
         else if (keyCode == RIGHT) {
+            player_jump = minim.loadFile(music_jump);
+            player_jump.setGain(-2);
+            player_jump.play();
             frog2.move(grid, 0);
         }
         else if (keyCode == LEFT){
+            player_jump = minim.loadFile(music_jump);
+            player_jump.setGain(-2);
+            player_jump.play();
             frog2.move(-grid,0);
 
         }
         try {
             if (keyCode == 90) {
+                player_jump = minim.loadFile(music_jump);
+                player_jump.setGain(-2);
+                player_jump.play();
                 frog1.move(0, -grid);
                 frog1.setRange(frog1.getRange() + 1);
 
 
             } else if (keyCode == 83) {
+                player_jump = minim.loadFile(music_jump);
+                player_jump.setGain(-2);
+                player_jump.play();
                 frog1.move(0, grid);
                 frog1.setRange(frog1.getRange() - 1);
 
 
             } else if (keyCode == 68) {
+                player_jump = minim.loadFile(music_jump);
+                player_jump.setGain(-2);
+                player_jump.play();
                 frog1.move(grid, 0);
 
             } else if (keyCode == 81) {
+                player_jump = minim.loadFile(music_jump);
+                player_jump.setGain(-2);
+                player_jump.play();
                 frog1.move(-grid, 0);
 
             }
