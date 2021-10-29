@@ -10,10 +10,12 @@ import processing.core.PImage;
 
 import java.util.ArrayList;
 
+/**
+ * La classe Element dispose de méthodes graphiques dont le support est une instance de PApplet, pris comme attribut
+ */
 public class Element implements IFroggerGraphics {
 
     PApplet P;
-    PImage im_frog;
 
     public Element(PApplet P){
         this.P = P;
@@ -34,9 +36,8 @@ public class Element implements IFroggerGraphics {
     }
 
     @Override
-    public void show_image(PImage img, float a, float b, float c, float d) {
-
-        P.image(img, a, b, c, d);
+    public void show_image(PImage img, float top, float bottom, float width, float height) {
+        P.image(img, top, bottom, width, height);
     }
 
     @Override
@@ -57,7 +58,6 @@ public class Element implements IFroggerGraphics {
 
 
 
-
     public static class Button extends Element{
         private int left;
         private int top;
@@ -65,6 +65,9 @@ public class Element implements IFroggerGraphics {
         private int bottom;
         private String text;
 
+        /**
+         * Un objet Button spécifie un type de case particulier avec lequel on peut intéragir
+         */
         public Button(PApplet P, int left, int top, int right, int bottom, String text) {
             super(P);
             this.left = left;
@@ -124,7 +127,10 @@ public class Element implements IFroggerGraphics {
             super.create_text(text, size, x, y, r, g, b);
         }
 
-        public void show_button(){
+/**
+ * Affiche le bouton tout en le colorant lorsque la souris passe dessus
+ */
+        public void show(){
             this.create_case(left, top, right, bottom, 255,255,255);
             this.create_text(text, 25, left+(right-left)/3-10, top-(top-bottom)/4-5, 0,0,0);
             if (P.mouseX>left && P.mouseX<right &&P.mouseY<top &&P.mouseY>bottom){
@@ -132,7 +138,9 @@ public class Element implements IFroggerGraphics {
                 this.create_text(text, 25, left+(right-left)/3-10, top-(top-bottom)/4-5, 0,0,0);
             }
         }
-
+/**
+ * Renvoit true lorsque l'on clique sur le bouton, et false dans le cas contraire
+ */
         public boolean click_event(){
             return (P.mouseX>left && P.mouseX<right &&P.mouseY<top &&P.mouseY>bottom&& P.mousePressed);
 

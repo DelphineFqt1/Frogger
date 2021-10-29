@@ -9,7 +9,9 @@ public class Frog extends Moving{
     private boolean trunk_intersection;
 
 
-    // La grenouille est un carré
+    /**
+     *  La grenouille est représentée par un carré, qui est en état de GAMEOVER lors d'un contact avec une voiture ou une sortie de tronc
+     */
     public Frog(float x, float y, float width) {
         super(x, y, width, width, 0, 0);
         this.car_intersection = false; // signale si frog intersecte un car
@@ -41,7 +43,9 @@ public class Frog extends Moving{
         this.trunk_intersection = trunk_intersection;
     }
 
-    // mouvement horizontal et vertical selon xdir et ydir (pixels)
+    /**
+     *  Additionne respectivement xdir et ydir (pixels) aux coordonnées horizontales et verticales d'un Frog
+     */
     @Override
     public void move(float xdir, float ydir) {
         setLeft(getLeft() + xdir);
@@ -56,6 +60,9 @@ public class Frog extends Moving{
         }
     }
 
+    /**
+     *  Détermine si un Frog est en contact avec une voiture ou s'il est à l'intérieur d'un tronc
+     */
     public boolean intersect(Obstacle obstacle){
         // Si l'obstacle est une voiture, on a besoin de savoir si frog touche la voiture ou non
 

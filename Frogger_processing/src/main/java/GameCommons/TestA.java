@@ -21,7 +21,7 @@ import static Util.UtilClass.get_leaderboard_data;
 import ddf.minim.*;
 
 public class TestA extends PApplet {
-    
+
     Frog frog1;
     Frog frog2;
     Element.Button button1P;
@@ -59,8 +59,6 @@ public class TestA extends PApplet {
     PImage im_leaderboard_easy;
     PImage im_leaderboard_hard;
     PImage im_leaderboard_infinity;
-    int PlayerMode;
-    String Diff;
     Path record;
     Path record_hard;
     Path record_infinity;
@@ -88,6 +86,8 @@ public class TestA extends PApplet {
     AudioPlayer player_victory_hard;
     AudioPlayer player_collision;
     AudioPlayer player_defeat_infinity;
+
+
     public static void main(String[] args) {
         PApplet.main(new String[]{TestA.class.getName()});
     }
@@ -101,7 +101,6 @@ public class TestA extends PApplet {
         separate = ranges/2 ;
         board = new Element(this);
         minim = new Minim(this);
-        Diff = null;
         game = new Game(grid, ranges, columns);
         size(game.getGame_width(), game.getGame_height());
     }
@@ -142,7 +141,6 @@ public class TestA extends PApplet {
         player_menu.setGain(0);
         player_menu.loop();
 
-
         button1P = new Element.Button(this, 77, 600, 277, 550, "1 PLAYER" );
         button2P = new Element.Button(this, 315, 600, 547, 550, "2 PLAYERS" );
         buttonLead = new Element.Button(this, 577,600 , 810, 550, "LEADERBOARD" );
@@ -153,7 +151,6 @@ public class TestA extends PApplet {
         buttonLE = new Element.Button(this, 77, 300, 277, 250, "EASY");
         buttonLH = new Element.Button(this, 77, 400, 277, 350, "HARD");
         buttonLI = new Element.Button(this,77,500 , 277, 450,"INFINITE");
-        
     }
 
     @Override
@@ -163,15 +160,15 @@ public class TestA extends PApplet {
             t1 = millis();
             if (game.getPlayerMode() == null) {
                 board.background_im(im_menu, game.getGame_width(), game.getGame_height());
-                button1P.show_button();
+                button1P.show();
                 board.show_image(im_frog,button1P.getLeft()+5,button1P.getTop()-42, 40, 40);
 
-                button2P.show_button();
+                button2P.show();
                 board.show_image(im_frog,button2P.getLeft()+5,button2P.getTop()-42, 40, 40);
                 board.show_image(im_frog2,button2P.getRight()-40,button2P.getTop()-42, 38, 38);
 
-                buttonLead.show_button();
-                board.show_image(im_cup,buttonLead.getLeft()+10,buttonLead.getTop()-42, 40, 40);
+                buttonLead.show();
+                board.show_image(im_cup,buttonLead.getLeft()+10,buttonLead.getTop()-45, 40, 40);
             }
 
 // ACTION LORSQUE L'ON CLIQUE SUR "1 PLAYER" : ON AFFICHE LE MEME MENU MAIS AVEC LES BOUTONS "EASY" et "HARD"
@@ -195,19 +192,19 @@ public class TestA extends PApplet {
             if (game.getPlayerMode()== "1 PLAYER") {
                 background(im_menu);
                 
-                buttonEasy.show_button();
+                buttonEasy.show();
                 board.show_image(im_car_right, buttonEasy.getLeft()+10, buttonEasy.getTop()-45, 38, 38);
                 board.show_image(im_car_left, buttonEasy.getLeft()+150, buttonEasy.getTop()-45, 38, 38);
 
-                buttonHard.show_button();
+                buttonHard.show();
                 board.show_image(im_car_right, buttonHard.getLeft()+10, buttonHard.getTop()-45, 38, 38);
                 board.show_image(im_trunk, buttonHard.getLeft()+150, buttonHard.getTop()-35, 38, 20);
 
-                buttonInf.show_button();
+                buttonInf.show();
                 board.show_image(im_rb_pepe_right, buttonInf.getLeft()+10, buttonInf.getTop()-45, 38, 38);
                 board.show_image(im_rb_pepe_left, buttonInf.getRight()-40, buttonInf.getTop()-45, 38, 38);
 
-                buttonBack.show_button();
+                buttonBack.show();
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
             }
 
@@ -244,16 +241,15 @@ public class TestA extends PApplet {
             if (game.getPlayerMode() == "2 PLAYERS") {
                 background(im_menu);
 
-                buttonEasy.show_button();
+                buttonEasy.show();
                 board.show_image(im_car_right, buttonEasy.getLeft()+10, buttonEasy.getTop()-45, 38, 38);
                 board.show_image(im_car_left, buttonEasy.getLeft()+150, buttonEasy.getTop()-45, 38, 38);
 
-                buttonHard.show_button();
+                buttonHard.show();
                 board.show_image(im_car_right, buttonHard.getLeft()+10, buttonHard.getTop()-45, 38, 38);
                 board.show_image(im_trunk, buttonHard.getLeft()+150, buttonHard.getTop()-35, 38, 20);
 
-
-                buttonBack.show_button();
+                buttonBack.show();
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
             }
 
@@ -288,19 +284,19 @@ public class TestA extends PApplet {
             if (game.getPlayerMode() == "LEADERBOARD") {
                 background(im_menu);
 
-                buttonLE.show_button();
+                buttonLE.show();
                 board.show_image(im_car_right,buttonLE.getLeft(),buttonLE.getTop()-45, 38, 38);
                 board.show_image(im_car_left,buttonLE.getRight()-40,buttonLE.getTop()-45, 38, 38);
 
-                buttonLH.show_button();
+                buttonLH.show();
                 board.show_image(im_car_right,buttonLH.getLeft(),buttonLH.getTop()-45, 38, 38);
                 board.show_image(im_trunk,buttonLH.getRight()-40,buttonLH.getTop()-35, 38, 20);
 
-                buttonLI.show_button();
+                buttonLI.show();
                 board.show_image(im_rb_pepe_right,buttonLI.getLeft(),buttonLI.getTop()-40, 38, 38);
                 board.show_image(im_rb_pepe_left,buttonLI.getRight()-40,buttonLI.getTop()-40, 38, 38);
 
-                buttonBack.show_button();
+                buttonBack.show();
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
             }
 
@@ -308,7 +304,6 @@ public class TestA extends PApplet {
                 game.setLeaderboard("EASY");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
-
             }
             if (buttonLH.click_event() && game.getPlayerMode() == "LEADERBOARD" ) {
                 game.setLeaderboard("HARD");
@@ -326,7 +321,7 @@ public class TestA extends PApplet {
             if (game.getLeaderboard() == "EASY") {
                 background(im_menu);
                 board.show_image(im_leaderboard_easy, 180, 70, 500, 600);
-                buttonBack.show_button();
+                buttonBack.show();
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
                 scores = get_leaderboard_data(record);
                 int x = 415;
@@ -340,7 +335,7 @@ public class TestA extends PApplet {
             if (game.getLeaderboard() == "HARD") {
                 background(im_menu);
                 board.show_image(im_leaderboard_hard, 180, 70, 500, 600);
-                buttonBack.show_button();
+                buttonBack.show();
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
                 scores = get_leaderboard_data(record_hard);
                 int x = 415;
@@ -354,7 +349,7 @@ public class TestA extends PApplet {
             if (game.getLeaderboard() == "INFINITE") {
                 background(im_menu);
                 board.show_image(im_leaderboard_infinity, 180, 70, 500, 600);
-                buttonBack.show_button();
+                buttonBack.show();
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
                 scores = get_leaderboard_data(record_infinity);
                 int x = 415;
@@ -374,7 +369,6 @@ public class TestA extends PApplet {
             frog1 = game.setFrog(1);
             frog2 = game.setFrog(2);
 
-
             if (game.getDiff() == "HARD") {
                 cars = game.allCars(separate);
                 trunks = game.allTrunks(separate + 2, ranges - 2);
@@ -383,8 +377,6 @@ public class TestA extends PApplet {
             } else if (game.getDiff() == "INFINITE"){
                 cars = game.allCars(ranges);
             }
-
-
         }
         else if (game.getDiff()!=null){   // LE JEU EN LUI-MEME EST LANCE
 
@@ -529,7 +521,6 @@ public class TestA extends PApplet {
                 board.show_image(im_frog, frog1.getLeft(), frog1.getBottom(), frog1.getWidth(), frog1.getHeight());
                 game.stateFrog(frog1,1);
 
-
             }
 
             if (game.getDiff() == "INFINITE"){
@@ -550,7 +541,6 @@ public class TestA extends PApplet {
                 board.create_text(t_i + "s", 20, grid / 2, grid / 2, 0, 0, 0);
 
                 if (game.getGameState()) {
-
 
                     board.create_text("Congratulations ! You beat Frogger in " + t_i + "s.", 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2, 255, 255, 255);
                     if (game.getDiff() == "EASY"){

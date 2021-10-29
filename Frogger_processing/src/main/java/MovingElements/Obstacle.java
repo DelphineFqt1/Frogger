@@ -12,7 +12,9 @@ public abstract class Obstacle extends Moving{
     private float speed;
     private float width;
 
-
+/**
+ * Classe mère abstraite des obstacles du jeu (Car et Trunk). Un Obstacle prend en attribut des limites horizontales et verticales qu'il ne pourra pas dépasser
+ */
     public Obstacle(float x, float y, float width, float height, float range, float speed, float abs_limit, float ord_lim) {
         super(x, y, width, height, range, speed);
         this.abs_limit = abs_limit;
@@ -27,6 +29,9 @@ public abstract class Obstacle extends Moving{
         return ord_lim;
     }
 
+    /**
+     *  Additionne respectivement xdir et ydir (pixels) aux coordonnées horizontales et verticales d'un Obstacle. Si l'obstacle déborde de la fenêtre, il est réinitialisé dans l'extrémité opposée de l'écran
+     */
     @Override
     public void move(float xdir, float ydir) {
         setLeft(getLeft()+ xdir);
@@ -47,7 +52,9 @@ public abstract class Obstacle extends Moving{
         }
         }
 
-
+/**
+ * Classe représentant la voiture
+ */
     public static class Car extends Obstacle{
 
         public Car(float x, float y, float width, float height, float range, float speed, float abs_limit, float ord_lim) {
@@ -59,7 +66,9 @@ public abstract class Obstacle extends Moving{
             super.move(xdir, ydir);
         }
     }
-
+    /**
+     * Classe représentant le tronc
+     */
     public static class Trunk extends Obstacle{
         public Trunk(float x, float y, float width, float height, float range, float speed, float abs_limit, float ord_lim) {
             super(x, y, width, height, range, speed, abs_limit, ord_lim);

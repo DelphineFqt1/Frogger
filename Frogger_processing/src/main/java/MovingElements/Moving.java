@@ -77,7 +77,9 @@ public abstract class Moving {
     }
 
 
-
+/**
+ * Classe mère abtraite de tous les objets mobiles du jeu (Frog, Car, Trunk)
+ */
     public Moving(float x, float y, float width, float height, float range, float speed){
         this.left = x;
         this.right = x+width;

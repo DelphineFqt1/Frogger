@@ -29,7 +29,9 @@ public class Game implements IFrog, IEnvironment {
     private String leaderboard;
 
 
-
+/**
+ * La classe Game centralise les paramètres du jeu ainsi que les méthodes qui contrôlent son bon déroulement
+ */
     public Game(int grid, int ranges, int columns) {
         this.grid = grid;
         this.ranges = ranges;
@@ -259,10 +261,7 @@ public class Game implements IFrog, IEnvironment {
         if (frog.getRange() >= this.getRanges() - 1) {
             setGameState(true);
         }
-
     }
-
-
 }
 
 
