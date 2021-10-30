@@ -1,7 +1,7 @@
 package MovingElements;
 
 public class Frog extends Moving{
-    private float range;
+    private int range;
     private boolean GAMEOVER;
 
 
@@ -12,7 +12,7 @@ public class Frog extends Moving{
     /**
      *  La grenouille est représentée par un carré, qui est en état de GAMEOVER lors d'un contact avec une voiture ou une sortie de tronc
      */
-    public Frog(float x, float y, float width) {
+    public Frog(int x, int y, int width) {
         super(x, y, width, width, 0, 0);
         this.car_intersection = false; // signale si frog intersecte un car
         this.trunk_intersection = true; // signale si frog est sur un tronc ou pas
@@ -47,7 +47,7 @@ public class Frog extends Moving{
      *  Additionne respectivement xdir et ydir (pixels) aux coordonnées horizontales et verticales d'un Frog
      */
     @Override
-    public void move(float xdir, float ydir) {
+    public void move(int xdir, int ydir) {
         setLeft(getLeft() + xdir);
         setRight(getRight()+ xdir);
         setTop(getTop() + ydir);

@@ -91,7 +91,7 @@ public class Infinite extends PApplet {
             }
         }
 
-        float k = frog2.getRange();
+        int k = frog2.getRange();
 
         if (k==count50){
             for (ArrayList<Car> range_i : cars) {

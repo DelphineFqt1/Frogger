@@ -60,7 +60,7 @@ public class UtilClass {
         return remark;
     }
 
-    public static String endless_treatment(Path path, float t)
+    public static String endless_treatment(Path path, int t)
     // trie un fichier text déclaré en Path avec un score t (ce n'est PAS un temps) donné en plus. Si t fait partie des 9 meilleurs scores,
     // il est retenu dans le fichier. La méthode renvoie une remarque pour signifier si t est dans le leaderboard ou pas
     {
@@ -69,13 +69,13 @@ public class UtilClass {
         ArrayList<String> Snumbers = new ArrayList<String>();
         ArrayList<String> NSnumbers = new ArrayList<String>();
         try{
-            float[] numbers = new float[10];
+            int[] numbers = new int[10];
             for (String ligne : Files.readAllLines(path)) {
                 Snumbers.add(ligne.substring(3, ligne.length()));
                 //System.out.println(ligne.substring(3, ligne.length()-1));
             }
             for (int i =0; i<Snumbers.size(); i++){
-                numbers[i]= Float.parseFloat(Snumbers.get(i));
+                numbers[i]= Integer.parseInt(Snumbers.get(i));
                 //System.out.println(numbers[i]);
             }
             numbers[9] =t;

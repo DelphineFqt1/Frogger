@@ -2,30 +2,30 @@ package MovingElements;
 
 public abstract class Obstacle extends Moving{
 
-    private final float abs_limit;
-    private final float ord_lim;
-    private float left;
-    private float right;
-    private float bottom;
-    private float top;
-    private float range;
-    private float speed;
-    private float width;
+    private final int abs_limit;
+    private final int ord_lim;
+    private int left;
+    private int right;
+    private int bottom;
+    private int top;
+    private int range;
+    private int speed;
+    private int width;
 
 /**
  * Classe mère abstraite des obstacles du jeu (Car et Trunk). Un Obstacle prend en attribut des limites horizontales et verticales qu'il ne pourra pas dépasser
  */
-    public Obstacle(float x, float y, float width, float height, float range, float speed, float abs_limit, float ord_lim) {
+    public Obstacle(int x, int y, int width, int height, int range, int speed, int abs_limit, int ord_lim) {
         super(x, y, width, height, range, speed);
         this.abs_limit = abs_limit;
         this.ord_lim = ord_lim;
     }
 
-    public float getAbs_limit() {
+    public int getAbs_limit() {
         return abs_limit;
     }
 
-    public float getOrd_lim() {
+    public int getOrd_lim() {
         return ord_lim;
     }
 
@@ -33,7 +33,7 @@ public abstract class Obstacle extends Moving{
      *  Additionne respectivement xdir et ydir (pixels) aux coordonnées horizontales et verticales d'un Obstacle. Si l'obstacle déborde de la fenêtre, il est réinitialisé dans l'extrémité opposée de l'écran
      */
     @Override
-    public void move(float xdir, float ydir) {
+    public void move(int xdir, int ydir) {
         setLeft(getLeft()+ xdir);
         setRight(getRight()+ xdir);
         setTop(getTop() + ydir);
@@ -57,12 +57,12 @@ public abstract class Obstacle extends Moving{
  */
     public static class Car extends Obstacle{
 
-        public Car(float x, float y, float width, float height, float range, float speed, float abs_limit, float ord_lim) {
+        public Car(int x, int y, int width, int height, int range, int speed, int abs_limit, int ord_lim) {
             super(x, y, width, height, range, speed, abs_limit, ord_lim);
         }
 
         @Override
-        public void move(float xdir, float ydir) {
+        public void move(int xdir, int ydir) {
             super.move(xdir, ydir);
         }
     }
@@ -70,12 +70,12 @@ public abstract class Obstacle extends Moving{
      * Classe représentant le tronc
      */
     public static class Trunk extends Obstacle{
-        public Trunk(float x, float y, float width, float height, float range, float speed, float abs_limit, float ord_lim) {
+        public Trunk(int x, int y, int width, int height, int range, int speed, int abs_limit, int ord_lim) {
             super(x, y, width, height, range, speed, abs_limit, ord_lim);
         }
 
         @Override
-        public void move(float xdir, float ydir) {
+        public void move(int xdir, int ydir) {
             super.move(xdir, ydir);
         }
     }

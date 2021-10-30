@@ -3,76 +3,76 @@ package MovingElements;
 // Classe abstraite qui décrit les éléments mouvants (et intéragissant entre eux) du jeu
 
 public abstract class Moving {
-    private float left;
-    private float right;
-    private float width;
-    private float height;
-    private float top;
-    private float bottom;
-    private float range;
-    private float speed;
+    private int left;
+    private int right;
+    private int width;
+    private int height;
+    private int top;
+    private int bottom;
+    private int range;
+    private int speed;
 
-    public void setLeft(float left) {
+    public void setLeft(int left) {
         this.left = left;
     }
 
-    public void setRight(float right) {
+    public void setRight(int right) {
         this.right = right;
     }
 
-    public void setWidth(float width) {
+    public void setWidth(int width) {
         this.width = width;
     }
 
-    public void setHeight(float height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public void setTop(float top) {
+    public void setTop(int top) {
         this.top = top;
     }
 
-    public void setBottom(float bottom) {
+    public void setBottom(int bottom) {
         this.bottom = bottom;
     }
 
-    public void setRange(float range) {
+    public void setRange(int range) {
         this.range = range;
     }
 
-    public void setSpeed(float speed) {
+    public void setSpeed(int speed) {
         this.speed = speed;
     }
 
-    public float getLeft() {
+    public int getLeft() {
         return left;
     }
 
-    public float getRight() {
+    public int getRight() {
         return right;
     }
 
-    public float getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public float getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public float getTop() {
+    public int getTop() {
         return top;
     }
 
-    public float getBottom() {
+    public int getBottom() {
         return bottom;
     }
 
-    public float getRange() {
+    public int getRange() {
         return range;
     }
 
-    public float getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
@@ -80,7 +80,7 @@ public abstract class Moving {
 /**
  * Classe mère abtraite de tous les objets mobiles du jeu (Frog, Car, Trunk)
  */
-    public Moving(float x, float y, float width, float height, float range, float speed){
+    public Moving(int x, int y, int width, int height, int range, int speed){
         this.left = x;
         this.right = x+width;
         this.bottom = y;
@@ -91,6 +91,6 @@ public abstract class Moving {
         this.height = height;
     }
 
-    public abstract void move(float xdir, float ydir);
+    public abstract void move(int xdir, int ydir);
 
 }

@@ -62,7 +62,7 @@ public class Test1 extends PApplet {
     Path record_infinity;
     String remark = null;
     int count50 = 50;
-    float score_inf;
+    int score_inf;
     Scanner sc = new Scanner(System.in);
     Minim minim;
     String music_menu;

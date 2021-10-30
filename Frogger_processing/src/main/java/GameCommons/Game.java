@@ -206,7 +206,7 @@ public class Game implements IFrog, IEnvironment {
     }
 
     @Override
-    public void move_allCars(ArrayList<ArrayList<Car>> allCars, float ydir) {
+    public void move_allCars(ArrayList<ArrayList<Car>> allCars, int ydir) {
         for (ArrayList<Car> range_i : allCars){
             for (Car car : range_i){
                 car.move(0, ydir);

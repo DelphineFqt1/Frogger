@@ -34,7 +34,7 @@ public interface IEnvironment {
      * déplace chaque voiture d'une liste de liste de voitures selon les ordonnées
      * /
      */
-    abstract void move_allCars(ArrayList<ArrayList<Car>> allCars, float ydir);
+    abstract void move_allCars(ArrayList<ArrayList<Car>> allCars, int ydir);
 
 
 }

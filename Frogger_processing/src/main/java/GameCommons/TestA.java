@@ -64,7 +64,7 @@ public class TestA extends PApplet {
     Path record_infinity;
     String remark = null;
     int count50 = 50;
-    float score_inf;
+    int score_inf;
     Minim minim;
     String music_menu;
     String music_bouton;
@@ -502,9 +502,8 @@ public class TestA extends PApplet {
 
                 if (game.getDiff() == "INFINITE") {  // 1 JOUEUR EN MODE INFINITY, ON AUGMENTE LA VITESSE DES VOITURES TOUTES LES 50 RANGEES
                     score_inf = frog1.getRange();
-                    float k = frog1.getRange();
 
-                    if (k==count50){
+                    if (score_inf==count50){
                         for (ArrayList<Car> range_i : cars) {
                             for (Car car : range_i) {
                                 if (car.getSpeed() > 0) {
