@@ -1,14 +1,8 @@
 package GraphicalElements;
 
-import GameCommons.Main;
-import MovingElements.Frog;
-import MovingElements.Obstacle;
 import processing.core.PApplet;
-import processing.core.PFont;
 import processing.core.PImage;
 
-
-import java.util.ArrayList;
 
 /**
  * La classe Element dispose de méthodes graphiques dont le support est une instance de PApplet, prise comme attribut

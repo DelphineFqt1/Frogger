@@ -2,6 +2,9 @@ package GraphicalElements;
 
 import processing.core.PApplet;
 
+/**
+ * Spécifie un type de case particulier avec lequel on peut intéragir
+ */
 public class Button extends Element{
     private int left;
     private int top;
@@ -9,9 +12,6 @@ public class Button extends Element{
     private int bottom;
     private String text;
 
-    /**
-     * Un objet Button spécifie un type de case particulier avec lequel on peut intéragir
-     */
     public Button(PApplet P, int left, int top, int right, int bottom, String text) {
         super(P);
         this.left = left;
@@ -43,7 +43,7 @@ public class Button extends Element{
         }
     }
     /**
-     * Renvoit true lorsque l'on clique sur le bouton, et false dans le cas contraire
+     * Renvoie true lorsque l'on clique sur le bouton, et false dans le cas contraire
      */
     public boolean click_event(){
         return (P.mouseX>left && P.mouseX<right &&P.mouseY<top &&P.mouseY>bottom&& P.mousePressed);

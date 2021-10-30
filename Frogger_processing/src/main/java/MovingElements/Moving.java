@@ -1,7 +1,8 @@
 package MovingElements;
 
-// Classe abstraite qui décrit les éléments mouvants (et intéragissant entre eux) du jeu
-
+/**
+ * Classe mère abtraite de tous les objets mobiles du jeu (Frog, Car, Trunk)
+ */
 public abstract class Moving {
     private int left;
     private int right;
@@ -12,9 +13,7 @@ public abstract class Moving {
     private int range;
     private int speed;
 
-/**
- * Classe mère abtraite de tous les objets mobiles du jeu (Frog, Car, Trunk)
- */
+
     public Moving(int x, int y, int width, int height, int range, int speed){
         this.left = x;
         this.right = x+width;

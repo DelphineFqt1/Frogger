@@ -1,11 +1,7 @@
 package GameCommons;
-import GraphicalElements.Element;
-import MovingElements.Obstacle;
+
 import MovingElements.Obstacle.Car;
 import MovingElements.Obstacle.Trunk;
-
-import java.io.File;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
 public interface IEnvironment {

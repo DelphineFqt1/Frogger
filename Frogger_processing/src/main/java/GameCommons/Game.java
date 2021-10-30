@@ -1,22 +1,16 @@
 package GameCommons;
 
 import MovingElements.Frog;
-import MovingElements.Obstacle;
 import MovingElements.Obstacle.Car;
 import MovingElements.Obstacle.Trunk;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
 
 import static Util.UtilClass.random_btw;
 
-
+/**
+ * La classe Game centralise les paramètres du jeu ainsi que les méthodes qui contrôlent son bon déroulement
+ */
 public class Game implements IFrog, IEnvironment {
     private int grid;
     private int ranges;
@@ -28,10 +22,6 @@ public class Game implements IFrog, IEnvironment {
     private String Diff;
     private String leaderboard;
 
-
-/**
- * La classe Game centralise les paramètres du jeu ainsi que les méthodes qui contrôlent son bon déroulement
- */
     public Game(int grid, int ranges, int columns) {
         this.grid = grid;
         this.ranges = ranges;

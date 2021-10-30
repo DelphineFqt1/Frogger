@@ -1,5 +1,8 @@
 package MovingElements;
 
+/**
+ * Représente la grenouille, personnage contrôlable du jeu
+ */
 public class Frog extends Moving{
     private int range;
     private boolean GAMEOVER;

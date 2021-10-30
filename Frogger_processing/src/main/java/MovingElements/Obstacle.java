@@ -1,5 +1,8 @@
 package MovingElements;
 
+/**
+ * Classe mère abstraite des obstacles du jeu (Car et Trunk). Un Obstacle prend en attribut des limites horizontales et verticales qu'il ne pourra pas dépasser
+ */
 public abstract class Obstacle extends Moving{
 
     private final int abs_limit;
@@ -12,9 +15,7 @@ public abstract class Obstacle extends Moving{
     private int speed;
     private int width;
 
-/**
- * Classe mère abstraite des obstacles du jeu (Car et Trunk). Un Obstacle prend en attribut des limites horizontales et verticales qu'il ne pourra pas dépasser
- */
+
     public Obstacle(int x, int y, int width, int height, int range, int speed, int abs_limit, int ord_lim) {
         super(x, y, width, height, range, speed);
         this.abs_limit = abs_limit;
@@ -66,6 +67,7 @@ public abstract class Obstacle extends Moving{
             super.move(xdir, ydir);
         }
     }
+
     /**
      * Classe représentant le tronc
      */

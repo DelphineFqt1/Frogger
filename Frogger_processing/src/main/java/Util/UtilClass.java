@@ -9,8 +9,14 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Répertoire de quelques méthodes utiles pour le traitement de fichiers texte et la génération de nombres aléatoires
+ */
 public class UtilClass {
 
+    /**
+     * Prend en paramètres un chemin vers un fichier texte de temps et un autre temps t de type float. Trie t avec les valeurs de la liste de score par ordre croissant puis renvoie une remarque selon la position de t
+     */
     public static String record_treatment(Path path, float t)
     // trie un fichier text déclaré en Path avec un temps t donné en plus. Si t fait partie des 9 meilleurs temps,
     // il est retenu dans le fichier. La méthode renvoie une remarque pour signifier si t est dans le leaderboard ou pas
@@ -22,15 +28,10 @@ public class UtilClass {
         try{
             float[] numbers = new float[10];
             for (String ligne : Files.readAllLines(path)) {
-                //System.out.println(ligne);
-                //Snumbers.add(ligne.split(" ")[1]);
-                //System.out.println(Snumbers);
-                //System.out.println(ligne.substring(3, ligne.length()-1));
                 Snumbers.add(ligne.substring(3, ligne.length()-1));
             }
             for (int i =0; i<Snumbers.size(); i++){
                 numbers[i]= Float.parseFloat(Snumbers.get(i));
-                //System.out.println(numbers[i]);
             }
             numbers[9] =t;
             java.util.Arrays.sort(numbers);
@@ -47,7 +48,6 @@ public class UtilClass {
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             for (int i=0; i<9; i++){
                 int k = i+1;
- //               NSnumbers.add(k +". " + numbers[i] + "s\n" );
                 NSnumbers.add(k +". " + numbers[i] + "s" + "\n" );
                 System.out.print(NSnumbers.get(i));
                 fw.write(NSnumbers.get(i));
@@ -60,6 +60,9 @@ public class UtilClass {
         return remark;
     }
 
+    /**
+     * Prend en paramètres un chemin vers un fichier texte de scores et un score t de type int. Trie t avec les valeurs de la liste de score par ordre décroissant puis renvoie une remarque selon la position de t
+     */
     public static String endless_treatment(Path path, int t)
     // trie un fichier text déclaré en Path avec un score t (ce n'est PAS un temps) donné en plus. Si t fait partie des 9 meilleurs scores,
     // il est retenu dans le fichier. La méthode renvoie une remarque pour signifier si t est dans le leaderboard ou pas
@@ -72,7 +75,6 @@ public class UtilClass {
             int[] numbers = new int[10];
             for (String ligne : Files.readAllLines(path)) {
                 Snumbers.add(ligne.substring(3, ligne.length()));
-                //System.out.println(ligne.substring(3, ligne.length()-1));
             }
             for (int i =0; i<Snumbers.size(); i++){
                 numbers[i]= Integer.parseInt(Snumbers.get(i));
@@ -105,15 +107,20 @@ public class UtilClass {
         return remark;
     }
 
-
+/**
+ * Génère un nombre aléatoire en deux bornes (comprises)
+ */
     public static int random_btw(int begin, int end)
-    // génère un nombre aléatoire en deux bornes (comprises)
+
     {
         Random rand = new Random();
         return rand.nextInt(end - begin + 1) + begin;
     }
 
-    // FONCTION POUR RECUPERER LES DONNEES DU LEADERBOARD (POUR LE BOUTON LEADERBOARD)
+    /**
+     * Récupère les données d'un leaderboard déclaré en Path (pour le bouton leaderboard)
+     * /
+     */
     public static ArrayList<String> get_leaderboard_data(Path path) {
         ArrayList<String> scores = new ArrayList<String>();
         String line;

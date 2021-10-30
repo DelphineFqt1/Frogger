@@ -1,11 +1,6 @@
 package GraphicalElements;
 
-import MovingElements.Frog;
-import MovingElements.Obstacle;
-import processing.core.PApplet;
 import processing.core.PImage;
-
-import java.util.ArrayList;
 
 public interface IFroggerGraphics {
     /**

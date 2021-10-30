@@ -2,7 +2,6 @@ package GameCommons;
 
 import GraphicalElements.Button;
 import MovingElements.Frog;
-import MovingElements.Obstacle;
 import MovingElements.Obstacle.Car;
 import MovingElements.Obstacle.Trunk;
 import processing.core.PApplet;
@@ -12,7 +11,6 @@ import processing.core.PImage;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import Util.Direction;
 import static Util.UtilClass.endless_treatment;
@@ -103,7 +101,7 @@ public class TestA extends PApplet {
         board = new Element(this);
         minim = new Minim(this);
         game = new Game(grid, ranges, columns);
-        size(game.getGame_width(), game.getGame_height());
+        board.size(game.getGame_width(), game.getGame_height());
     }
 
     @Override

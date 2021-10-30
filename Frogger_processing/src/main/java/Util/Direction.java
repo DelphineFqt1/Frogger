@@ -1,5 +1,8 @@
 package Util;
 
+/**
+ *  Répertoire de références de valeur pour les clicks du clavier
+ */
 public class Direction {
 
     public static int UP = 38;
