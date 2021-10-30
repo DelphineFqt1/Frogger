@@ -580,13 +580,13 @@ public class TestA extends PApplet {
                 player_jump = minim.loadFile(music_jump);
                 player_jump.setGain(-2);
                 player_jump.play();
-                frog2.move(grid, 0);
+                frog1.move(grid, 0);
             }
             if (keyCode == Direction.LEFT||keyCode == Direction.Q){
                 player_jump = minim.loadFile(music_jump);
                 player_jump.setGain(-2);
                 player_jump.play();
-                frog2.move(-grid, 0);
+                frog1.move(-grid, 0);
             }
         }
         else {
