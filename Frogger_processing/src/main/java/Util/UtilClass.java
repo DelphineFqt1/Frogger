@@ -15,7 +15,10 @@ import java.util.Random;
 public class UtilClass {
 
     /**
-     * Prend en paramètres un chemin vers un fichier texte de temps et un autre temps t de type float. Trie t avec les valeurs de la liste de score par ordre croissant puis renvoie une remarque selon la position de t
+     * Prend en paramètres un chemin vers un fichier texte de scores et un autre score t de type float. Trie t avec les valeurs de la liste de scores par ordre croissant, modifie le fichier texte selon le tri, puis renvoie une remarque selon la position de t
+     * @param path Le chemin du fichier texte d'un leaderboard
+     * @param t Un score à trier avec la liste des valeurs dans le fichier
+     * @return Une remarque selon la position de t dans la liste des scores triée
      */
     public static String record_treatment(Path path, float t)
     // trie un fichier text déclaré en Path avec un temps t donné en plus. Si t fait partie des 9 meilleurs temps,
@@ -61,7 +64,10 @@ public class UtilClass {
     }
 
     /**
-     * Prend en paramètres un chemin vers un fichier texte de scores et un score t de type int. Trie t avec les valeurs de la liste de score par ordre décroissant puis renvoie une remarque selon la position de t
+     * Prend en paramètres un chemin vers un fichier texte de scores et un score t de type int. Trie t avec les valeurs de la liste de score par ordre décroissant, modifie le fichier texte selon le tri, puis renvoie une remarque selon la position de t
+     * @param path Le chemin du fichier texte à exploiter
+     * @param t Le score à trier avec ceux du fichier texte
+     * @return Une remarque selon la position de t dans la liste des scores triée
      */
     public static String endless_treatment(Path path, int t)
     // trie un fichier text déclaré en Path avec un score t (ce n'est PAS un temps) donné en plus. Si t fait partie des 9 meilleurs scores,
@@ -109,6 +115,8 @@ public class UtilClass {
 
 /**
  * Génère un nombre aléatoire en deux bornes (comprises)
+ * @param begin borne de début
+ * @param end borne de fin
  */
     public static int random_btw(int begin, int end)
 
@@ -119,7 +127,7 @@ public class UtilClass {
 
     /**
      * Récupère les données d'un leaderboard déclaré en Path (pour le bouton leaderboard)
-     * /
+     * @param path Le chemin du fichier à récupérer
      */
     public static ArrayList<String> get_leaderboard_data(Path path) {
         ArrayList<String> scores = new ArrayList<String>();
