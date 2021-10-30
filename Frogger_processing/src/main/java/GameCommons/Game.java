@@ -161,7 +161,7 @@ public class Game implements IFrog, IEnvironment {
         int size = 3 * grid;
 
         int speed;
-        int number = 3;
+        int number = random_btw(2, 3);
         int k = random_btw(0, 1);
         if(range%2==0) {
             if (k == 0) {
