@@ -17,7 +17,7 @@ public interface IFrog {
      */
     abstract void reset_Frog(Frog frog,  int num);
     /**
-     * Réinitialise un Frog lorsqu'il meurt (contact avec voiture ou "tombée dans l'eau"). Change GameState en true en cas de victoire
+     * Réinitialise un Frog lorsqu'il meurt (contact avec une instance de Car ou détachement de toute instance de Trunk). Change GameState en true en cas de victoire
      * @param frog L'instance de Frog à contrôler
      * @param num Le numéro de joueur associé à l'instance de Frog à contrôler
      */
