@@ -300,7 +300,7 @@ public class TestA extends PApplet {
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
             }
 
-            if (buttonLI.click_event() && game.getPlayerMode() == "LEADERBOARD") {
+            if (buttonLE.click_event() && game.getPlayerMode() == "LEADERBOARD") {
                 game.setLeaderboard("EASY");
                 player_bouton = minim.loadFile(music_bouton);
                 player_bouton.play();
