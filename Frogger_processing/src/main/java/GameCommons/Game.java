@@ -34,7 +34,6 @@ public class Game implements IFrog, IEnvironment {
         this.leaderboard=null;
     }
 
-
     @Override
     public ArrayList<Car> car_range(int range) {
         int x = random_btw(0, getGame_width());
