@@ -13,13 +13,13 @@ public interface IFrog {
     /**
      * Réinitialise une instance de Frog comme en début de partie
      * @param frog L'instance de Frog à réinitialiser
-     * @param num Le numéro de joueur associé à l'instance de Frog à réinitialiser
+     * @param num Le numéro de joueur associé à l'instance de Frog à réinitialiser. Remarque : il est possible de changer de numéro de joueur en cours de partie, mais cela est fortement déconseillé
      */
     abstract void reset_Frog(Frog frog,  int num);
     /**
      * Réinitialise un Frog lorsqu'il meurt (contact avec une instance de Car ou détachement de toute instance de Trunk). Change GameState en true en cas de victoire
      * @param frog L'instance de Frog à contrôler
-     * @param num Le numéro de joueur associé à l'instance de Frog à contrôler
+     * @param num Le numéro de joueur associé à l'instance de Frog à contrôler. Remarque : il est possible de changer de numéro de joueur en cours de partie, mais cela est fortement déconseillé
      */
     abstract void stateFrog(Frog frog,  int num);
 
