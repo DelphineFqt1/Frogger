@@ -1,5 +1,7 @@
 package GraphicalElements;
 
+import MovingElements.Frog;
+import MovingElements.Obstacle;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -19,10 +21,10 @@ public class Element implements IFroggerGraphics {
     }
 
     @Override
-    public void create_case(float x, float y, float w, float h, float r, float g, float b) {
+    public void create_case(float left, float top, float right, float bottom, float r, float g, float b) {
         P.fill(r,g,b);
         P.rectMode(P.CORNERS);
-        P.rect(x, y, w, h);
+        P.rect(left, top, right, bottom);
     }
 
     @Override
@@ -33,8 +35,29 @@ public class Element implements IFroggerGraphics {
     }
 
     @Override
-    public void show_image(PImage img, float top, float bottom, float width, float height) {
-        P.image(img, top, bottom, width, height);
+    public void show_image(PImage img, float left, float bottom, float width, float height) {
+        try{
+            P.image(img, left, bottom, width, height);
+        }
+        catch (NullPointerException e){
+            create_case(left, bottom + height, left+width, bottom, 255,255,255);
+            create_case(450, 80, 840, 0, 0,0,0);
+            create_text("Warning : Running in Error mode\nPaths specified for images not found", 25, 450, 30, 255,0,0);
+        }
+    }
+
+    @Override
+    public void show_frog(PImage img, Frog frog) {
+            show_image(img, frog.getLeft(), frog.getBottom(), frog.getWidth(), frog.getHeight());
+    }
+
+    @Override
+    public void show_car(PImage img, Obstacle.Car car) {
+            show_image(img, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
+    }
+    @Override
+    public void show_trunk(PImage img, Obstacle.Trunk trunk) {
+            show_image(img, trunk.getLeft(), trunk.getBottom(), trunk.getWidth(), trunk.getHeight());
     }
 
     @Override
@@ -44,8 +67,15 @@ public class Element implements IFroggerGraphics {
 
     @Override
     public void background_im(PImage image, int width, int height) {
+        try{
         image.resize(width, height);
         P.background(image);
+        }
+        catch (NullPointerException e){
+            background(0);
+            create_case(350, 80, 840, 0, 0,0,0);
+            create_text("Warning : Running in Error mode\nPath specified for background image not found", 25, 350, 30, 255,0,0);
+        }
     }
 
     @Override
