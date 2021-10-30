@@ -51,7 +51,7 @@ class GameTest {
         Game game = new Game(45,16,19);
         Frog frog = new Frog(19*45 / 4, 16*45 - 45, 45);
         frog.move(1,-1);
-      //  game.reset_Frog(frog,1);  CA MARCHE QUAND MEME SANS CETTE LIGNE ALORS QUE CA DEVRAIT METTRE UNE ERREUR
+        game.reset_Frog(frog,1); // CA MARCHE QUAND MEME SANS CETTE LIGNE ALORS QUE CA DEVRAIT METTRE UNE ERREUR
         assertEquals(0,frog.getRange());
 
     }
