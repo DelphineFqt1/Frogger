@@ -10,11 +10,11 @@ public interface IEnvironment {
      * Créé la liste des voitures en rangée spécifiée
      * @param range
      *              La rangée commune des instances de Car de la liste
-     * @return Une liste d'instances de Car rangée range, en nombre aléatoire entre 2 et 3, de même vitesse sélectionnée aléatoirement entre 4 crans et de taille aléatoire entre 2 crans
+     * @return Une liste d'instances de Car en rangée range, en nombre aléatoire entre 2 et 3, de même vitesse sélectionnée aléatoirement entre 4 crans et de taille aléatoire sélectionnée entre 2 crans
      */
     ArrayList<Car> car_range(int range);
     /**
-     * créé la liste des troncs en rangée i
+     * créé la liste des troncs en rangée range
      *
      */
     ArrayList<Trunk> trunk_range(int range);
