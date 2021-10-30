@@ -110,7 +110,6 @@ public class TestA extends PApplet {
         im_frog2 = loadImage("src/main/java/Images/frog2.png");
         im_frog = loadImage("src/main/java/Images/frog.png");
         im_menu = loadImage("src/main/java/Images/Menu.png");
-        im_menu.resize(game.getGame_width(), game.getGame_height());
         record = Paths.get("src/main/java/GameCommons/Record_easy");
         record_hard = Paths.get("src/main/java/GameCommons/Record_hard");
         record_infinity = Paths.get("src/main/java/GameCommons/Record_endless");
@@ -189,7 +188,7 @@ public class TestA extends PApplet {
 
             // ON AFFICHE LES BOUTONS DU MODE DE JEU (ROUTE, ROUTE + RIVIERE, INFINI)
             if (game.getPlayerMode()== "1 PLAYER") {
-                background(im_menu);
+                board.background_im(im_menu, game.getGame_width(), game.getGame_height());
                 
                 buttonEasy.show();
                 board.show_image(im_car_right, buttonEasy.getLeft()+10, buttonEasy.getTop()-45, 38, 38);
@@ -238,7 +237,7 @@ public class TestA extends PApplet {
             }
 
             if (game.getPlayerMode() == "2 PLAYERS") {
-                background(im_menu);
+                board.background_im(im_menu, game.getGame_width(), game.getGame_height());
 
                 buttonEasy.show();
                 board.show_image(im_car_right, buttonEasy.getLeft()+10, buttonEasy.getTop()-45, 38, 38);
@@ -281,7 +280,7 @@ public class TestA extends PApplet {
             }
             // ON AFFICHE LES DIFFICULTES POUR LES LEADERBOARDS
             if (game.getPlayerMode() == "LEADERBOARD") {
-                background(im_menu);
+                board.background_im(im_menu, game.getGame_width(), game.getGame_height());
 
                 buttonLE.show();
                 board.show_image(im_car_right,buttonLE.getLeft(),buttonLE.getTop()-45, 38, 38);
@@ -318,7 +317,7 @@ public class TestA extends PApplet {
             // ON AFFICHE LE LEADERBOARD CORRESPONDANT A LA DIFFICULTE SELECTIONNEE
             // LEADERBOARD EASY
             if (game.getLeaderboard() == "EASY") {
-                background(im_menu);
+                board.background_im(im_menu, game.getGame_width(), game.getGame_height());
                 board.show_image(im_leaderboard_easy, 180, 70, 500, 600);
                 buttonBack.show();
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
@@ -332,7 +331,7 @@ public class TestA extends PApplet {
             }
             // LEADERBOARD HARD
             if (game.getLeaderboard() == "HARD") {
-                background(im_menu);
+                board.background_im(im_menu, game.getGame_width(), game.getGame_height());
                 board.show_image(im_leaderboard_hard, 180, 70, 500, 600);
                 buttonBack.show();
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
@@ -346,7 +345,7 @@ public class TestA extends PApplet {
             }
             // LEADERBOARD INFINITY
             if (game.getLeaderboard() == "INFINITE") {
-                background(im_menu);
+                board.background_im(im_menu, game.getGame_width(), game.getGame_height());
                 board.show_image(im_leaderboard_infinity, 180, 70, 500, 600);
                 buttonBack.show();
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
@@ -394,10 +393,10 @@ public class TestA extends PApplet {
                     for (Car car : range_i) {
                         car.move(car.getSpeed(), 0);
                         if (car.getSpeed() > 0) {
-                            board.show_image(im_car_right, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
+                            board.show_car(im_car_right, car);
                         }
                         else {
-                            board.show_image(im_car_left, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
+                            board.show_car(im_car_left, car);
                         }
                         if (frog1.intersect(car)) {
                             frog1.setCar_intersection(true);
@@ -420,7 +419,7 @@ public class TestA extends PApplet {
                     for (ArrayList<Trunk> range_i : trunks) {
                         for (Trunk trunk : range_i) {
                             trunk.move(trunk.getSpeed(), 0);
-                            board.show_image(im_trunk, trunk.getLeft(), trunk.getBottom(), trunk.getWidth(), trunk.getHeight());
+                            board.show_trunk(im_trunk, trunk);
                             if (frog1.intersect(trunk)) {
                                 count_inter++;
                                 if (count_inter == 1) {
@@ -451,8 +450,8 @@ public class TestA extends PApplet {
                         player_collision.play();
                     }
                 }
-                board.show_image(im_frog, frog1.getLeft(), frog1.getBottom(), frog1.getWidth(), frog1.getHeight());
-                board.show_image(im_frog2, frog2.getLeft(), frog2.getBottom(), frog2.getWidth(), frog2.getHeight());
+                board.show_frog(im_frog, frog1);
+                board.show_frog(im_frog2, frog2);
                 game.stateFrog(frog1, 1);
                 game.stateFrog(frog2, 2);
 
@@ -462,10 +461,10 @@ public class TestA extends PApplet {
                     for (Car car : range_i) {
                         car.move(car.getSpeed(), 0);
                         if (car.getSpeed() > 0) {
-                            board.show_image(im_car_right, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
+                            board.show_car(im_car_right, car);
                         }
                         else {
-                            board.show_image(im_car_left, car.getLeft(), car.getBottom(), car.getWidth(), car.getHeight());
+                            board.show_car(im_car_left, car);
                         }
                         if (frog1.intersect(car)) {
                             frog1.setCar_intersection(true);
@@ -480,7 +479,7 @@ public class TestA extends PApplet {
                     for (ArrayList<Trunk> range_i : trunks) {
                         for (Trunk trunk : range_i) {
                             trunk.move(trunk.getSpeed(), 0);
-                            board.show_image(im_trunk, trunk.getLeft(), trunk.getBottom(), trunk.getWidth(), trunk.getHeight());
+                            board.show_trunk(im_trunk, trunk);
                             if (frog1.intersect(trunk)) {
                                 count2++;
                                 if (count2 <= 1) {
@@ -516,7 +515,7 @@ public class TestA extends PApplet {
                     }
                 }
 
-                board.show_image(im_frog, frog1.getLeft(), frog1.getBottom(), frog1.getWidth(), frog1.getHeight());
+                board.show_frog(im_frog, frog1);
                 game.stateFrog(frog1,1);
 
             }
