@@ -11,7 +11,7 @@ import processing.core.PImage;
 import java.util.ArrayList;
 
 /**
- * La classe Element dispose de méthodes graphiques dont le support est une instance de PApplet, pris comme attribut
+ * La classe Element dispose de méthodes graphiques dont le support est une instance de PApplet, prise comme attribut
  */
 public class Element implements IFroggerGraphics {
 
