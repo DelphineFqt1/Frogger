@@ -12,6 +12,22 @@ public abstract class Moving {
     private int range;
     private int speed;
 
+/**
+ * Classe mère abtraite de tous les objets mobiles du jeu (Frog, Car, Trunk)
+ */
+    public Moving(int x, int y, int width, int height, int range, int speed){
+        this.left = x;
+        this.right = x+width;
+        this.bottom = y;
+        this.top = y + height;
+        this. range = range;
+        this.speed = speed;
+        this.width = width;
+        this.height = height;
+    }
+
+    public abstract void move(int xdir, int ydir);
+
     public void setLeft(int left) {
         this.left = left;
     }
@@ -75,22 +91,5 @@ public abstract class Moving {
     public int getSpeed() {
         return speed;
     }
-
-
-/**
- * Classe mère abtraite de tous les objets mobiles du jeu (Frog, Car, Trunk)
- */
-    public Moving(int x, int y, int width, int height, int range, int speed){
-        this.left = x;
-        this.right = x+width;
-        this.bottom = y;
-        this.top = y + height;
-        this. range = range;
-        this.speed = speed;
-        this.width = width;
-        this.height = height;
-    }
-
-    public abstract void move(int xdir, int ydir);
 
 }

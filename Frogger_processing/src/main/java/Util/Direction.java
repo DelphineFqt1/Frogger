@@ -11,14 +11,4 @@ public class Direction {
     public static int S=83;
     public static int D=68;
 
-//    public Direction(){
-//        UP = 38;
-//        DOWN = 40;
-//        LEFT = 37;
-//        RIGHT = 39;
-//        Z =90 ;
-//        Q=81;
-//        S=83;
-//        D=68;
-//    }
 }

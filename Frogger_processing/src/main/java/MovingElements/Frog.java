@@ -19,29 +19,7 @@ public class Frog extends Moving{
         this.GAMEOVER = false; // utile en mode infini où me GAMEOVER signifie la fin de la partie de jeu
     }
 
-    public boolean isGAMEOVER() {
-        return GAMEOVER;
-    }
 
-    public void setGAMEOVER(boolean GAMEOVER) {
-        this.GAMEOVER = GAMEOVER;
-    }
-
-    public boolean isCar_intersection() {
-        return car_intersection;
-    }
-
-    public void setCar_intersection(boolean car_intersection) {
-        this.car_intersection = car_intersection;
-    }
-
-    public boolean isTrunk_intersection() {
-        return trunk_intersection;
-    }
-
-    public void setTrunk_intersection(boolean trunk_intersection) {
-        this.trunk_intersection = trunk_intersection;
-    }
 
     /**
      *  Additionne respectivement xdir et ydir (pixels) aux coordonnées horizontales et verticales d'un Frog
@@ -76,6 +54,30 @@ public class Frog extends Moving{
         else {
             return (this.getRange() == obstacle.getRange() && (this.getRight() < obstacle.getRight() && this.getLeft() > obstacle.getLeft()));
         }
+    }
+
+    public boolean isGAMEOVER() {
+        return GAMEOVER;
+    }
+
+    public void setGAMEOVER(boolean GAMEOVER) {
+        this.GAMEOVER = GAMEOVER;
+    }
+
+    public boolean isCar_intersection() {
+        return car_intersection;
+    }
+
+    public void setCar_intersection(boolean car_intersection) {
+        this.car_intersection = car_intersection;
+    }
+
+    public boolean isTrunk_intersection() {
+        return trunk_intersection;
+    }
+
+    public void setTrunk_intersection(boolean trunk_intersection) {
+        this.trunk_intersection = trunk_intersection;
     }
 
 }

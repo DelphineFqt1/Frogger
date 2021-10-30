@@ -44,79 +44,6 @@ public class Game implements IFrog, IEnvironment {
         this.leaderboard=null;
     }
 
-    public boolean isGameState() {
-        return gameState;
-    }
-
-    public String getPlayerMode() {
-        return PlayerMode;
-    }
-
-    public void setPlayerMode(String playerMode) {
-        PlayerMode = playerMode;
-    }
-
-    public int getGrid() {
-        return grid;
-    }
-
-    public void setGrid(int grid) {
-        this.grid = grid;
-    }
-
-    public int getRanges() {
-        return ranges;
-    }
-
-    public void setRanges(int ranges) {
-        this.ranges = ranges;
-    }
-
-    public int getColumns() {
-        return columns;
-    }
-
-    public void setColumns(int columns) {
-        this.columns = columns;
-    }
-
-    public boolean getGameState() {
-        return gameState;
-    }
-
-    public void setGameState(boolean gameState) {
-        this.gameState = gameState;
-    }
-
-    public int getGame_width() {
-        return game_width;
-    }
-
-    public void setGame_width(int game_width) {
-        this.game_width = game_width;
-    }
-
-    public int getGame_height() {
-        return game_height;
-    }
-
-    public void setGame_height(int game_height) {
-        this.game_height = game_height;
-    }
-
-    public String getDiff() {return Diff;}
-
-    public void setDiff(String diff) {Diff = diff;}
-
-    public String getLeaderboard() {
-        return leaderboard;
-    }
-
-    public void setLeaderboard(String leaderboard) {
-        this.leaderboard = leaderboard;
-    }
-
-
 
     @Override
     public ArrayList<Car> car_range(int range) {
@@ -261,6 +188,78 @@ public class Game implements IFrog, IEnvironment {
         if (frog.getRange() >= this.getRanges() - 1) {
             setGameState(true);
         }
+    }
+
+    public boolean isGameState() {
+        return gameState;
+    }
+
+    public String getPlayerMode() {
+        return PlayerMode;
+    }
+
+    public void setPlayerMode(String playerMode) {
+        PlayerMode = playerMode;
+    }
+
+    public int getGrid() {
+        return grid;
+    }
+
+    public void setGrid(int grid) {
+        this.grid = grid;
+    }
+
+    public int getRanges() {
+        return ranges;
+    }
+
+    public void setRanges(int ranges) {
+        this.ranges = ranges;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public void setColumns(int columns) {
+        this.columns = columns;
+    }
+
+    public boolean getGameState() {
+        return gameState;
+    }
+
+    public void setGameState(boolean gameState) {
+        this.gameState = gameState;
+    }
+
+    public int getGame_width() {
+        return game_width;
+    }
+
+    public void setGame_width(int game_width) {
+        this.game_width = game_width;
+    }
+
+    public int getGame_height() {
+        return game_height;
+    }
+
+    public void setGame_height(int game_height) {
+        this.game_height = game_height;
+    }
+
+    public String getDiff() {return Diff;}
+
+    public void setDiff(String diff) {Diff = diff;}
+
+    public String getLeaderboard() {
+        return leaderboard;
+    }
+
+    public void setLeaderboard(String leaderboard) {
+        this.leaderboard = leaderboard;
     }
 }
 
