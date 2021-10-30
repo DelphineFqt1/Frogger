@@ -11,6 +11,9 @@ public class Element implements IFroggerGraphics {
 
     PApplet P;
 
+    /**
+     * @param P Une instance de PApplet qui lance une IHM et qui sert de support à l'affichage des méthodes graphiques de la classe
+     */
     public Element(PApplet P){
         this.P = P;
     }

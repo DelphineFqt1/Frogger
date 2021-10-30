@@ -12,6 +12,14 @@ public class Button extends Element{
     private int bottom;
     private String text;
 
+    /**
+     * @param P Une instance de PApplet qui lance une IHM et qui sert de support à l'affichage du bouton et à ses actions
+     * @param left L'abscisse du côté latéral gauche du bouton
+     * @param top L'ordonnée du côté supérieur du bouton
+     * @param right L'abscisse du côté latéral droit du bouton
+     * @param bottom L'ordonnée du côté inférieur du bouton
+     * @param text Le texte affiché sur le bouton
+     */
     public Button(PApplet P, int left, int top, int right, int bottom, String text) {
         super(P);
         this.left = left;

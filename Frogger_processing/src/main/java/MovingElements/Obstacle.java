@@ -31,7 +31,9 @@ public abstract class Obstacle extends Moving{
     }
 
     /**
-     *  Additionne respectivement xdir et ydir (pixels) aux coordonnées horizontales et verticales d'un Obstacle. Si l'obstacle déborde de la fenêtre, il est réinitialisé dans l'extrémité opposée de l'écran
+     *  Additionne respectivement les paramètres spécifiés (en pixels) aux coordonnées d'un Obstacle. Si l'obstacle déborde de la fenêtre, il est réinitialisé à l'extrémité opposée de l'écran
+     * @param xdir Le pas (en pixels) qui va s'ajouter aux coordonnées horizontales (axe Ox) de l'obstacle
+     * @param ydir Le pas (en pixels) qui va s'ajouter aux coordonnées verticales (axe Oy) de l'obstacle
      */
     @Override
     public void move(int xdir, int ydir) {

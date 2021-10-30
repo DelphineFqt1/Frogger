@@ -13,7 +13,9 @@ public class Frog extends Moving{
 
 
     /**
-     *  La grenouille est représentée par un carré, qui est en état de GAMEOVER lors d'un contact avec une voiture ou une sortie de tronc
+     * @param x L'abscisse du côté latéral gauche de la grenouille
+     * @param y L'ordonnée du côté inférieur de la grenouille
+     * @param width La largeur ainsi que la hauteur de la grenouille. Elle est donc modélisée par un carré
      */
     public Frog(int x, int y, int width) {
         super(x, y, width, width, 0, 0);
@@ -25,7 +27,9 @@ public class Frog extends Moving{
 
 
     /**
-     *  Additionne respectivement xdir et ydir (pixels) aux coordonnées horizontales et verticales d'un Frog
+     *  Additionne respectivement paramètres spécifiés (en pixels) aux coordonnées horizontales et verticales d'un Frog
+     * @param xdir Le pas (en pixels) qui va s'ajouter aux coordonnées horizontales (axe Ox) de la grenouille
+     * @param ydir Le pas (en pixels) qui va s'ajouter aux coordonnées verticales (axe Oy) de la grenouille
      */
     @Override
     public void move(int xdir, int ydir) {
@@ -42,7 +46,10 @@ public class Frog extends Moving{
     }
 
     /**
-     *  Détermine si un Frog est en contact avec une voiture ou s'il est à l'intérieur d'un tronc
+     *  Détermine si la grenouille est en intersection avec une instance d'Obstacle (Car ou Trunk)
+     * @param obstacle L'obstacle avec lequel compare la position relative de la grenouille
+     * @return Un booléen qui indique si oui ou non la grenouille intersecte l'obstacle.
+     * Remarque : l'intersection de la grenouille avec une voiture se résume à un simple contact avec, tandis que pour un tronc, il faut qu'elle y soit complétement à l'intérieur
      */
     public boolean intersect(Obstacle obstacle){
         // Si l'obstacle est une voiture, on a besoin de savoir si frog touche la voiture ou non
