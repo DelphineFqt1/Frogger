@@ -1,5 +1,6 @@
 package GameCommons;
 
+import GraphicalElements.Button;
 import MovingElements.Frog;
 import MovingElements.Obstacle;
 import MovingElements.Obstacle.Car;
@@ -24,16 +25,16 @@ public class TestA extends PApplet {
 
     Frog frog1;
     Frog frog2;
-    Element.Button button1P;
-    Element.Button button2P;
-    Element.Button buttonLead;
-    Element.Button buttonEasy;
-    Element.Button buttonHard;
-    Element.Button buttonInf;
-    Element.Button buttonBack;
-    Element.Button buttonLE;
-    Element.Button buttonLH;
-    Element.Button buttonLI;
+    Button button1P;
+    Button button2P;
+    Button buttonLead;
+    Button buttonEasy;
+    Button buttonHard;
+    Button buttonInf;
+    Button buttonBack;
+    Button buttonLE;
+    Button buttonLH;
+    Button buttonLI;
     ArrayList<ArrayList<Car>> cars;
     ArrayList<ArrayList<Trunk>> trunks;
     ArrayList<String> scores;
@@ -141,16 +142,16 @@ public class TestA extends PApplet {
         player_menu.setGain(0);
         player_menu.loop();
 
-        button1P = new Element.Button(this, 77, 600, 277, 550, "1 PLAYER" );
-        button2P = new Element.Button(this, 315, 600, 547, 550, "2 PLAYERS" );
-        buttonLead = new Element.Button(this, 577,600 , 810, 550, "LEADERBOARD" );
-        buttonEasy = new Element.Button(this, 77, 550, 277, 500, "  EASY" );
-        buttonHard = new Element.Button(this, 327, 550, 527, 500, "  HARD" );
-        buttonInf = new Element.Button(this, 577, 550, 790, 500, "INFINITE" );
-        buttonBack = new Element.Button(this, 670, 700, 800, 660, "  BACK" );
-        buttonLE = new Element.Button(this, 77, 300, 277, 250, "EASY");
-        buttonLH = new Element.Button(this, 77, 400, 277, 350, "HARD");
-        buttonLI = new Element.Button(this,77,500 , 277, 450,"INFINITE");
+        button1P = new Button(this, 77, 600, 277, 550, "1 PLAYER" );
+        button2P = new Button(this, 315, 600, 547, 550, "2 PLAYERS" );
+        buttonLead = new Button(this, 577,600 , 810, 550, "LEADERBOARD" );
+        buttonEasy = new Button(this, 77, 550, 277, 500, "  EASY" );
+        buttonHard = new Button(this, 327, 550, 527, 500, "  HARD" );
+        buttonInf = new Button(this, 577, 550, 790, 500, "INFINITE" );
+        buttonBack = new Button(this, 670, 700, 800, 660, "  BACK" );
+        buttonLE = new Button(this, 77, 300, 277, 250, "EASY");
+        buttonLH = new Button(this, 77, 400, 277, 350, "HARD");
+        buttonLI = new Button(this,77,500 , 277, 450,"INFINITE");
     }
 
     @Override
