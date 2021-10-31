@@ -41,8 +41,8 @@ public class Element implements IFroggerGraphics {
         }
         catch (NullPointerException e){
             create_case(left, bottom + height, left+width, bottom, 255,255,255);
-            create_case(450, 80, 840, 0, 0,0,0);
-            create_text("Warning : Running in Error mode\nPaths specified for images not found", 25, 450, 30, 255,0,0);
+            create_case(520, 80, 840, 0, 0,0,0);
+            create_text("Warning : \nPaths specified for images not found", 20, 520, 30, 255,0,0);
         }
     }
 
@@ -73,8 +73,8 @@ public class Element implements IFroggerGraphics {
         }
         catch (NullPointerException e){
             background(0);
-            create_case(350, 80, 840, 0, 0,0,0);
-            create_text("Warning : Running in Error mode\nPath specified for background image not found", 25, 350, 30, 255,0,0);
+            //create_case(10, 80, 200, 0, 0,0,0);
+            create_text("Warning : \nPath specified for background image not found", 20, 10, 30, 255,0,0);
         }
     }
 
