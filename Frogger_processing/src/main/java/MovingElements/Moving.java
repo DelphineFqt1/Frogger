@@ -19,7 +19,7 @@ public abstract class Moving {
         this.right = x+width;
         this.bottom = y;
         this.top = y + height;
-        this. range = range;
+        this.range = range;
         this.speed = speed;
         this.width = width;
         this.height = height;
