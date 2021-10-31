@@ -116,7 +116,7 @@ public class TestA extends PApplet {
         record_hard = Paths.get("src/main/java/GameCommons/Record_hard");
         record_infinity = Paths.get("src/main/java/GameCommons/Record_endless");
         im_car_right = loadImage("src/main/java/Images/car_right.png");
-        im_car_left = loadImage("rc/main/java/Images/car_left.png");
+        im_car_left = loadImage("src/main/java/Images/car_left.png");
         im_trunk = loadImage("src/main/java/Images/trunk.png");
         im_cursor = loadImage("src/main/java/Images/cursor.png");
         im_rb_pepe_right = loadImage("src/main/java/Images/rb_pepe_right.jpg");
