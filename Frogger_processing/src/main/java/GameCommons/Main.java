@@ -26,6 +26,7 @@ public class Main extends PApplet {
     ArrayList<ArrayList<Trunk>> trunks;
     Element board;
     Game game;
+    String playermode;
     int ranges;
     int columns;
     int grid;
@@ -55,10 +56,11 @@ public class Main extends PApplet {
         ranges = -16; // de préférence pair
         columns = -19;
         grid = -45;
+        playermode = "2 PLAYERS";
 
         board = new Element(this);
         game = new Game(grid, ranges, columns);
-        //game.setPlayerMode("2 PLAYERS");
+        game.setPlayerMode(playermode);
         separate = game.getRanges()/2 ;
         board.size(game.getGame_width(), game.getGame_height());
     }
@@ -207,13 +209,10 @@ public class Main extends PApplet {
     public void keyPressed() {
         if (keyCode == UP){
             frog2.move(0,-game.getGrid());
-            frog2.setRange(frog2.getRange()+1);
-            //System.out.println("bottom :" + frog.getBottom());
 
         }
         else if (keyCode == DOWN){
             frog2.move(0,game.getGrid());
-            frog2.setRange(frog2.getRange()-1);
         }
         else if (keyCode == RIGHT) {
             frog2.move(game.getGrid(), 0);
@@ -225,12 +224,10 @@ public class Main extends PApplet {
         try {
              if (keyCode == 90) {
                 frog1.move(0, -game.getGrid());
-                frog1.setRange(frog1.getRange() + 1);
 
 
             } else if (keyCode == 83) {
                 frog1.move(0, game.getGrid());
-                frog1.setRange(frog1.getRange() - 1);
 
 
             } else if (keyCode == 68) {
