@@ -35,6 +35,7 @@ public class Element implements IFroggerGraphics {
             P.text(text, x, y);
         }
         catch (NullPointerException e){
+            e.printStackTrace();
             create_case(520, 220, 840, 80, 0,0,0);
             create_text("Warning : \nText specified is null\nMaybe caused by the reading\nof a non-existant .txt file", 20, 520, 110, 255,0,0);
         }
@@ -46,6 +47,7 @@ public class Element implements IFroggerGraphics {
             P.image(img, left, bottom, width, height);
         }
         catch (NullPointerException e){
+            e.printStackTrace();
             create_case(left, bottom + height, left+width, bottom, 255,255,255);
             create_case(520, 80, 840, 0, 0,0,0);
             create_text("Warning : \nPaths specified for images not found", 20, 520, 30, 255,0,0);

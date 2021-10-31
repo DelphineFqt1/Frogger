@@ -4,6 +4,9 @@ import MovingElements.Frog;
 import MovingElements.Obstacle;
 import processing.core.PImage;
 
+/**
+ * Regroupe toutes les méthodes graphiques mobilisées dans le jeu
+ */
 public interface IFroggerGraphics {
     /**
      *  Fait apparaitre une case en à partir de ses coordonnées et de la couleur rgb spécifiées

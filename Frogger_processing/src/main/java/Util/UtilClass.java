@@ -21,8 +21,7 @@ public class UtilClass {
      * @return Une remarque selon la position de t dans la liste des scores triée
      */
     public static String record_treatment(Path path, float t)
-    // trie un fichier text déclaré en Path avec un temps t donné en plus. Si t fait partie des 9 meilleurs temps,
-    // il est retenu dans le fichier. La méthode renvoie une remarque pour signifier si t est dans le leaderboard ou pas
+
     {
         String remark = null;
         File file = new File(path.toString());
@@ -70,8 +69,7 @@ public class UtilClass {
      * @return Une remarque selon la position de t dans la liste des scores triée
      */
     public static String endless_treatment(Path path, int t)
-    // trie un fichier text déclaré en Path avec un score t (ce n'est PAS un temps) donné en plus. Si t fait partie des 9 meilleurs scores,
-    // il est retenu dans le fichier. La méthode renvoie une remarque pour signifier si t est dans le leaderboard ou pas
+
     {
         String remark = null;
         File file = new File(path.toString());
@@ -84,7 +82,6 @@ public class UtilClass {
             }
             for (int i =0; i<Snumbers.size(); i++){
                 numbers[i]= Integer.parseInt(Snumbers.get(i));
-                //System.out.println(numbers[i]);
             }
             numbers[9] =t;
             java.util.Arrays.sort(numbers);
@@ -118,11 +115,17 @@ public class UtilClass {
  * @param begin borne de début
  * @param end borne de fin
  */
-    public static int random_btw(int begin, int end)
-
-    {
+    public static int random_btw(int begin, int end) {
+        try {
         Random rand = new Random();
         return rand.nextInt(end - begin + 1) + begin;
+    }
+        catch(IllegalArgumentException e){
+            e.printStackTrace();
+            Random rand = new Random();
+            return rand.nextInt(4) +1;
+        }
+
     }
 
     /**
