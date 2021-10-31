@@ -32,7 +32,7 @@ public class UtilClass {
             for (String ligne : Files.readAllLines(path)) {
                 Snumbers.add(ligne.substring(3, ligne.length()-1));
             }
-            for (int i =0; i<Snumbers.size(); i++){
+            for (int i =0; i<9; i++){
                 numbers[i]= Float.parseFloat(Snumbers.get(i));
             }
             numbers[9] =t;
@@ -80,7 +80,7 @@ public class UtilClass {
             for (String ligne : Files.readAllLines(path)) {
                 Snumbers.add(ligne.substring(3, ligne.length()));
             }
-            for (int i =0; i<Snumbers.size(); i++){
+            for (int i =0; i<9; i++){
                 numbers[i]= Integer.parseInt(Snumbers.get(i));
             }
             numbers[9] =t;
