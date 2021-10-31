@@ -610,14 +610,12 @@ public class TestA extends PApplet {
                     player_jump.setGain(-2);
                     player_jump.play();
                     frog1.move(0,- game.getGrid());
-                    frog1.setRange(frog1.getRange()+1);
                 }
                 if (keyCode ==Direction.DOWN || keyCode == Direction.S){
                     player_jump = minim.loadFile(music_jump);
                     player_jump.setGain(-2);
                     player_jump.play();
                     frog1.move(0, game.getGrid());
-                    frog1.setRange(frog1.getRange()-1);
                 }
                 if (keyCode == Direction.RIGHT||keyCode == Direction.D){
                     player_jump = minim.loadFile(music_jump);
@@ -638,14 +636,12 @@ public class TestA extends PApplet {
                     player_jump.setGain(-2);
                     player_jump.play();
                     frog2.move(0,- game.getGrid());
-                    frog2.setRange(frog2.getRange()+1);
                 }
                 if (keyCode ==Direction.DOWN){
                     player_jump = minim.loadFile(music_jump);
                     player_jump.setGain(-2);
                     player_jump.play();
                     frog2.move(0, game.getGrid());
-                    frog2.setRange(frog2.getRange()-1);
                 }
                 if (keyCode == Direction.RIGHT){
                     player_jump = minim.loadFile(music_jump);
@@ -664,7 +660,6 @@ public class TestA extends PApplet {
                     player_jump.setGain(-2);
                     player_jump.play();
                     frog1.move(0,- game.getGrid());
-                    frog1.setRange(frog1.getRange()+1);
                 }
                 if (keyCode ==Direction.Q){
                     player_jump = minim.loadFile(music_jump);
@@ -683,7 +678,6 @@ public class TestA extends PApplet {
                     player_jump.setGain(-2);
                     player_jump.play();
                     frog1.move(0,game.getGrid());
-                    frog1.setRange(frog1.getRange()-1);
                 }
             }
         }
