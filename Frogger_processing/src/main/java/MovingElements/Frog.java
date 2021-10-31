@@ -38,10 +38,10 @@ public class Frog extends Moving{
         setTop(getTop() + ydir);
         setBottom(getBottom() + ydir);
         if (ydir<0){
-            this.range+=1;
+            setRange(getRange()+1);
         }
         else if(ydir>0){
-            this.range-=1;
+            setRange(getRange()-1);
         }
     }
 
