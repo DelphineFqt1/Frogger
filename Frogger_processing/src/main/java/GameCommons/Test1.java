@@ -92,7 +92,7 @@ public class Test1 extends PApplet {
 
     @Override
     public void settings() {
-        PlayerMode = null;
+        //PlayerMode = null;
         ranges = 16; // de préférence pair
         columns = 19;
         grid = 45;

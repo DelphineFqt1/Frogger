@@ -32,6 +32,13 @@ public class Game implements IFrog, IEnvironment {
         this.PlayerMode = null;
         this.Diff = null;
         this.leaderboard=null;
+        if (ranges <=0 || columns<=0 || grid<=0){
+            this.ranges = 16;
+            this.columns = 19;
+            this.grid = 45;
+            this.game_width = this.columns*this.grid;
+            this.game_height = this.ranges*this.grid;
+        }
     }
 
     @Override

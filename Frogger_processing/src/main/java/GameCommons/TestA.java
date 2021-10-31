@@ -97,10 +97,11 @@ public class TestA extends PApplet {
         ranges = 16; // de préférence pair
         columns = 19;
         grid = 45;
-        separate = ranges/2 ;
+        
         board = new Element(this);
         minim = new Minim(this);
         game = new Game(grid, ranges, columns);
+        separate = game.getRanges()/2 ;
         board.size(game.getGame_width(), game.getGame_height());
     }
 
@@ -369,11 +370,11 @@ public class TestA extends PApplet {
 
             if (game.getDiff() == "HARD") {
                 cars = game.allCars(separate);
-                trunks = game.allTrunks(separate + 2, ranges - 2);
+                trunks = game.allTrunks(separate + 2, game.getRanges() - 2);
             } else if (game.getDiff() == "EASY"){
-                cars = game.allCars(ranges - 2);
+                cars = game.allCars(game.getRanges() - 2);
             } else if (game.getDiff() == "INFINITE"){
-                cars = game.allCars(ranges);
+                cars = game.allCars(game.getRanges());
             }
         }
         else if (game.getDiff()!=null){   // LE JEU EN LUI-MEME EST LANCE
@@ -382,10 +383,10 @@ public class TestA extends PApplet {
             t_i = (millis()-t1)/1000;
             board.background(25);
             if (game.getDiff() == "HARD") {  // AFFICHE LA LIGNE D'EAU ET L'ARRIVEE EN MODE HARD
-                board.create_case(0, (separate - 2) * grid, game.getGame_width(), grid, 0, 50, 100);
-                board.create_case(0, grid, game.getGame_width(), 0, 0, 200, 0);
+                board.create_case(0, (separate - 2) * game.getGrid(), game.getGame_width(), game.getGrid(), 0, 50, 100);
+                board.create_case(0, game.getGrid(), game.getGame_width(), 0, 0, 200, 0);
             } else if (game.getDiff() == "EASY") {  // AFFICHE SEULEMENT L'ARRIVEE EN MODE EASY
-                board.create_case(0, grid, game.getGame_width(), 0, 0, 200, 0);
+                board.create_case(0, game.getGrid(), game.getGame_width(), 0, 0, 200, 0);
             }
 
             if (game.getPlayerMode() == "2 PLAYERS") {  // 2 JOUEURS
@@ -437,13 +438,13 @@ public class TestA extends PApplet {
                         }
                     }
 
-                    if (frog1.getRange() > (separate + 1) && frog1.getRange() < ranges - 1 && count_inter == 0) {
+                    if (frog1.getRange() > (separate + 1) && frog1.getRange() < game.getRanges() - 1 && count_inter == 0) {
                         frog1.setTrunk_intersection(false);
                         player_collision = minim.loadFile(music_collision);
                         player_collision.setGain(-5);
                         player_collision.play();
                     }
-                    if (frog2.getRange() > (separate + 1) && frog2.getRange() < ranges - 1 && count2 == 0) {
+                    if (frog2.getRange() > (separate + 1) && frog2.getRange() < game.getRanges() - 1 && count2 == 0) {
                         frog2.setTrunk_intersection(false);
                         player_collision = minim.loadFile(music_collision);
                         player_collision.setGain(-5);
@@ -490,7 +491,7 @@ public class TestA extends PApplet {
                         }
                     }
 
-                    if (frog1.getRange() > (separate + 1) && frog1.getRange() < ranges - 1 && count2 == 0) {
+                    if (frog1.getRange() > (separate + 1) && frog1.getRange() < game.getRanges() - 1 && count2 == 0) {
                         frog1.setTrunk_intersection(false);
                         player_collision = minim.loadFile(music_collision);
                         player_collision.setGain(-5);
@@ -521,7 +522,7 @@ public class TestA extends PApplet {
             }
 
             if (game.getDiff() == "INFINITE"){
-                board.create_text("Score : "+ score_inf, 20, grid/2, grid/2, 255, 255, 255);
+                board.create_text("Score : "+ score_inf, 20, game.getGrid()/2, game.getGrid()/2, 255, 255, 255);
                 if (frog1.isGAMEOVER()) {
                     player_collision = minim.loadFile(music_collision);
                     player_collision.setGain(-5);
@@ -530,16 +531,16 @@ public class TestA extends PApplet {
                     player_defeat_infinity = minim.loadFile(music_defeat_infinity);
                     player_defeat_infinity.play();
                     remark = endless_treatment(record_infinity,score_inf);
-                    board.create_text("Your score is " + score_inf, 32, game.getGame_width() / 2 - 6*grid, game.getGame_height() / 2, 0, 255, 0);
-                    board.create_text(remark, 32, game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + grid, 0, 255, 0);
+                    board.create_text("Your score is " + score_inf, 32, game.getGame_width() / 2 - 6*game.getGrid(), game.getGame_height() / 2, 0, 255, 0);
+                    board.create_text(remark, 32, game.getGame_width() / 2 -  6*game.getGrid(), game.getGame_height() / 2 + game.getGrid(), 0, 255, 0);
                     this.stop();
                 }
             } else {
-                board.create_text(t_i + "s", 20, grid / 2, grid / 2, 0, 0, 0);
+                board.create_text(t_i + "s", 20, game.getGrid() / 2, game.getGrid() / 2, 0, 0, 0);
 
                 if (game.getGameState()) {
 
-                    board.create_text("Congratulations ! You beat Frogger in " + t_i + "s.", 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2, 255, 255, 255);
+                    board.create_text("Congratulations ! You beat Frogger in " + t_i + "s.", 32, game.getGame_width() / 2 - 6 * game.getGrid(), game.getGame_height() / 2, 255, 255, 255);
                     if (game.getDiff() == "EASY"){
                         player_easy.close();
                         player_victory_easy = minim.loadFile(music_victory_easy);
@@ -554,7 +555,7 @@ public class TestA extends PApplet {
                         player_victory_hard.play();
                         remark = record_treatment(record_hard, t_i);
                     }
-                    board.create_text(remark, 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2 + grid, 255, 255, 0);
+                    board.create_text(remark, 32, game.getGame_width() / 2 - 6 * game.getGrid(), game.getGame_height() / 2 + game.getGrid(), 255, 255, 0);
                     this.stop();
 
                 }
@@ -570,20 +571,20 @@ public class TestA extends PApplet {
                 player_jump = minim.loadFile(music_jump);
                 player_jump.setGain(-2);
                 player_jump.play();
-                game.move_allCars(cars, grid);
+                game.move_allCars(cars, game.getGrid());
                 frog1.setRange(frog1.getRange()+1);
             }
             if (keyCode == Direction.RIGHT||keyCode == Direction.D){
                 player_jump = minim.loadFile(music_jump);
                 player_jump.setGain(-2);
                 player_jump.play();
-                frog1.move(grid, 0);
+                frog1.move(game.getGrid(), 0);
             }
             if (keyCode == Direction.LEFT||keyCode == Direction.Q){
                 player_jump = minim.loadFile(music_jump);
                 player_jump.setGain(-2);
                 player_jump.play();
-                frog1.move(-grid, 0);
+                frog1.move(-game.getGrid(), 0);
             }
         }
         else {
@@ -592,27 +593,27 @@ public class TestA extends PApplet {
                     player_jump = minim.loadFile(music_jump);
                     player_jump.setGain(-2);
                     player_jump.play();
-                    frog1.move(0,- grid);
+                    frog1.move(0,- game.getGrid());
                     frog1.setRange(frog1.getRange()+1);
                 }
                 if (keyCode ==Direction.DOWN || keyCode == Direction.S){
                     player_jump = minim.loadFile(music_jump);
                     player_jump.setGain(-2);
                     player_jump.play();
-                    frog1.move(0, grid);
+                    frog1.move(0, game.getGrid());
                     frog1.setRange(frog1.getRange()-1);
                 }
                 if (keyCode == Direction.RIGHT||keyCode == Direction.D){
                     player_jump = minim.loadFile(music_jump);
                     player_jump.setGain(-2);
                     player_jump.play();
-                    frog1.move(grid, 0);
+                    frog1.move(game.getGrid(), 0);
                 }
                 if (keyCode == Direction.LEFT||keyCode == Direction.Q){
                     player_jump = minim.loadFile(music_jump);
                     player_jump.setGain(-2);
                     player_jump.play();
-                    frog1.move(-grid, 0);
+                    frog1.move(-game.getGrid(), 0);
                 }
             }
             if (game.getPlayerMode()=="2 PLAYERS"){
@@ -620,52 +621,52 @@ public class TestA extends PApplet {
                     player_jump = minim.loadFile(music_jump);
                     player_jump.setGain(-2);
                     player_jump.play();
-                    frog2.move(0,- grid);
+                    frog2.move(0,- game.getGrid());
                     frog2.setRange(frog2.getRange()+1);
                 }
                 if (keyCode ==Direction.DOWN){
                     player_jump = minim.loadFile(music_jump);
                     player_jump.setGain(-2);
                     player_jump.play();
-                    frog2.move(0, grid);
+                    frog2.move(0, game.getGrid());
                     frog2.setRange(frog2.getRange()-1);
                 }
                 if (keyCode == Direction.RIGHT){
                     player_jump = minim.loadFile(music_jump);
                     player_jump.setGain(-2);
                     player_jump.play();
-                    frog2.move(grid,0);
+                    frog2.move(game.getGrid(),0);
                 }
                 if (keyCode == Direction.LEFT){
                     player_jump = minim.loadFile(music_jump);
                     player_jump.setGain(-2);
                     player_jump.play();
-                    frog2.move(-grid,0);
+                    frog2.move(-game.getGrid(),0);
                 }
                 if (keyCode == Direction.Z){
                     player_jump = minim.loadFile(music_jump);
                     player_jump.setGain(-2);
                     player_jump.play();
-                    frog1.move(0,- grid);
+                    frog1.move(0,- game.getGrid());
                     frog1.setRange(frog1.getRange()+1);
                 }
                 if (keyCode ==Direction.Q){
                     player_jump = minim.loadFile(music_jump);
                     player_jump.setGain(-2);
                     player_jump.play();
-                    frog1.move(-grid,0);
+                    frog1.move(-game.getGrid(),0);
                 }
                 if (keyCode == Direction.D){
                     player_jump = minim.loadFile(music_jump);
                     player_jump.setGain(-2);
                     player_jump.play();
-                    frog1.move(grid,0);
+                    frog1.move(game.getGrid(),0);
                 }
                 if (keyCode == Direction.S){
                     player_jump = minim.loadFile(music_jump);
                     player_jump.setGain(-2);
                     player_jump.play();
-                    frog1.move(0,grid);
+                    frog1.move(0,game.getGrid());
                     frog1.setRange(frog1.getRange()-1);
                 }
             }
