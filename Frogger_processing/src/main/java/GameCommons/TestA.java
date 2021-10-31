@@ -8,6 +8,7 @@ import processing.core.PApplet;
 import GraphicalElements.Element;
 import processing.core.PImage;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -321,12 +322,17 @@ public class TestA extends PApplet {
                 board.show_image(im_leaderboard_easy, 180, 70, 500, 600);
                 buttonBack.show();
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
+                try{
                 scores = get_leaderboard_data(record);
                 int x = 415;
                 int y = 265;
                 for (String score: scores) {
                     board.create_text(score.split(" ")[1], 25,x, y,0,0,0);
                     y += 35;
+                }}
+                catch(IOException e){
+                    board.create_case(480, 70, 840, 0, 0,0,0);
+                    board.create_text("Warning : \nPath specified for score reading not found", 20, 480, 30, 255,0,0);
                 }
             }
             // LEADERBOARD HARD
@@ -335,6 +341,7 @@ public class TestA extends PApplet {
                 board.show_image(im_leaderboard_hard, 180, 70, 500, 600);
                 buttonBack.show();
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
+                try{
                 scores = get_leaderboard_data(record_hard);
                 int x = 415;
                 int y = 265;
@@ -342,6 +349,10 @@ public class TestA extends PApplet {
                     board.create_text(score.split(" ")[1], 25,x, y,0,0,0);
                     y += 35;
                 }
+                }catch(IOException e){
+                board.create_case(480, 70, 840, 0, 0,0,0);
+                board.create_text("Warning : \nPath specified for score reading not found", 20, 480, 30, 255,0,0);
+            }
             }
             // LEADERBOARD INFINITY
             if (game.getLeaderboard() == "INFINITE") {
@@ -349,19 +360,24 @@ public class TestA extends PApplet {
                 board.show_image(im_leaderboard_infinity, 180, 70, 500, 600);
                 buttonBack.show();
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
+                try{
                 scores = get_leaderboard_data(record_infinity);
                 int x = 415;
                 int y = 265;
                 for (String score: scores) {
                     board.create_text(score.split(" ")[1], 25,x, y,0,0,0);
                     y += 35;
+                }}
+                catch(IOException e){
+                    board.create_case(480, 70, 840, 0, 0,0,0);
+                    board.create_text("Warning : \nPath specified for score reading not found", 20, 480, 30, 255,0,0);
                 }
             }
 
             // LE RETOUR DU BOUTON RETOUR
-            if (buttonBack.click_event()) {
+            if (buttonBack.click_event() && game.getLeaderboard()!=null) {
                 game.setLeaderboard(null);
-            }
+                }
 
             // INITIALISER LE JEU UNE FOIS QUE L'ON A LE PLAYERMODE ET LE NIVEAU DE DIFFICULTE
             frog1 = game.setFrog(1);
