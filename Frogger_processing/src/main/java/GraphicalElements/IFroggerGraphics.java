@@ -28,6 +28,7 @@ public interface IFroggerGraphics {
      * @param r La valeur en nuance de rouge
      * @param g La valeur en nuance de vert
      * @param b La valeur en nuance de bleu
+     * @throws NullPointerException si le text spécifié est null. Peut arriver lorsque le texte à afficher est lu dans un fichier au chemin mal déclaré
      */
     abstract void create_text(String text, int size, int x, int y, int r, int g, int b);
     /**
@@ -40,6 +41,7 @@ public interface IFroggerGraphics {
      * @param img L'image à afficher en arrière plan
      * @param width La largeur de l'arrière-plan
      * @param height La hauteur de l'arrière-plan
+     * @throws NullPointerException
      */
     abstract void background_im(PImage img, int width, int height);
     /**

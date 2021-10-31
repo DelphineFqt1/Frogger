@@ -9,6 +9,7 @@ import GraphicalElements.Element;
 import processing.core.PImage;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -323,12 +324,17 @@ public class Test1 extends PApplet {
                 board.create_case(670, 700, 800, 660, 255, 255, 255);
                 board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
                 board.show_image(im_back_arrow,680,662, 38, 38);
+                try{
                 scores = get_leaderboard_data(record);
                 int x = 415;
                 int y = 265;
                 for (String score: scores) {
                     board.create_text(score.split(" ")[1], 25,x, y,0,0,0);
                     y += 35;
+                }}
+                catch (IOException e){
+                    board.create_case(520, 80, 840, 0, 0,0,0);
+                    board.create_text("Warning : \nPath specified for score reading not found", 20, 520, 30, 255,0,0);
                 }
             }
             // LEADERBOARD HARD
@@ -338,12 +344,17 @@ public class Test1 extends PApplet {
                 board.create_case(670, 700, 800, 660, 255, 255, 255);
                 board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
                 board.show_image(im_back_arrow,680,662, 38, 38);
+                try{
                 scores = get_leaderboard_data(record_hard);
                 int x = 415;
                 int y = 265;
                 for (String score: scores) {
                     board.create_text(score.split(" ")[1], 25,x, y,0,0,0);
                     y += 35;
+                }}
+                catch(IOException e){
+                    board.create_case(520, 80, 840, 0, 0,0,0);
+                    board.create_text("Warning : \nPath specified for score reading not found", 20, 520, 30, 255,0,0);
                 }
             }
             // LEADERBOARD INFINITY
@@ -353,12 +364,17 @@ public class Test1 extends PApplet {
                 board.create_case(670, 700, 800, 660, 255, 255, 255);
                 board.create_text("BACK", 25, 720 , 690, 0, 0, 0);
                 board.show_image(im_back_arrow,680,662, 38, 38);
+                try{
                 scores = get_leaderboard_data(record_infinity);
                 int x = 415;
                 int y = 265;
                 for (String score: scores) {
                     board.create_text(score.split(" ")[1], 25,x, y,0,0,0);
                     y += 35;
+                }}
+                catch(IOException e){
+                    board.create_case(520, 80, 840, 0, 0,0,0);
+                    board.create_text("Warning : \nPath specified for score reading not found", 20, 520, 30, 255,0,0);
                 }
             }
 

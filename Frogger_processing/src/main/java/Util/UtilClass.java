@@ -125,14 +125,13 @@ public class UtilClass {
             Random rand = new Random();
             return rand.nextInt(4) +1;
         }
-
     }
 
     /**
      * Récupère les données d'un leaderboard déclaré en Path (pour le bouton leaderboard)
      * @param path Le chemin du fichier à récupérer
      */
-    public static ArrayList<String> get_leaderboard_data(Path path) {
+    public static ArrayList<String> get_leaderboard_data(Path path) throws IOException {
         ArrayList<String> scores = new ArrayList<String>();
         String line;
         try{
@@ -143,7 +142,7 @@ public class UtilClass {
             }
         }
         catch (IOException e) {
-            e.printStackTrace();
+            throw new IOException("Chemin spécifié introuvable");
         }
 
         return scores;
