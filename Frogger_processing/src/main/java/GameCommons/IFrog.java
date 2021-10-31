@@ -2,6 +2,9 @@ package GameCommons;
 
 import MovingElements.Frog;
 
+/**
+ * Regroupe les méthodes dédiées à la gestion des grenouilles, notamment leur initalisation et leur contrôle d'état
+ */
 public interface IFrog {
 /**
  * Initialise une instance de Frog en début de partie

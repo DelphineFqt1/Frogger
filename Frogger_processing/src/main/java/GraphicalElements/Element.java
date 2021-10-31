@@ -29,9 +29,15 @@ public class Element implements IFroggerGraphics {
 
     @Override
     public void create_text(String text, int size, int x, int y, int r, int g, int b) {
-        P.textSize(size);
-        P.fill(r, g, b);
-        P.text(text, x, y);
+        try {
+            P.textSize(size);
+            P.fill(r, g, b);
+            P.text(text, x, y);
+        }
+        catch (NullPointerException e){
+            create_case(520, 220, 840, 80, 0,0,0);
+            create_text("Warning : \nText specified is null\nMaybe caused by text reading\n in a non-existant file", 20, 520, 110, 255,0,0);
+        }
     }
 
     @Override
@@ -41,8 +47,8 @@ public class Element implements IFroggerGraphics {
         }
         catch (NullPointerException e){
             create_case(left, bottom + height, left+width, bottom, 255,255,255);
-            create_case(450, 80, 840, 0, 0,0,0);
-            create_text("Warning : Running in Error mode\nPaths specified for images not found", 25, 450, 30, 255,0,0);
+            create_case(520, 80, 840, 0, 0,0,0);
+            create_text("Warning : \nPaths specified for images not found", 20, 520, 30, 255,0,0);
         }
     }
 
@@ -73,8 +79,7 @@ public class Element implements IFroggerGraphics {
         }
         catch (NullPointerException e){
             background(0);
-            create_case(350, 80, 840, 0, 0,0,0);
-            create_text("Warning : Running in Error mode\nPath specified for background image not found", 25, 350, 30, 255,0,0);
+            create_text("Warning : \nPath specified for background image not found", 20, 10, 30, 255,0,0);
         }
     }
 

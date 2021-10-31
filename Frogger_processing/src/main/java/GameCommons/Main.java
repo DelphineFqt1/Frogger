@@ -51,26 +51,24 @@ public class Main extends PApplet {
 
     @Override
     public void settings() {
-        PlayerMode = "2 PLAYERS";
-        ranges = 16; // de préférence pair
-        columns = 19;
-        grid = 45;
-        separate = ranges/2 ;
+
+        ranges = -16; // de préférence pair
+        columns = -19;
+        grid = -45;
+
         board = new Element(this);
         game = new Game(grid, ranges, columns);
+        //game.setPlayerMode("2 PLAYERS");
+        separate = game.getRanges()/2 ;
         board.size(game.getGame_width(), game.getGame_height());
     }
 
     @Override
     public void setup() {
 
-        if (game.getPlayerMode()=="2 PLAYERS"){
         frog1 = game.setFrog(1);
         frog2 = game.setFrog(2);
-        }
-        else {
-            frog2 = game.setFrog(1);
-        }
+
         im_frog2 = loadImage("src/main/java/Images/frog2.png");
         im_frog = loadImage("src/main/java/Images/frog.png");
         im_menu = loadImage("src/main/java/Images/Menu.png");
@@ -79,7 +77,7 @@ public class Main extends PApplet {
         im_car_left = loadImage("src/main/java/Images/car_left.png");
         im_trunk = loadImage("src/main/java/Images/trunk.png");
         cars = game.allCars(separate);
-        trunks = game.allTrunks(separate+2, ranges-2);
+        trunks = game.allTrunks(separate+2, game.getRanges()-2);
     }
 
     @Override
@@ -92,9 +90,9 @@ public class Main extends PApplet {
             t_i = (millis() - t1) / 1000;
 
 
-            board.create_case(0, (separate - 1) * grid, game.getGame_width(), game.getGame_height() - grid, 20, 20, 30);
-            board.create_case(0, (separate - 2) * grid, game.getGame_width(), grid, 0, 50, 100);
-            board.create_case(0, grid, game.getGame_width(), 0, 0, 200, 0);
+            board.create_case(0, (separate - 1) * game.getGrid(), game.getGame_width(), game.getGame_height() - game.getGrid(), 20, 20, 30);
+            board.create_case(0, (separate - 2) * game.getGrid(), game.getGame_width(), game.getGrid(), 0, 50, 100);
+            board.create_case(0, game.getGrid(), game.getGame_width(), 0, 0, 200, 0);
 
             if (game.getPlayerMode() == "2 PLAYERS") {
 
@@ -139,10 +137,10 @@ public class Main extends PApplet {
                 }
 
 
-                if (frog1.getRange() > (separate + 1) && frog1.getRange() < ranges - 1 && count_inter == 0) {
+                if (frog1.getRange() > (separate + 1) && frog1.getRange() < game.getRanges() - 1 && count_inter == 0) {
                     frog1.setTrunk_intersection(false);
                 }
-                if (frog2.getRange() > (separate + 1) && frog2.getRange() < ranges - 1 && count2 == 0) {
+                if (frog2.getRange() > (separate + 1) && frog2.getRange() < game.getRanges() - 1 && count2 == 0) {
                     frog2.setTrunk_intersection(false);
                 }
                 board.show_image(im_frog, frog1.getLeft(), frog1.getBottom(), frog1.getWidth(), frog1.getHeight());
@@ -180,7 +178,7 @@ public class Main extends PApplet {
                     }
                 }
 
-                if (frog2.getRange() > (separate + 1) && frog2.getRange() < ranges - 1 && count2 == 0) {
+                if (frog2.getRange() > (separate + 1) && frog2.getRange() < game.getRanges() - 1 && count2 == 0) {
                     frog2.setTrunk_intersection(false);
                 }
                 board.show_image(im_frog2, frog2.getLeft(), frog2.getBottom(), frog2.getWidth(), frog2.getHeight());
@@ -188,16 +186,16 @@ public class Main extends PApplet {
 
 
             }
-            board.create_text(t_i + "s", 20, grid / 2, grid / 2, 0, 0, 0);
+            board.create_text(t_i + "s", 20, game.getGrid() / 2, game.getGrid() / 2, 0, 0, 0);
 
 
             if (game.getGameState()) {
                 t2 = millis();
                 t_fin = (t2 - t1) / 1000;
 
-                board.create_text("Congratulations ! You beat Frogger in " + t_fin + "s.", 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2, 255, 255, 255);
+                board.create_text("Congratulations ! You beat Frogger in " + t_fin + "s.", 32, game.getGame_width() / 2 - 6 * game.getGrid(), game.getGame_height() / 2, 255, 255, 255);
                 remark = record_treatment(record, t_fin);
-                board.create_text(remark, 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2 + grid, 255, 255, 0);
+                board.create_text(remark, 32, game.getGame_width() / 2 - 6 * game.getGrid(), game.getGame_height() / 2 + game.getGrid(), 255, 255, 0);
                 this.stop();
 
             }
@@ -208,38 +206,38 @@ public class Main extends PApplet {
     @Override
     public void keyPressed() {
         if (keyCode == UP){
-            frog2.move(0,-grid);
+            frog2.move(0,-game.getGrid());
             frog2.setRange(frog2.getRange()+1);
             //System.out.println("bottom :" + frog.getBottom());
 
         }
         else if (keyCode == DOWN){
-            frog2.move(0,grid);
+            frog2.move(0,game.getGrid());
             frog2.setRange(frog2.getRange()-1);
         }
         else if (keyCode == RIGHT) {
-            frog2.move(grid, 0);
+            frog2.move(game.getGrid(), 0);
         }
         else if (keyCode == LEFT){
-            frog2.move(-grid,0);
+            frog2.move(-game.getGrid(),0);
 
         }
         try {
              if (keyCode == 90) {
-                frog1.move(0, -grid);
+                frog1.move(0, -game.getGrid());
                 frog1.setRange(frog1.getRange() + 1);
 
 
             } else if (keyCode == 83) {
-                frog1.move(0, grid);
+                frog1.move(0, game.getGrid());
                 frog1.setRange(frog1.getRange() - 1);
 
 
             } else if (keyCode == 68) {
-                frog1.move(grid, 0);
+                frog1.move(game.getGrid(), 0);
 
             } else if (keyCode == 81) {
-                frog1.move(-grid, 0);
+                frog1.move(-game.getGrid(), 0);
 
             }
         }

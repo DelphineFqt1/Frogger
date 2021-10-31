@@ -4,6 +4,9 @@ import MovingElements.Obstacle.Car;
 import MovingElements.Obstacle.Trunk;
 import java.util.ArrayList;
 
+/**
+ * Regroupe les méthodes édiées à la gestion de l'environnement, notamment l'initialisation des obstacles
+ */
 public interface IEnvironment {
 
     /**
