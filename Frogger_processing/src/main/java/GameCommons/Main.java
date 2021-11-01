@@ -74,7 +74,7 @@ public class Main extends PApplet {
         im_frog2 = loadImage("src/main/java/Images/frog2.png");
         im_frog = loadImage("src/main/java/Images/frog.png");
         im_menu = loadImage("src/main/java/Images/Menu.png");
-        record = Paths.get("src/main/java/GameCommons/Record_hard");
+        record = Paths.get("src/main/java/GameCommons/Record_easy");
         im_car_right = loadImage("src/main/java/Images/car_right.png");
         im_car_left = loadImage("src/main/java/Images/car_left.png");
         im_trunk = loadImage("src/main/java/Images/trunk.png");

@@ -397,7 +397,8 @@ public class TestA extends PApplet {
             // On récupère le temps où le joueur lance une partie (une seule fois)
             t_i = (millis()-t1)/1000;
             board.background(25);
-            if (game.getDiff() == "HARD") {  // AFFICHE LA LIGNE D'EAU ET L'ARRIVEE EN MODE HARD
+            if (game.getDiff() == "HARD") {  // AFFICHE LA LIGNE D'EAU, LA DEMARCATION AVEC L'AUTOROUTE ET L'ARRIVEE EN MODE HARD
+                board.create_case(0, (separate - 1) * game.getGrid(), game.getGame_width(), game.getGame_height() - game.getGrid(), 20, 20, 30);
                 board.create_case(0, (separate - 2) * grid, game.getGame_width(), grid, 0, 50, 100);
                 board.create_case(0, grid, game.getGame_width(), 0, 0, 200, 0);
             } else if (game.getDiff() == "EASY") {  // AFFICHE SEULEMENT L'ARRIVEE EN MODE EASY
