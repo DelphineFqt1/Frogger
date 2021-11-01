@@ -56,7 +56,7 @@ public class UtilClass {
             }
             fw.close();
         }
-        catch (IOException e) {
+        catch (NumberFormatException | StringIndexOutOfBoundsException | IOException e) {
             e.printStackTrace();
         }
         return remark;
@@ -104,7 +104,7 @@ public class UtilClass {
             }
             fw.close();
         }
-        catch (IOException e) {
+        catch (NumberFormatException | StringIndexOutOfBoundsException | IOException e){
             e.printStackTrace();
         }
         return remark;

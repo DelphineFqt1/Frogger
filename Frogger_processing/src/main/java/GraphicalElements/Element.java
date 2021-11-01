@@ -36,7 +36,7 @@ public class Element implements IFroggerGraphics {
         }
         catch (NullPointerException e){
             create_case(520, 220, 840, 80, 0,0,0);
-            create_text("Warning : \nText specified is null\nMaybe caused by text reading\n in a non-existant file", 20, 520, 110, 255,0,0);
+            create_text("Warning : \nText specified is null\nMaybe caused by text reading\n in a file / non-existant file", 20, 520, 110, 255,0,0);
         }
     }
 
