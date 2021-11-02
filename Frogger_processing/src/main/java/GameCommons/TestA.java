@@ -540,6 +540,7 @@ public class TestA extends PApplet {
             if (game.getDiff() == "INFINITE"){
                 board.create_text("Score : "+ score_inf, 20, grid/2, grid/2, 255, 255, 255);
                 if (frog1.isGAMEOVER()) {
+                    game.setGameState(true);
                     player_collision = minim.loadFile(music_collision);
                     player_collision.setGain(-5);
                     player_collision.play();
@@ -549,7 +550,7 @@ public class TestA extends PApplet {
                     remark = endless_treatment(record_infinity,score_inf);
                     board.create_text("Your score is " + score_inf, 32, game.getGame_width() / 2 - 6*grid, game.getGame_height() / 2, 0, 255, 0);
                     board.create_text(remark, 32, game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + grid, 0, 255, 0);
-                    this.stop();
+                    this.noLoop();
                 }
             } else {
                 board.create_text(t_i + "s", 20, grid / 2, grid / 2, 0, 0, 0);
@@ -572,7 +573,12 @@ public class TestA extends PApplet {
                         remark = record_treatment(record_hard, t_i);
                     }
                     board.create_text(remark, 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2 + grid, 255, 255, 0);
-                    this.stop();
+                    this.noLoop();
+                    buttonBack.show();
+                    if (buttonBack.click_event()){
+                        game.setPlayerMode(null);
+                        game.setDiff(null);
+                    }
 
                 }
             }
@@ -582,6 +588,10 @@ public class TestA extends PApplet {
 
     @Override
     public void keyPressed() {
+        if (game.getGameState() && keyCode==32){
+            this.loop();
+            game.reset_game();
+        }
         if (game.getDiff()=="INFINITE"){
             if (keyCode == Direction.UP||keyCode == Direction.Z){
                 player_jump = minim.loadFile(music_jump);

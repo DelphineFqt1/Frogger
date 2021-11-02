@@ -5,7 +5,7 @@ import MovingElements.Obstacle.Trunk;
 import java.util.ArrayList;
 
 /**
- * Regroupe les méthodes édiées à la gestion de l'environnement, notamment l'initialisation des obstacles
+ * Regroupe les méthodes dédiées à la gestion de l'environnement, notamment l'initialisation des obstacles
  */
 public interface IEnvironment {
 
@@ -42,6 +42,10 @@ public interface IEnvironment {
      * @param ydir Le pas de déplacement vers le bas des voitures, en nombre de pixels
      */
     abstract void move_allCars(ArrayList<ArrayList<Car>> allCars, int ydir);
+    /**
+     *  Réinitialise les états du jeu (PlayerMode, Diff, leaderboard, gameState)
+     */
+    abstract void reset_game();
 
 
 }
