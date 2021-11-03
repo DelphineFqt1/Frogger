@@ -24,10 +24,16 @@ Voici les étapes à suivre pour jouer à Frogger avec [IntelliJ IDEA](https://w
 
 • Toujours dans File/Project Structure sélectionner le module core et cliquer sur Apply
 
+• Ouvrir l'application Processing et cliquer sur Sketch --> Importer une libraire --> Ajouter une librairie, chercher la librairie Minim et l'installer
+
+• Aller dans File/Project Structure (Ctrl+Alt+Maj+S) et ajouter la librairie du répertoire minim de Processing (ce dossier se trouve dans Mes Documents)
+
+• Toujours dans File/Project Structure sélectionner le module jl1.0.1 et cliquer sur Apply
+
 • Exécuter le fichier Main.java
 
 ## Visuel du jeu
-![plot](./Frogger_processing/src/main/java/Images/visu_frogger1.png)
+![plot](./Frogger_processing/src/main/java/Resources/Images/visu_frogger1.png)
 
 ## Remerciements
 Nous tenons à remercier Raúl Mazo Peña et Hiba Hnaini pour leur précieux accompagnement au cours de ce projet.
