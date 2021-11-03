@@ -13,6 +13,8 @@ Trois modes de jeu sont disponibles:
 
 Il est possible de jouer seul(e) ou à 2.
 
+Une version Beta est également disponible pour lancer le jeu avec route et rivière, et sans son.
+
 ## Installation
 Voici les étapes à suivre pour jouer à Frogger avec [IntelliJ IDEA](https://www.jetbrains.com/fr-fr/idea/):
 
