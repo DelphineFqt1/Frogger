@@ -33,7 +33,7 @@ Voici les étapes à suivre pour jouer à Frogger avec [IntelliJ IDEA](https://w
 • Executer le fichier Main.java
 
 ## Visuel du jeu
-![plot](./Frogger_processing/src/main/java/Images/visu_frogger1.png)
+![plot](./Frogger_processing/src/main/java/Resources/Images/visu_frogger1.png)
 
 ## Remerciements
 Nous tenons à remercier Raúl Mazo Peña et Hiba Hnaini pour leur précieux accompagnement au cours de ce projet.
