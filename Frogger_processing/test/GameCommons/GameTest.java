@@ -135,6 +135,14 @@ class GameTest {
         assertTrue(game.getGameState());
     }
 
+    @Test
+    void reset_game() {
+        Game game = new Game(45,16,19);
+        game.reset_game();
+        assertNull(game.getPlayerMode());
+        assertNull(game.getDiff());
+        assertFalse(game.getGameState());
+    }
 
     @Test
     void getPlayerMode() {

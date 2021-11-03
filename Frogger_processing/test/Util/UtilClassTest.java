@@ -75,11 +75,6 @@ class UtilClassTest {
         int random = UtilClass.random_btw(-5, 5);
         // On vérifie que le nombre respecte les bornes
         assertTrue(random > -5 && random < 5);
-        // On vérifie qu'il est généré aléatoirement
-        // Erreur de temps en temps car meme en générant aléatoirement il est possible d'obtenir le meme nombre sur 200 valeurs
-        int random2 = UtilClass.random_btw(-100, 100);
-        int random3 = UtilClass.random_btw(-100, 100);
-        assertTrue(random2 != random3);
     }
 
     @Test
