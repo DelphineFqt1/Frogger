@@ -46,20 +46,12 @@ public class Game implements IFrog, IEnvironment {
         int x = random_btw(0, getGame_width());
         int number = random_btw(2, 3);
         int speed;
-        int k = random_btw(0, 1);
+        int k = random_btw(2, 3);
         if(range%2==0) {
-            if (k == 0) {
-                speed = 1;
-            } else {
-                speed = 2;
-            }
+            speed = k;
         }
         else {
-            if (k == 0) {
-                speed = -1;
-            } else {
-                speed = -2;
-            }
+            speed = -k;
         }
 
         ArrayList<Car> cars = new ArrayList<Car>();
@@ -84,21 +76,13 @@ public class Game implements IFrog, IEnvironment {
         int size = 3 * grid;
 
         int speed;
-        int number = random_btw(2, 3);
-        int k = random_btw(0, 1);
+        int number = random_btw(1, 3);
+        int k = random_btw(3, 5);
         if(range%2==0) {
-            if (k == 0) {
-                speed = 3;
-            } else {
-                speed = 4;
-            }
+            speed = k;
         }
         else {
-            if (k == 0) {
-                speed = -3;
-            } else {
-                speed = -4;
-            }
+            speed = -k;
         }
 
         ArrayList<Trunk> trunks = new ArrayList<Trunk>();
@@ -136,6 +120,14 @@ public class Game implements IFrog, IEnvironment {
             }
         }
     }
+
+    @Override
+    public void reset_game() {
+        setPlayerMode(null);
+        setDiff(null);
+        setGameState(false);
+    }
+
 
     @Override
     public Frog setFrog(int num) {
@@ -185,6 +177,7 @@ public class Game implements IFrog, IEnvironment {
             setGameState(true);
         }
     }
+
 
     public boolean isGameState() {
         return gameState;

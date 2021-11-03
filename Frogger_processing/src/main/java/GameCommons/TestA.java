@@ -20,6 +20,9 @@ import static Util.UtilClass.get_leaderboard_data;
 
 import ddf.minim.*;
 
+/**
+ * Main qui sert à lancer le jeu, avec des paramètres spécifiables dans le settings
+ */
 public class TestA extends PApplet {
 
     Frog frog1;
@@ -540,6 +543,7 @@ public class TestA extends PApplet {
             if (game.getDiff() == "INFINITE"){
                 board.create_text("Score : "+ score_inf, 20, grid/2, grid/2, 255, 255, 255);
                 if (frog1.isGAMEOVER()) {
+                    game.setGameState(true);
                     player_collision = minim.loadFile(music_collision);
                     player_collision.setGain(-5);
                     player_collision.play();
@@ -547,16 +551,17 @@ public class TestA extends PApplet {
                     player_defeat_infinity = minim.loadFile(music_defeat_infinity);
                     player_defeat_infinity.play();
                     remark = endless_treatment(record_infinity,score_inf);
+                    board.create_case(game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + 3*grid,game.getGame_width() / 2+7*grid,  game.getGame_height() / 2 -grid, 25, 25, 25);
                     board.create_text("Your score is " + score_inf, 32, game.getGame_width() / 2 - 6*grid, game.getGame_height() / 2, 0, 255, 0);
                     board.create_text(remark, 32, game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + grid, 0, 255, 0);
-                    this.stop();
+                    board.create_text("Click on the Space key to go back on Menu", 32, game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + 3*grid, 255, 255, 0);
+                    this.noLoop();
                 }
             } else {
                 board.create_text(t_i + "s", 20, grid / 2, grid / 2, 0, 0, 0);
 
                 if (game.getGameState()) {
 
-                    board.create_text("Congratulations ! You beat Frogger in " + t_i + "s.", 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2, 255, 255, 255);
                     if (game.getDiff() == "EASY"){
                         player_easy.close();
                         player_victory_easy = minim.loadFile(music_victory_easy);
@@ -571,8 +576,16 @@ public class TestA extends PApplet {
                         player_victory_hard.play();
                         remark = record_treatment(record_hard, t_i);
                     }
-                    board.create_text(remark, 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2 + grid, 255, 255, 0);
-                    this.stop();
+
+                    board.create_case(game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + 3*grid,game.getGame_width() / 2+8*grid,  game.getGame_height() / 2 -grid, 25, 25, 25);
+                    board.create_text("Congratulations ! You beat Frogger in " + t_i + "s", 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2, 0, 255, 0);
+                    board.create_text(remark, 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2 + grid, 0, 255, 0);
+                    board.create_text("Click on the Space key to go back on Menu", 32, game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + 3*grid, 255, 255, 0);
+                    this.noLoop();
+                    if (buttonBack.click_event()){
+                        game.setPlayerMode(null);
+                        game.setDiff(null);
+                    }
 
                 }
             }
@@ -582,6 +595,10 @@ public class TestA extends PApplet {
 
     @Override
     public void keyPressed() {
+        if (game.getGameState() && keyCode==Direction.SPACE){
+            this.loop();
+            game.reset_game();
+        }
         if (game.getDiff()=="INFINITE"){
             if (keyCode == Direction.UP||keyCode == Direction.Z){
                 player_jump = minim.loadFile(music_jump);

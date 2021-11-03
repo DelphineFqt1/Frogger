@@ -19,6 +19,9 @@ public class UtilClass {
      * @param path Le chemin du fichier texte d'un leaderboard
      * @param t Un score à trier avec la liste des valeurs dans le fichier
      * @return Une remarque selon la position de t dans la liste des scores triée
+     * @throws NumberFormatException si une chaîne lue par ParseFloat() ne correspond pas à un float
+     * @throws StringIndexOutOfBoundsException si le nombre de lignes du fichier à lire est inférieur strictement à 9
+     * @throws IOException lors d'une lecture de fichier défaillante
      */
     public static String record_treatment(Path path, float t)
 
@@ -67,6 +70,9 @@ public class UtilClass {
      * @param path Le chemin du fichier texte à exploiter
      * @param t Le score à trier avec ceux du fichier texte
      * @return Une remarque selon la position de t dans la liste des scores triée
+     * @throws NumberFormatException si une chaîne lue par ParseInt() ne correspond pas à un float
+     * @throws StringIndexOutOfBoundsException si le nombre de lignes du fichier à lire est inférieur strictement à 9
+     * @throws IOException lors d'une lecture de fichier défaillante
      */
     public static String endless_treatment(Path path, int t)
 
@@ -114,6 +120,7 @@ public class UtilClass {
  * Génère un nombre aléatoire en deux bornes (comprises)
  * @param begin borne de début
  * @param end borne de fin
+ * @throws IllegalArgumentException si (end - begin) < 1
  */
     public static int random_btw(int begin, int end) {
         try {
@@ -130,6 +137,7 @@ public class UtilClass {
     /**
      * Récupère les données d'un leaderboard déclaré en Path (pour le bouton leaderboard)
      * @param path Le chemin du fichier à récupérer
+     * @throws IOException lors d'une lecture de fichier défaillante
      */
     public static ArrayList<String> get_leaderboard_data(Path path) throws IOException {
         ArrayList<String> scores = new ArrayList<String>();
