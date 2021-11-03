@@ -20,6 +20,9 @@ import static Util.UtilClass.get_leaderboard_data;
 
 import ddf.minim.*;
 
+/**
+ * Main qui sert à lancer le jeu, avec des paramètres spécifiables dans le settings
+ */
 public class TestA extends PApplet {
 
     Frog frog1;
@@ -592,7 +595,7 @@ public class TestA extends PApplet {
 
     @Override
     public void keyPressed() {
-        if (game.getGameState() && keyCode==32){
+        if (game.getGameState() && keyCode==Direction.SPACE){
             this.loop();
             game.reset_game();
         }

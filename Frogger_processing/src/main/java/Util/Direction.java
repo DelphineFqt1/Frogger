@@ -9,9 +9,10 @@ public class Direction {
     public static int DOWN = 40;
     public static int LEFT = 37;
     public static int RIGHT = 39;
-    public static int Z=90;
-    public static int Q=81;
-    public static int S=83;
-    public static int D=68;
+    public static int Z = 90;
+    public static int Q = 81;
+    public static int S = 83;
+    public static int D = 68;
+    public static int SPACE = 32;
 
 }
