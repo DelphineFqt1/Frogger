@@ -13,6 +13,7 @@ Trois modes de jeu sont disponibles:
 
 Il est possible de jouer seul(e) ou à 2.
 
+
 ## Installation
 Voici les étapes à suivre pour jouer à Frogger avec [IntelliJ IDEA](https://www.jetbrains.com/fr-fr/idea/):
 
