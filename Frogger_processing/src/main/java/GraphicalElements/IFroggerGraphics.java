@@ -55,6 +55,7 @@ public interface IFroggerGraphics {
      * @param height La hauteur de la fenêtre de jeu
      */
     abstract void size(int width, int height);
+
     /**
      *  Affiche une PImage aux coordonnées et dimensions spécifiées (en pixels)
      * @param img L'image à afficher

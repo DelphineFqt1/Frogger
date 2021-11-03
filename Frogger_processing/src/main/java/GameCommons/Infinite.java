@@ -2,15 +2,10 @@ package GameCommons;
 
 import processing.core.PApplet;
 import MovingElements.Frog;
-import MovingElements.Obstacle;
 import MovingElements.Obstacle.Car;
-import MovingElements.Obstacle.Trunk;
 import GraphicalElements.Element;
 import processing.core.PImage;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -33,7 +28,6 @@ public class Infinite extends PApplet {
     PImage im_car;
     PImage im_rev;
     String PlayerMode;
-    String Diff;
     Path record_endless;
     String remark = null;
     int count50 = 50;
@@ -105,8 +99,6 @@ public class Infinite extends PApplet {
             }
             count50 += 50;
         }
-
-
 
         game.stateFrog(frog2,1);
 

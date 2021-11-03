@@ -571,7 +571,7 @@ public class Main extends PApplet {
                     player_defeat_infinity.play();
                     remark = endless_treatment(record_infinity,score_inf);
                     board.create_case(game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + 3*grid+10,game.getGame_width() / 2+7*grid,  game.getGame_height() / 2 -grid, 25, 25, 25);
-                    board.create_text("Your score is " + score_inf, 32, game.getGame_width() / 2 - 6*grid, game.getGame_height() / 2, 0, 255, 0);
+                    board.create_text("Your score is " + score_inf, 32, game.getGame_width() / 2 - 3*grid, game.getGame_height() / 2, 0, 255, 0);
                     board.create_text(remark, 32, game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + grid, 0, 255, 0);
                     board.create_text("Press the Space key to go back on Menu", 32, game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + 3*grid, 255, 255, 0);
                     this.noLoop();
