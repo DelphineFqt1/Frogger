@@ -7,14 +7,14 @@ import processing.core.PImage;
 
 
 /**
- * La classe Element dispose de méthodes graphiques dont le support est une instance de PApplet, prise comme attribut
+ * La classe Element dispose de methodes graphiques dont le support est une instance de PApplet, prise comme attribut
  */
 public class Element implements IFroggerGraphics {
 
     PApplet P;
 
     /**
-     * @param P Une instance de PApplet qui lance une IHM et qui sert de support à l'affichage des méthodes graphiques de la classe
+     * @param P Une instance de PApplet qui lance une IHM et qui sert de support a l'affichage des methodes graphiques de la classe
      */
     public Element(PApplet P){
         this.P = P;

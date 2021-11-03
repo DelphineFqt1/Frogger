@@ -1,7 +1,7 @@
 package MovingElements;
 
 /**
- * Classe mère abtraite de tous les objets mobiles du jeu (Frog, Car, Trunk)
+ * Classe mere abtraite de tous les objets mobiles du jeu (Frog, Car, Trunk)
  */
 public abstract class Moving {
     private int left;

@@ -46,7 +46,7 @@ public class Beta extends PApplet {
     @Override
     public void settings() {
 
-        ranges = -16; // de préférence pair
+        ranges = -16; // de preference pair
         columns = -19;
         grid = -45;
         playermode = "2 PLAYERS";

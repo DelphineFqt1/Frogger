@@ -1,7 +1,7 @@
 package MovingElements;
 
 /**
- * Classe mère abstraite des obstacles du jeu (Car et Trunk). Un Obstacle prend en attribut des limites horizontales et verticales qu'il ne pourra pas dépasser
+ * Classe mere abstraite des obstacles du jeu (Car et Trunk). Un Obstacle prend en attribut des limites horizontales et verticales qu'il ne pourra pas depasser
  */
 public abstract class Obstacle extends Moving{
 
@@ -31,9 +31,9 @@ public abstract class Obstacle extends Moving{
     }
 
     /**
-     *  Additionne respectivement les paramètres spécifiés (en pixels) aux coordonnées d'un Obstacle. Si l'obstacle déborde de la fenêtre, il est réinitialisé à l'extrémité opposée de l'écran
-     * @param xdir Le pas (en pixels) qui va s'ajouter aux coordonnées horizontales (axe Ox) de l'obstacle
-     * @param ydir Le pas (en pixels) qui va s'ajouter aux coordonnées verticales (axe Oy) de l'obstacle
+     *  Additionne respectivement les parametres specifies (en pixels) aux coordonnees d'un Obstacle. Si l'obstacle deborde de la fenetre, il est reinitialise a l'extremite opposee de l'ecran
+     * @param xdir Le pas (en pixels) qui va s'ajouter aux coordonnees horizontales (axe Ox) de l'obstacle
+     * @param ydir Le pas (en pixels) qui va s'ajouter aux coordonnees verticales (axe Oy) de l'obstacle
      */
     @Override
     public void move(int xdir, int ydir) {
@@ -56,7 +56,7 @@ public abstract class Obstacle extends Moving{
         }
 
 /**
- * Classe représentant la voiture
+ * Classe representant la voiture
  */
     public static class Car extends Obstacle{
 
@@ -71,7 +71,7 @@ public abstract class Obstacle extends Moving{
     }
 
     /**
-     * Classe représentant le tronc
+     * Classe representant le tronc
      */
     public static class Trunk extends Obstacle{
         public Trunk(int x, int y, int width, int height, int range, int speed, int abs_limit, int ord_lim) {

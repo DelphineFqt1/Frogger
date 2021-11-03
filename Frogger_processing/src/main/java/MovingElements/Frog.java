@@ -1,7 +1,7 @@
 package MovingElements;
 
 /**
- * Représente la grenouille, personnage contrôlable du jeu
+ * Represente la grenouille, personnage controlable du jeu
  */
 public class Frog extends Moving{
     private int range;
@@ -13,23 +13,23 @@ public class Frog extends Moving{
 
 
     /**
-     * @param x L'abscisse du côté latéral gauche de la grenouille
-     * @param y L'ordonnée du côté inférieur de la grenouille
-     * @param width La largeur ainsi que la hauteur de la grenouille. Elle est donc modélisée par un carré
+     * @param x L'abscisse du cote lateral gauche de la grenouille
+     * @param y L'ordonnee du cote inferieur de la grenouille
+     * @param width La largeur ainsi que la hauteur de la grenouille. Elle est donc modelisee par un carre
      */
     public Frog(int x, int y, int width) {
         super(x, y, width, width, 0, 0);
         this.car_intersection = false; // signale si frog intersecte un car
         this.trunk_intersection = true; // signale si frog est sur un tronc ou pas
-        this.GAMEOVER = false; // utile en mode infini où me GAMEOVER signifie la fin de la partie de jeu
+        this.GAMEOVER = false; // utile en mode infini ou me GAMEOVER signifie la fin de la partie de jeu
     }
 
 
 
     /**
-     *  Additionne respectivement paramètres spécifiés (en pixels) aux coordonnées horizontales et verticales d'un Frog
-     * @param xdir Le pas (en pixels) qui va s'ajouter aux coordonnées horizontales (axe Ox) de la grenouille
-     * @param ydir Le pas (en pixels) qui va s'ajouter aux coordonnées verticales (axe Oy) de la grenouille
+     *  Additionne respectivement parametres specifies (en pixels) aux coordonnees horizontales et verticales d'un Frog
+     * @param xdir Le pas (en pixels) qui va s'ajouter aux coordonnees horizontales (axe Ox) de la grenouille
+     * @param ydir Le pas (en pixels) qui va s'ajouter aux coordonnees verticales (axe Oy) de la grenouille
      */
     @Override
     public void move(int xdir, int ydir) {
@@ -46,10 +46,10 @@ public class Frog extends Moving{
     }
 
     /**
-     *  Détermine si la grenouille est en intersection avec une instance d'Obstacle (Car ou Trunk)
+     *  Determine si la grenouille est en intersection avec une instance d'Obstacle (Car ou Trunk)
      * @param obstacle L'obstacle avec lequel compare la position relative de la grenouille
-     * @return Un booléen qui indique si oui ou non la grenouille intersecte l'obstacle.
-     * Remarque : l'intersection de la grenouille avec une voiture se résume à un simple contact avec, tandis que pour un tronc, il faut qu'elle y soit complétement à l'intérieur
+     * @return Un booleen qui indique si oui ou non la grenouille intersecte l'obstacle.
+     * Remarque : l'intersection de la grenouille avec une voiture se resume a un simple contact avec, tandis que pour un tronc, il faut qu'elle y soit completement a l'interieur
      */
     public boolean intersect(Obstacle obstacle){
         // Si l'obstacle est une voiture, on a besoin de savoir si frog touche la voiture ou non
@@ -60,7 +60,7 @@ public class Frog extends Moving{
                     (this.getTop()<= obstacle.getBottom())||
                     (this.getBottom()>= obstacle.getTop()));
         }
-        // Si l'obstacle n'est pas une voiture (mais un tronc), on a besoin de savoir si frog est à l'intérieur d'un tronc ou non
+        // Si l'obstacle n'est pas une voiture (mais un tronc), on a besoin de savoir si frog est a l'interieur d'un tronc ou non
         else {
             return (this.getRange() == obstacle.getRange() && (this.getRight() < obstacle.getRight() && this.getLeft() > obstacle.getLeft()));
         }

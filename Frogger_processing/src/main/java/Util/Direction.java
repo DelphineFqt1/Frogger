@@ -1,7 +1,7 @@
 package Util;
 
 /**
- *  Répertoire de références de valeur pour les clicks du clavier
+ *  Repertoire de references de valeur pour les clicks du clavier
  */
 public class Direction {
 

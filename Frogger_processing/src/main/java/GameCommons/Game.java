@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import static Util.UtilClass.random_btw;
 
 /**
- * La classe Game centralise les paramètres du jeu ainsi que les méthodes qui contrôlent son bon déroulement
+ * La classe Game centralise les parametres du jeu ainsi que les methodes qui controlent son bon deroulement
  */
 public class Game implements IFrog, IEnvironment {
     private int grid;

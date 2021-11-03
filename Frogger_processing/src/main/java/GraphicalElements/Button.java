@@ -3,7 +3,7 @@ package GraphicalElements;
 import processing.core.PApplet;
 
 /**
- * Spécifie un type de case particulier avec lequel on peut intéragir
+ * Specifie un type de case particulier avec lequel on peut interagir
  */
 public class Button extends Element{
     private int left;
@@ -13,12 +13,12 @@ public class Button extends Element{
     private String text;
 
     /**
-     * @param P Une instance de PApplet qui lance une IHM et qui sert de support à l'affichage du bouton et à ses actions
-     * @param left L'abscisse du côté latéral gauche du bouton
-     * @param top L'ordonnée du côté supérieur du bouton
-     * @param right L'abscisse du côté latéral droit du bouton
-     * @param bottom L'ordonnée du côté inférieur du bouton
-     * @param text Le texte affiché sur le bouton
+     * @param P Une instance de PApplet qui lance une IHM et qui sert de support a l'affichage du bouton et a ses actions
+     * @param left L'abscisse du cote lateral gauche du bouton
+     * @param top L'ordonnee du cote superieur du bouton
+     * @param right L'abscisse du cote lateral droit du bouton
+     * @param bottom L'ordonnee du cote inferieur du bouton
+     * @param text Le texte affiche sur le bouton
      */
     public Button(PApplet P, int left, int top, int right, int bottom, String text) {
         super(P);

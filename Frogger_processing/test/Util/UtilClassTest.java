@@ -24,9 +24,9 @@ class UtilClassTest {
             }
         monFichier.close();
         String string = "";
-        // On vérifie le type
+        // On verifie le type
         assertEquals(string.getClass(), UtilClass.record_treatment(record, 20000).getClass());
-        // On vérifie qu'un score compris entre le 9e et le 1er est ajouté
+        // On verifie qu'un score compris entre le 9e et le 1er est ajoute
         float first = Float.parseFloat(scores.get(0).split(" ")[1].split("s")[0]);
         float last = Float.parseFloat(scores.get(8).split(" ")[1].split("s")[0]);
         float number = last - (last - first)/2;
@@ -53,9 +53,9 @@ class UtilClassTest {
         }
         monFichier.close();
         String string = "";
-        // On vérifie le type
+        // On verifie le type
         assertEquals(string.getClass(), UtilClass.endless_treatment(record, -20).getClass());
-        // On vérifie qu'un score compris entre le 9e et le 1er est ajouté
+        // On verifie qu'un score compris entre le 9e et le 1er est ajoute
         int first = Integer.parseInt(scores.get(0).split(" ")[1]);
         int last = Integer.parseInt(scores.get(8).split(" ")[1]);
         int number = first - (first - last)/2;
@@ -73,13 +73,13 @@ class UtilClassTest {
     @Test
     void random_btw() {
         int random = UtilClass.random_btw(-5, 5);
-        // On vérifie que le nombre respecte les bornes
+        // On verifie que le nombre respecte les bornes
         assertTrue(random > -5 && random < 5);
     }
 
     @Test
     void get_leaderboard_data() throws IOException {
-        // On vérifie que la fonction récupère bien les lignes des fichiers textes
+        // On verifie que la fonction recupere bien les lignes des fichiers textes
         Path record1 = Paths.get("src/main/java/GameCommons/Record_easy");
         Path record2 = Paths.get("src/main/java/GameCommons/Record_hard");
         Path record3 = Paths.get("src/main/java/GameCommons/Record_endless");

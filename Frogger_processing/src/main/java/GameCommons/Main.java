@@ -21,7 +21,7 @@ import static Util.UtilClass.get_leaderboard_data;
 import ddf.minim.*;
 
 /**
- * Main qui sert à lancer le jeu, avec des paramètres spécifiables dans le settings
+ * Main qui sert a lancer le jeu, avec des parametres specifiables dans le settings
  */
 public class Main extends PApplet {
 
@@ -98,12 +98,12 @@ public class Main extends PApplet {
     }
 
     /**
-     * Permet d'entrer les paramètres utiles au déroulement du jeu
+     * Permet d'entrer les parametres utiles au deroulement du jeu
      */
     @Override
     public void settings() {
 
-        ranges = 16; // de préférence pair
+        ranges = 16; // de preference pair
         columns = 19;
         grid = 45;
         separate = ranges/2 ;
@@ -114,7 +114,7 @@ public class Main extends PApplet {
     }
 
     /**
-     * Permet de déclarer les objets utiles au déroulement du jeu
+     * Permet de declarer les objets utiles au deroulement du jeu
      */
     @Override
     public void setup() {
@@ -166,7 +166,7 @@ public class Main extends PApplet {
     }
 
     /**
-     * Déroule le jeu
+     * Deroule le jeu
      */
     @Override
     public void draw() {
@@ -229,7 +229,7 @@ public class Main extends PApplet {
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
             }
 
-// Après avoir choisi le mode 1 joueur, on choisit le niveau de difficulté
+// Apres avoir choisi le mode 1 joueur, on choisit le niveau de difficulte
             if (buttonEasy.click_event() && game.getPlayerMode() == "1 PLAYER") {
                 game.setDiff("EASY");
                 player_bouton = minim.loadFile(music_bouton);
@@ -274,7 +274,7 @@ public class Main extends PApplet {
                 board.show_image(im_back_arrow, buttonBack.getLeft(), buttonBack.getTop()-40, 36, 36);
             }
 
-// Après avoir choisi le mode 2 joueurs, on choisit le niveau de difficulté
+// Apres avoir choisi le mode 2 joueurs, on choisit le niveau de difficulte
             if (buttonEasy.click_event() && game.getPlayerMode() == "2 PLAYERS") {
                 game.setDiff("EASY");
                 player_bouton = minim.loadFile(music_bouton);
@@ -416,7 +416,7 @@ public class Main extends PApplet {
         }
         else if (game.getDiff()!=null){   // LE JEU EN LUI-MEME EST LANCE
 
-            // On récupère le temps où le joueur lance une partie (une seule fois)
+            // On recupere le temps ou le joueur lance une partie (une seule fois)
             t_i = (millis()-t1)/1000;
             board.background(25);
             if (game.getDiff() == "HARD") {  // AFFICHE LA LIGNE D'EAU, LA DEMARCATION AVEC L'AUTOROUTE ET L'ARRIVEE EN MODE HARD
@@ -613,7 +613,7 @@ public class Main extends PApplet {
 
 
     /**
-     * Associe les clicks sur le clavier à des actions particulières
+     * Associe les clicks sur le clavier a des actions particulieres
      */
     @Override
     public void keyPressed() {
