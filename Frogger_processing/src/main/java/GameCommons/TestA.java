@@ -574,7 +574,6 @@ public class TestA extends PApplet {
                     }
                     board.create_text(remark, 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2 + grid, 255, 255, 0);
                     this.noLoop();
-                    buttonBack.show();
                     if (buttonBack.click_event()){
                         game.setPlayerMode(null);
                         game.setDiff(null);
