@@ -548,8 +548,10 @@ public class TestA extends PApplet {
                     player_defeat_infinity = minim.loadFile(music_defeat_infinity);
                     player_defeat_infinity.play();
                     remark = endless_treatment(record_infinity,score_inf);
+                    board.create_case(game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + 3*grid,game.getGame_width() / 2+7*grid,  game.getGame_height() / 2 -grid, 25, 25, 25);
                     board.create_text("Your score is " + score_inf, 32, game.getGame_width() / 2 - 6*grid, game.getGame_height() / 2, 0, 255, 0);
                     board.create_text(remark, 32, game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + grid, 0, 255, 0);
+                    board.create_text("Click on the Space key to go back on Menu", 32, game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + 3*grid, 255, 255, 0);
                     this.noLoop();
                 }
             } else {
@@ -557,7 +559,6 @@ public class TestA extends PApplet {
 
                 if (game.getGameState()) {
 
-                    board.create_text("Congratulations ! You beat Frogger in " + t_i + "s.", 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2, 255, 255, 255);
                     if (game.getDiff() == "EASY"){
                         player_easy.close();
                         player_victory_easy = minim.loadFile(music_victory_easy);
@@ -572,7 +573,11 @@ public class TestA extends PApplet {
                         player_victory_hard.play();
                         remark = record_treatment(record_hard, t_i);
                     }
-                    board.create_text(remark, 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2 + grid, 255, 255, 0);
+
+                    board.create_case(game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + 3*grid,game.getGame_width() / 2+8*grid,  game.getGame_height() / 2 -grid, 25, 25, 25);
+                    board.create_text("Congratulations ! You beat Frogger in " + t_i + "s", 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2, 0, 255, 0);
+                    board.create_text(remark, 32, game.getGame_width() / 2 - 6 * grid, game.getGame_height() / 2 + grid, 0, 255, 0);
+                    board.create_text("Click on the Space key to go back on Menu", 32, game.getGame_width() / 2 -  6*grid, game.getGame_height() / 2 + 3*grid, 255, 255, 0);
                     this.noLoop();
                     if (buttonBack.click_event()){
                         game.setPlayerMode(null);

@@ -121,6 +121,12 @@ public class Game implements IFrog, IEnvironment {
         }
     }
 
+    @Override
+    public void reset_game() {
+        setPlayerMode(null);
+        setDiff(null);
+        setGameState(false);
+    }
 
 
     @Override
@@ -171,15 +177,6 @@ public class Game implements IFrog, IEnvironment {
             setGameState(true);
         }
     }
-
-    @Override
-    public void reset_game() {
-        setPlayerMode(null);
-        setDiff(null);
-        setGameState(false);
-
-    }
-
 
 
     public boolean isGameState() {

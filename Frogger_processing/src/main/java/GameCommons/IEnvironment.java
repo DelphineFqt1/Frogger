@@ -43,7 +43,7 @@ public interface IEnvironment {
      */
     abstract void move_allCars(ArrayList<ArrayList<Car>> allCars, int ydir);
     /**
-     *  Réinitialise les états du jeu (PlayerMode, Diff, leaderboard, gameState)
+     * Réinitialise les attributs du jeu PlayerMode, Diff et gameState
      */
     abstract void reset_game();
 
