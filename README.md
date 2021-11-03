@@ -30,7 +30,7 @@ Voici les étapes à suivre pour jouer à Frogger avec [IntelliJ IDEA](https://w
 
 • Toujours dans File/Project Structure sélectionner le module jl1.0.1 et cliquer sur Apply
 
-• Executer le fichier Main.java
+• Exécuter le fichier Main.java
 
 ## Visuel du jeu
 ![plot](./Frogger_processing/src/main/java/Resources/Images/visu_frogger1.png)
