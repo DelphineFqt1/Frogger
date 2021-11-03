@@ -131,7 +131,7 @@ public class Main extends PApplet {
         im_car_left = loadImage(im + "/car_left.png");
         im_trunk = loadImage(im + "/trunk.png");
         im_cursor = loadImage(im + "/cursor.png");
-        im_rb_pepe_right = loadImage(im + "/rb_pepe_right.jpg");
+        im_rb_pepe_right = loadImage(im + "/rb_pepe_right.png");
         im_rb_pepe_left = loadImage(im + "/rb_pepe_left.png");
         im_cup = loadImage(im + "/cup.png");
         im_back_arrow = loadImage(im + "/back_arrow.png");
@@ -170,6 +170,12 @@ public class Main extends PApplet {
      */
     @Override
     public void draw() {
+        if (game.getRestart()==1){
+            player_menu = minim.loadFile(music_menu);
+            player_menu.setGain(0);
+            player_menu.loop();
+            game.setRestart(0);
+        }
 
         if (game.getDiff() == null) {   // ECRAN D'ACCUEIL + CHOIX DU PLAYERMODE ET DU NIVEAU DE DIFFICULTE
             t1 = millis();
