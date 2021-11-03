@@ -58,11 +58,13 @@ class GameTest {
     void move_allCars() {
         Game game = new Game(45,16,19);
         ArrayList<ArrayList<Obstacle.Car>> cars = game.allCars(1);
+        System.out.println(cars.get(0).get(0).getBottom());
         // On vérifie que toutes les voitures de la liste bougent
         game.move_allCars(cars, 1);
         for (ArrayList<Obstacle.Car> list_car : cars) {
             for (Obstacle.Car car : list_car) {
                 assertEquals(676, car.getTop());
+                assertEquals(631, car.getBottom());
             }
         }
 
