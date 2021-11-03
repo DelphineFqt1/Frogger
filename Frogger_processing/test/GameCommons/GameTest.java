@@ -142,6 +142,7 @@ class GameTest {
         assertNull(game.getPlayerMode());
         assertNull(game.getDiff());
         assertFalse(game.getGameState());
+        assertEquals(1, game.getRestart());
     }
 
     @Test
@@ -260,6 +261,17 @@ class GameTest {
         game.setLeaderboard("easy");
         assertEquals("easy", game.getLeaderboard());
     }
+    @Test
+    void getRestart() {
+        Game game = new Game(45,16,19);
+        assertEquals(0, game.getRestart());
+    }
 
+    @Test
+    void setRestart() {
+        Game game = new Game(45,16,19);
+        game.setRestart(1);
+        assertEquals(1, game.getRestart());
+    }
 
 }

@@ -157,7 +157,12 @@ public class TestA extends PApplet {
 
     @Override
     public void draw() {
-
+        if (game.getRestart() == 1) {
+            player_menu = minim.loadFile(music_menu);
+            player_menu.setGain(0);
+            player_menu.loop();
+            game.setRestart(0);
+        }
         if (game.getDiff() == null) {   // ECRAN D'ACCUEIL + CHOIX DU PLAYERMODE ET DU NIVEAU DE DIFFICULTE
             t1 = millis();
             if (game.getPlayerMode() == null) {

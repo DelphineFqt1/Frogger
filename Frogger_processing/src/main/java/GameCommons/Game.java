@@ -21,6 +21,7 @@ public class Game implements IFrog, IEnvironment {
     private String PlayerMode;
     private String Diff;
     private String leaderboard;
+    private int restart;
 
     public Game(int grid, int ranges, int columns) {
         this.grid = grid;
@@ -32,6 +33,7 @@ public class Game implements IFrog, IEnvironment {
         this.PlayerMode = null;
         this.Diff = null;
         this.leaderboard=null;
+        this.restart = 0;
         if (ranges <=0 || columns<=0 || grid<=0){
             this.ranges = 16;
             this.columns = 19;
@@ -126,6 +128,7 @@ public class Game implements IFrog, IEnvironment {
         setPlayerMode(null);
         setDiff(null);
         setGameState(false);
+        setRestart(1);
     }
 
 
@@ -246,6 +249,10 @@ public class Game implements IFrog, IEnvironment {
     public void setLeaderboard(String leaderboard) {
         this.leaderboard = leaderboard;
     }
+
+    public int getRestart() {return restart;}
+
+    public void setRestart(int restart) {this.restart = restart;}
 }
 
 
