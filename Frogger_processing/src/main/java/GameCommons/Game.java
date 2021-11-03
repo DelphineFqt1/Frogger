@@ -179,10 +179,6 @@ public class Game implements IFrog, IEnvironment {
     }
 
 
-    public boolean isGameState() {
-        return gameState;
-    }
-
     public String getPlayerMode() {
         return PlayerMode;
     }

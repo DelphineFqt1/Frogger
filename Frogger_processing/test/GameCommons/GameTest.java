@@ -135,10 +135,6 @@ class GameTest {
         assertTrue(game.getGameState());
     }
 
-    @Test
-    void isGameState() {
-
-    }
 
     @Test
     void getPlayerMode() {
